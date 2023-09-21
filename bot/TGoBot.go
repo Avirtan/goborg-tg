@@ -1,9 +1,9 @@
 package bot
 
 import (
-	"TGoBot/internal/dto"
-	"TGoBot/internal/handler"
-	"TGoBot/internal/method"
+	"TGoBot/dto"
+	"TGoBot/handler"
+	"TGoBot/method"
 	"context"
 	"errors"
 )
@@ -49,7 +49,6 @@ func (t *TGoBot) AddCommand(botCommand *dto.BotCommand, handler handler.IHandler
 		return
 	}
 	t.commands[botCommand] = handler
-	t.methodHandler.SetMyCommands(t.ctx, botCommand)
 }
 
 func (t *TGoBot) GetCommand() {
@@ -61,6 +60,14 @@ func (t *TGoBot) DeleteCommand() {
 }
 
 func (t *TGoBot) RunUpdate() {
+	commands := make([]*dto.BotCommand, 0, 10)
+	for command := range t.commands {
+		commands = append(commands, command)
+	}
+	if len(commands) > 0 {
+		t.methodHandler.SetMyCommands(t.ctx, commands)
+		t.methodHandler.GetMyCommands()
+	}
 	for {
 		select {
 		case <-t.ctx.Done():

@@ -9,6 +9,7 @@ type Message struct {
 }
 
 type SendMessage struct {
-	ChatID int    `json:"chat_id"`
-	Text   string `json:"text"`
+	ChatID     int        `json:"chat_id"`
+	Text       string     `json:"text"`
+	ForceReply ForceReply `json:"reply_markup,omitempty"`
 }

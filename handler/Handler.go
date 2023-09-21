@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"TGoBot/internal/dto"
-	"TGoBot/internal/method"
+	"TGoBot/dto"
+	"TGoBot/method"
 )
 
 type TypeHandler uint64

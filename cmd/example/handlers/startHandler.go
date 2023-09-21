@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"TGoBot/cmd/example/model"
-	"TGoBot/internal/dto"
-	"TGoBot/internal/method"
+	"TGoBot/dto"
+	"TGoBot/method"
 	"fmt"
 
 	"github.com/jmoiron/sqlx"

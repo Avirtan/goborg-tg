@@ -1,8 +1,9 @@
 package method
 
 import (
-	"TGoBot/internal/dto"
-	"TGoBot/internal/request"
+	"TGoBot/dto"
+	"TGoBot/request"
+
 	"context"
 	"encoding/json"
 	"fmt"
@@ -49,30 +50,27 @@ func (m *MethodHandler) GetUpdates(ctx context.Context, offset uint64, limit int
 	return &response, err
 }
 
-func (m *MethodHandler) SetMyCommands(ctx context.Context, command *dto.BotCommand) error {
-	botCommandRequest := dto.BotCommandRequst{
-		Command:     command.Command,
-		Description: command.Description,
-	}
+func (m *MethodHandler) SetMyCommands(ctx context.Context, commands []*dto.BotCommand) error {
 	dataRequest := dto.SetCommandRequest{
-		Commands: []dto.BotCommandRequst{botCommandRequest},
+		Commands: commands,
 		// LanguageCode: "ru",
 	}
 	data, err := json.Marshal(dataRequest)
 	if err != nil {
 		return err
 	}
+	fmt.Println(string(data))
 	resp, err := request.RequestWithContext(ctx, request.Get, m.GetUrl()+"/setMyCommands", data)
 	if err != nil {
 		return err
 	}
-	// var response interface{}
-	// body, _ := io.ReadAll(resp.Body)
-	// err = json.Unmarshal(body, &response)
-	// if err != nil {
-	// 	return err
-	// }
-	// fmt.Println(response)
+	var response interface{}
+	body, _ := io.ReadAll(resp.Body)
+	err = json.Unmarshal(body, &response)
+	if err != nil {
+		return err
+	}
+	fmt.Println(response)
 	resp.Body.Close()
 	return nil
 }

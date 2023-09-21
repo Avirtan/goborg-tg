@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"TGoBot/cmd/example/model"
-	"TGoBot/internal/dto"
-	"TGoBot/internal/method"
-	"TGoBot/internal/request"
+	"TGoBot/dto"
+	"TGoBot/method"
+	"TGoBot/request"
 	"encoding/json"
 	"fmt"
 	"io"

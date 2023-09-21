@@ -1,18 +1,15 @@
 package main
 
 import (
+	"TGoBot/bot"
 	"TGoBot/cmd/example/handlers"
-	"TGoBot/internal/bot"
+	"TGoBot/dto"
 	"context"
-	"log"
 	"log/slog"
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
 
-	"github.com/go-co-op/gocron"
-	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 )
 
@@ -28,12 +25,12 @@ CREATE TABLE IF NOT EXISTS student (
 `
 
 func main() {
-	db, err := sqlx.Connect("postgres", "postgres://user:pass@localhost:5432/mangust?sslmode=disable")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	s := gocron.NewScheduler(time.Local)
-	db.MustExec(schema)
+	// db, err := sqlx.Connect("postgres", "postgres://user:pass@localhost:5432/mangust?sslmode=disable")
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
+	// s := gocron.NewScheduler(time.Local)
+	// db.MustExec(schema)
 
 	ctx := context.Background()
 	ctxWithCancel, cancelFunction := context.WithCancel(ctx)
@@ -57,26 +54,26 @@ func main() {
 	// 		)
 	// 	}
 	// })
-	msg := &handlers.CollegeHandler{}
-	tbot.AddHandler(msg)
+	// msg := &handlers.CollegeHandler{}
+	// tbot.AddHandler(msg)
 
-	start := &handlers.StartHandler{
-		Db: db,
-	}
-	tbot.AddHandler(start)
-	// cmd := &handlers.HelpHandler{}
-	// tbot.AddCommand(&dto.BotCommand{
-	// 	Command:     "/help",
-	// 	Description: "пример использование бота",
-	// }, cmd)
+	// start := &handlers.StartHandler{
+	// 	Db: db,
+	// }
+	// tbot.AddHandler(start)
+
+	cmd := &handlers.TestCommandHandler{}
+	tbot.AddCommand(&dto.BotCommand{
+		Command:     "/test",
+		Description: "пример использование бота",
+	}, cmd)
 	// tbot.AddCommand(&dto.BotCommand{
 	// 	Command:     "/test1",
 	// 	Description: "тестовая1 комманда",
 	// }, cmd)
 
-	// tbot.GetCommand()
 	go tbot.RunUpdate()
-	s.StartAsync()
+	// s.StartAsync()
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM)
 
@@ -86,7 +83,7 @@ func main() {
 	case err := <-tbot.Notify():
 		slog.Error("tbot eror " + err.Error())
 	}
-	s.Stop()
-	// tbot.DeleteCommand()
+	// s.Stop()
+	tbot.DeleteCommand()
 	cancelFunction()
 }
