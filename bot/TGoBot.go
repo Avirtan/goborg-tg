@@ -4,13 +4,16 @@ import (
 	"TGoBot/dto"
 	"TGoBot/handler"
 	"TGoBot/method"
+	"TGoBot/pkg/logger"
 	"context"
 	"errors"
+	"log/slog"
 )
 
 type BotOptions struct {
-	Token string
-	Ctx   context.Context
+	Token       string
+	Ctx         context.Context
+	LoggerLevel logger.LevelLogger
 }
 
 type TGoBot struct {
@@ -24,6 +27,7 @@ type TGoBot struct {
 }
 
 func NewBot(option BotOptions) *TGoBot {
+	logger.New(option.LoggerLevel.String())
 	return &TGoBot{
 		token: option.Token,
 		methodHandler: &method.MethodHandler{
@@ -52,7 +56,10 @@ func (t *TGoBot) AddCommand(botCommand *dto.BotCommand, handler handler.IHandler
 }
 
 func (t *TGoBot) GetCommand() {
-	t.methodHandler.GetMyCommands()
+	err := t.methodHandler.GetMyCommands()
+	if err != nil {
+		slog.Error("GetCommand", "error", err.Error())
+	}
 }
 
 func (t *TGoBot) DeleteCommand() {
@@ -66,7 +73,7 @@ func (t *TGoBot) RunUpdate() {
 	}
 	if len(commands) > 0 {
 		t.methodHandler.SetMyCommands(t.ctx, commands)
-		t.methodHandler.GetMyCommands()
+		t.GetCommand()
 	}
 	for {
 		select {
@@ -78,20 +85,21 @@ func (t *TGoBot) RunUpdate() {
 				t.notify <- err
 				return
 			}
-
-			for _, value := range response.Update {
-				if value.Message != nil {
-					for key, handler := range t.commands {
-						if key.Command == value.Message.Text {
-							go handler.Action(&value, t.methodHandler)
+			go func(context.Context, dto.UpdateResponse) {
+				for _, value := range response.Update {
+					if value.Message != nil {
+						for key, handler := range t.commands {
+							if key.Command == value.Message.Text {
+								go handler.Action(t.ctx, &value, t.methodHandler)
+							}
 						}
 					}
+					for _, handler := range t.handlers {
+						go handler.Action(t.ctx, &value, t.methodHandler)
+					}
 				}
-				for _, handler := range t.handlers {
-					go handler.Action(&value, t.methodHandler)
-				}
-				t.offset = value.UpdateID + 1
-			}
+			}(t.ctx, *response)
+			t.offset = response.Update[len(response.Update)-1].UpdateID + 1
 		}
 	}
 }

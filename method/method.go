@@ -60,51 +60,41 @@ func (m *MethodHandler) SetMyCommands(ctx context.Context, commands []*dto.BotCo
 	if err != nil {
 		return err
 	}
-	resp, err := request.RequestWithContext(ctx, request.Get, m.GetUrl()+"/setMyCommands", data)
+	response, err := request.RequestWithContext(ctx, request.Get, m.GetUrl()+"/setMyCommands", data)
 	if err != nil {
 		return err
 	}
-	var response dto.Response
-	body, _ := io.ReadAll(resp.Body)
-	err = json.Unmarshal(body, &response)
+	responseJson, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Info("info", "response", response)
-	// fmt.Println(response)
-	resp.Body.Close()
+	slog.Info("info", "response", responseJson)
 	return nil
 }
 
 func (m *MethodHandler) DeleteMyCommands() error {
-	resp, err := request.Request(request.Get, m.GetUrl()+"/deleteMyCommands", []byte{})
+	response, err := request.Request(request.Get, m.GetUrl()+"/deleteMyCommands", []byte{})
 	if err != nil {
 		return err
 	}
-	// var response interface{}
-	// body, _ := io.ReadAll(resp.Body)
-	// err = json.Unmarshal(body, &response)
-	// if err != nil {
-	// 	return err
-	// }
-	// fmt.Println(response)
-	resp.Body.Close()
+	responseJson, err := request.ResponseHandler(response)
+	if err != nil {
+		return err
+	}
+	slog.Info("info", "response", responseJson)
 	return nil
 }
 
 func (m *MethodHandler) GetMyCommands() error {
-	resp, err := request.Request(request.Get, m.GetUrl()+"/getMyCommands", []byte{})
+	response, err := request.Request(request.Get, m.GetUrl()+"/getMyCommands", []byte{})
 	if err != nil {
 		return err
 	}
-	var response dto.Response
-	body, _ := io.ReadAll(resp.Body)
-	err = json.Unmarshal(body, &response)
+	responseJson, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	fmt.Println(response)
-	resp.Body.Close()
+	slog.Info("info", "response", responseJson)
 	return nil
 }
 
@@ -113,17 +103,14 @@ func (m *MethodHandler) SendMessage(msg dto.SendMessage) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println(string(data))
-	resp, err := request.Request(request.Get, m.GetUrl()+"/sendMessage", data)
+	response, err := request.Request(request.Get, m.GetUrl()+"/sendMessage", data)
 	if err != nil {
 		return err
 	}
-	var response dto.Response
-	body, _ := io.ReadAll(resp.Body)
-	err = json.Unmarshal(body, &response)
+	responseJson, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	fmt.Println(response)
+	slog.Info("info", "response", responseJson)
 	return nil
 }

@@ -3,6 +3,7 @@ package handler
 import (
 	"TGoBot/dto"
 	"TGoBot/method"
+	"context"
 )
 
 type TypeHandler uint64
@@ -15,5 +16,5 @@ const (
 )
 
 type IHandler interface {
-	Action(update *dto.Update, msgHandler *method.MethodHandler)
+	Action(ctx context.Context, update *dto.Update, msgHandler *method.MethodHandler)
 }

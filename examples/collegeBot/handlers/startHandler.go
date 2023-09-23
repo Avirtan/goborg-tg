@@ -4,6 +4,7 @@ import (
 	"TGoBot/dto"
 	"TGoBot/examples/collegeBot/model"
 	"TGoBot/method"
+	"context"
 	"fmt"
 
 	"github.com/jmoiron/sqlx"
@@ -13,7 +14,7 @@ type StartHandler struct {
 	Db *sqlx.DB
 }
 
-func (c *StartHandler) Action(update *dto.Update, msgHandler *method.MethodHandler) {
+func (c *StartHandler) Action(ctx context.Context, update *dto.Update, msgHandler *method.MethodHandler) {
 	if update.Message != nil && update.Message.Text == "/start" {
 		msgHandler.SendMessage(
 			dto.SendMessage{

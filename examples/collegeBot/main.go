@@ -2,8 +2,8 @@ package main
 
 import (
 	"TGoBot/bot"
-	"TGoBot/cmd/example/handlers"
 	"TGoBot/dto"
+	"TGoBot/examples/collegeBot/handlers"
 	"context"
 	"fmt"
 	"log/slog"

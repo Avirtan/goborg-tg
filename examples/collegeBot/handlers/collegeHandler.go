@@ -5,6 +5,7 @@ import (
 	"TGoBot/examples/collegeBot/model"
 	"TGoBot/method"
 	"TGoBot/request"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -16,7 +17,7 @@ const url = "https://info.kma29.ru/api.php/"
 type CollegeHandler struct {
 }
 
-func (c *CollegeHandler) Action(update *dto.Update, msgHandler *method.MethodHandler) {
+func (c *CollegeHandler) Action(ctx context.Context, update *dto.Update, msgHandler *method.MethodHandler) {
 	resp, err := request.Request(request.Get, url, []byte{})
 	if err != nil {
 		fmt.Println(err.Error())
