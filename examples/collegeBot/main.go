@@ -5,10 +5,12 @@ import (
 	"TGoBot/cmd/example/handlers"
 	"TGoBot/dto"
 	"context"
+	"fmt"
 	"log/slog"
 	"os"
 	"os/signal"
 	"syscall"
+	"unsafe"
 
 	_ "github.com/lib/pq"
 )
@@ -60,13 +62,14 @@ func main() {
 	// start := &handlers.StartHandler{
 	// 	Db: db,
 	// }
-	// tbot.AddHandler(start)
+	fmt.Println(unsafe.Sizeof(dto.UpdateResponse{}))
 
 	cmd := &handlers.TestCommandHandler{}
 	tbot.AddCommand(&dto.BotCommand{
 		Command:     "/test",
 		Description: "пример использование бота",
 	}, cmd)
+	// tbot.AddHandler(cmd)
 	// tbot.AddCommand(&dto.BotCommand{
 	// 	Command:     "/test1",
 	// 	Description: "тестовая1 комманда",

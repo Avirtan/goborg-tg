@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"TGoBot/cmd/example/model"
 	"TGoBot/dto"
+	"TGoBot/examples/collegeBot/model"
 	"TGoBot/method"
 	"TGoBot/request"
 	"encoding/json"

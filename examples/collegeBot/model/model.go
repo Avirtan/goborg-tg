@@ -15,7 +15,7 @@ type ApiCollege struct {
 }
 
 type Student struct {
-	UserId    int    `db:"user_id"`
+	UserId    int64  `db:"user_id"`
 	FirstName string `db:"first_name"`
 	LastName  string `db:"last_name"`
 	Username  string `db:"username"`

@@ -3,6 +3,7 @@ package method
 import (
 	"TGoBot/dto"
 	"TGoBot/request"
+	"log/slog"
 
 	"context"
 	"encoding/json"
@@ -59,18 +60,18 @@ func (m *MethodHandler) SetMyCommands(ctx context.Context, commands []*dto.BotCo
 	if err != nil {
 		return err
 	}
-	fmt.Println(string(data))
 	resp, err := request.RequestWithContext(ctx, request.Get, m.GetUrl()+"/setMyCommands", data)
 	if err != nil {
 		return err
 	}
-	var response interface{}
+	var response dto.Response
 	body, _ := io.ReadAll(resp.Body)
 	err = json.Unmarshal(body, &response)
 	if err != nil {
 		return err
 	}
-	fmt.Println(response)
+	slog.Info("info", "response", response)
+	// fmt.Println(response)
 	resp.Body.Close()
 	return nil
 }
@@ -96,7 +97,7 @@ func (m *MethodHandler) GetMyCommands() error {
 	if err != nil {
 		return err
 	}
-	var response interface{}
+	var response dto.Response
 	body, _ := io.ReadAll(resp.Body)
 	err = json.Unmarshal(body, &response)
 	if err != nil {
@@ -112,15 +113,17 @@ func (m *MethodHandler) SendMessage(msg dto.SendMessage) error {
 	if err != nil {
 		return err
 	}
+	fmt.Println(string(data))
 	resp, err := request.Request(request.Get, m.GetUrl()+"/sendMessage", data)
 	if err != nil {
 		return err
 	}
-	var response interface{}
+	var response dto.Response
 	body, _ := io.ReadAll(resp.Body)
 	err = json.Unmarshal(body, &response)
 	if err != nil {
 		return err
 	}
+	fmt.Println(response)
 	return nil
 }
