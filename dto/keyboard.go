@@ -1,17 +1,27 @@
 package dto
 
 type Keyboard struct {
-	InlineKeyboard
+	InlineKeyboardMarkup
 	ForceReply
 }
 
-type InlineKeyboard struct {
+// https://core.telegram.org/bots/api#inlinekeyboardmarkup
+type InlineKeyboardMarkup struct {
 	InlineKeyboard [][]InlineKeyboardButton `json:"inline_keyboard,omitempty"`
 }
 
+// https://core.telegram.org/bots/api#inlinekeyboardbutton
 type InlineKeyboardButton struct {
-	Text         string `json:"text,omitempty"`
-	CallbackData string `json:"callback_data,omitempty"`
+	Text                         string     `json:"text"`
+	Url                          string     `json:"url,omitempty"`
+	CallbackData                 string     `json:"callback_data,omitempty"`
+	WebApp                       WebAppInfo `json:"web_app,omitempty"`
+	LoginUrl                     any        `json:"login_url,omitempty"` //TODO 	LoginUrl
+	SwitchInlineQuery            string     `json:"switch_inline_query,omitempty"`
+	SwitchInlineQueryCurrentChat string     `json:"switch_inline_query_current_chat,omitempty"`
+	SwitchInlineQueryChosenChat  any        `json:"switch_inline_query_chosen_chat,omitempty"` // TODO SwitchInlineQueryChosenChat
+	CallbackGame                 any        `json:"callback_game,omitempty"`                   // TODO 	CallbackGame
+	Pay                          bool       `json:"pay,omitempty"`
 }
 
 type ForceReply struct {
