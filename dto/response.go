@@ -5,3 +5,8 @@ type Response struct {
 	Result      interface{} `json:"result,omitempty"`
 	Description string      `json:"description,omitempty"`
 }
+
+type ResponseParameters struct {
+	MigrateToChatId int64 `json:"migrate_to_chat_id,omitempty"`
+	RetryAfter      int64 `retry_after:"result,omitempty"`
+}
