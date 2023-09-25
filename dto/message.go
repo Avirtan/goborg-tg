@@ -19,6 +19,11 @@ type MessageEntity struct {
 	User          User   `json:"user,omitempty"`
 }
 
+// https://core.telegram.org/bots/api#messageautodeletetimerchanged
+type MessageAutoDeleteTimerChanged struct {
+	MessageAutoDeleteTime int `json:"message_auto_delete_time"`
+}
+
 type SendMessage struct {
 	ChatID      int64    `json:"chat_id"`
 	Text        string   `json:"text"`
