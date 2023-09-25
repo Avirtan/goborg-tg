@@ -16,7 +16,7 @@ type InlineKeyboardButton struct {
 	Url                          string     `json:"url,omitempty"`
 	CallbackData                 string     `json:"callback_data,omitempty"`
 	WebApp                       WebAppInfo `json:"web_app,omitempty"`
-	LoginUrl                     any        `json:"login_url,omitempty"` //TODO 	LoginUrl
+	LoginUrl                     LoginUrl   `json:"login_url,omitempty"`
 	SwitchInlineQuery            string     `json:"switch_inline_query,omitempty"`
 	SwitchInlineQueryCurrentChat string     `json:"switch_inline_query_current_chat,omitempty"`
 	SwitchInlineQueryChosenChat  any        `json:"switch_inline_query_chosen_chat,omitempty"` // TODO SwitchInlineQueryChosenChat
