@@ -14,3 +14,9 @@ type User struct {
 	CanReadAllGroupMessages bool   `json:"can_read_all_group_messages"`
 	SupportsInlineQueries   bool   `json:"supports_inline_queries"`
 }
+
+//https://core.telegram.org/bots/api#userprofilephotos
+type UserProfilePhotos struct {
+	TotalCount int64         `json:"total_count"`
+	Photos     [][]PhotoSize `json:"photos"`
+}
