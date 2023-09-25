@@ -101,3 +101,14 @@ type ChatShared struct {
 	RequestId int64 `json:"request_id"`
 	СhatId    int64 `json:"chat_id"`
 }
+
+// https://core.telegram.org/bots/api#callbackquery
+type CallbackQuery struct {
+	Id              string  `json:"id"`
+	From            User    `json:"from"`
+	Message         Message `json:"message,omitempty"`
+	InlineMessageId string  `json:"inline_message_id,omitempty"`
+	ChatInstance    string  `json:"chat_instance,omitempty"`
+	Data            string  `json:"data,omitempty"`
+	GameShortName   string  `json:"game_short_name,omitempty"`
+}
