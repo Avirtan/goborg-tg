@@ -10,7 +10,7 @@ type Video struct {
 	Thumbnail    PhotoSize `json:"thumbnail,omitempty"`
 	FileName     string    `json:"file_name,omitempty"`
 	MimeType     string    `json:"mime_type,omitempty"`
-	FileSize     string    `json:"file_size,omitempty"`
+	FileSize     int64     `json:"file_size,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#videonote
@@ -20,5 +20,5 @@ type VideoNote struct {
 	Length       int       `json:"length"`
 	Duration     int       `json:"duration"`
 	Thumbnail    PhotoSize `json:"thumbnail,omitempty"`
-	FileSize     string    `json:"file_size,omitempty"`
+	FileSize     int64     `json:"file_size,omitempty"`
 }

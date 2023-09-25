@@ -10,5 +10,5 @@ type Animation struct {
 	Thumbnail    PhotoSize `json:"thumbnail,omitempty"`
 	FileName     string    `json:"file_name,omitempty"`
 	MimeType     string    `json:"mime_type,omitempty"`
-	FileSize     string    `json:"file_size,omitempty"`
+	FileSize     int64     `json:"file_size,omitempty"`
 }

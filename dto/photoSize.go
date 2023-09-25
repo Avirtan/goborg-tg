@@ -6,5 +6,5 @@ type PhotoSize struct {
 	FileUniqueId string `json:"file_unique_id"`
 	Width        int    `json:"width"`
 	Height       int    `json:"height"`
-	FileSize     int    `json:"file_size"`
+	FileSize     int64  `json:"file_size"`
 }
