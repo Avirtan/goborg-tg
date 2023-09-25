@@ -65,6 +65,12 @@ type KeyboardButtonPollType struct {
 	Type int64 `json:"type,omitempty"`
 }
 
+// https://core.telegram.org/bots/api#replykeyboardremove
+type ReplyKeyboardRemove struct {
+	RemoveKeyboard bool `json:"remove_keyboard"`
+	Selective      bool `json:"selective,omitempty"`
+}
+
 // https://core.telegram.org/bots/api#usershared
 type UserShared struct {
 	RequestId int64 `json:"request_id"`
