@@ -33,7 +33,7 @@ type Chat struct {
 	PinnedMessage                      *Message     `json:"pinned_message"`
 }
 
-//https://core.telegram.org/bots/api#chatphoto
+// https://core.telegram.org/bots/api#chatphoto
 type ChatPhoto struct {
 	SmallFileId       string `json:"small_file_id"`
 	SmallFileUniqueId string `json:"small_file_unique_id"`
@@ -41,7 +41,7 @@ type ChatPhoto struct {
 	BigFileUniqueId   string `json:"big_file_unique_id"`
 }
 
-//https://core.telegram.org/bots/api#chatpermissions
+// https://core.telegram.org/bots/api#chatpermissions
 type ChatPermissions struct {
 	CanSendMessages       bool `json:"can_send_messages"`
 	CanSendAudios         bool `json:"can_send_audios"`
@@ -59,8 +59,50 @@ type ChatPermissions struct {
 	CanManageTopics       bool `json:"can_manage_topics"`
 }
 
-//https://core.telegram.org/bots/api#chatlocation
+// https://core.telegram.org/bots/api#chatlocation
 type ChatLocation struct {
 	Location Location `json:"location"`
 	Address  string   `json:"address"`
+}
+
+// https://core.telegram.org/bots/api#chatinvitelink
+type ChatInviteLink struct {
+	InviteLink              string `json:"invite_link"`
+	Creator                 User   `json:"creator"`
+	CreatesJoinRequest      bool   `json:"creates_join_request"`
+	IsPrimary               bool   `json:"is_primary"`
+	IsRevoked               bool   `json:"is_revoked"`
+	Name                    string `json:"name,omitempty"`
+	ExpireDate              int64  `json:"expire_date,omitempty"`
+	MemberLimit             int    `json:"member_limit,omitempty"`
+	PendingJoinRequestCount int    `json:"pending_join_request_count,omitempty"`
+}
+
+// https://core.telegram.org/bots/api#chatadministratorrights
+type ChatAdministratorRights struct {
+	IsAnonymous         bool `json:"is_anonymous"`
+	CanManageChat       bool `json:"can_manage_chat"`
+	CanDeleteMessages   bool `json:"can_delete_messages"`
+	CanManageVideoChats bool `json:"can_manage_video_chats"`
+	CanRestrictMembers  bool `json:"can_restrict_members"`
+	CanPromoteMembers   bool `json:"can_promote_members"`
+	CanChangeInfo       bool `json:"can_change_info"`
+	CanInviteUsers      bool `json:"can_invite_users"`
+	CanPostMessages     bool `json:"can_post_messages,omitempty"`
+	CanEditMessages     bool `json:"can_edit_messages,omitempty"`
+	CanPinMessages      bool `json:"can_pin_messages,omitempty"`
+	CanPostStories      bool `json:"can_post_stories,omitempty"`
+	CanEditStories      bool `json:"can_edit_stories,omitempty"`
+	CanDeleteStories    bool `json:"can_delete_stories,omitempty"`
+	CanManageTopics     bool `json:"can_manage_topics,omitempty"`
+}
+
+// https://core.telegram.org/bots/api#chatjoinrequest
+type ChatJoinRequest struct {
+	Chat       Chat           `json:"chat"`
+	From       User           `json:"from"`
+	UserChatId int64          `json:"user_chat_id"`
+	Date       int64          `json:"date"`
+	Bio        string         `json:"bio"`
+	InviteLink ChatInviteLink `json:"invite_link"`
 }

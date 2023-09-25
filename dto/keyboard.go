@@ -24,6 +24,7 @@ type InlineKeyboardButton struct {
 	Pay                          bool                        `json:"pay,omitempty"`
 }
 
+// https://core.telegram.org/bots/api#forcereply
 type ForceReply struct {
 	InputFieldPlaceholder string `json:"input_field_placeholder,omitempty"`
 	ForceReply            bool   `json:"force_reply,omitempty"`
