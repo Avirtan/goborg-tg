@@ -113,3 +113,10 @@ type CallbackQuery struct {
 	Data            string  `json:"data,omitempty"`
 	GameShortName   string  `json:"game_short_name,omitempty"`
 }
+
+// https://core.telegram.org/bots/api#menubutton
+type MenuButton struct {
+	Type   string     `json:"type"`
+	Text   string     `json:"text"`
+	WebApp WebAppInfo `json:"web_app"`
+}
