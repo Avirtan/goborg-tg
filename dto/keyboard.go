@@ -61,14 +61,14 @@ type KeyboardButtonRequestUser struct {
 
 // https://core.telegram.org/bots/api#keyboardbuttonrequestchat
 type KeyboardButtonRequestChat struct {
-	RequestId               int64 `json:"request_id"`
-	ChatIsChannel           bool  `json:"chat_is_channel,omitempty"`
-	ChatIsForum             bool  `json:"chat_is_forum,omitempty"`
-	ChatHasUsername         bool  `json:"chat_has_username,omitempty"`
-	ChatIsCreated           bool  `json:"chat_is_created,omitempty"`
-	BotIsMember             bool  `json:"bot_is_member,omitempty"`
-	UserAdministratorRights any   `json:"user_administrator_rights,omitempty"` // TODO ChatAdministratorRights
-	BotAdministratorRights  any   `json:"bot_administrator_rights,omitempty"`  // TODO ChatAdministratorRights
+	RequestId               int64                   `json:"request_id"`
+	ChatIsChannel           bool                    `json:"chat_is_channel,omitempty"`
+	ChatIsForum             bool                    `json:"chat_is_forum,omitempty"`
+	ChatHasUsername         bool                    `json:"chat_has_username,omitempty"`
+	ChatIsCreated           bool                    `json:"chat_is_created,omitempty"`
+	BotIsMember             bool                    `json:"bot_is_member,omitempty"`
+	UserAdministratorRights ChatAdministratorRights `json:"user_administrator_rights,omitempty"`
+	BotAdministratorRights  ChatAdministratorRights `json:"bot_administrator_rights,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#switchinlinequerychosenchat
