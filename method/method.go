@@ -116,3 +116,20 @@ func (m *MethodHandler) SendMessage(msg method_dto.SendMessage) error {
 	slog.Info("info", "response", responseJson)
 	return nil
 }
+
+func (m *MethodHandler) AnswerInlineQuery(msg method_dto.AnswerInlineQuery) error {
+	data, err := json.Marshal(msg)
+	if err != nil {
+		return err
+	}
+	response, err := request.Request(request.Get, m.GetUrl()+"/answerInlineQuery", data)
+	if err != nil {
+		return err
+	}
+	responseJson, err := request.ResponseHandler(response)
+	if err != nil {
+		return err
+	}
+	slog.Info("info", "response", responseJson)
+	return nil
+}

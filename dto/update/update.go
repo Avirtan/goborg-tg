@@ -17,8 +17,8 @@ type Update struct {
 	EditedMessage      *message_dto.Message           `json:"edited_message,omitempty"`
 	ChannelPost        *message_dto.Message           `json:"channel_post,omitempty"`
 	EditedChannelPost  *message_dto.Message           `json:"edited_channel_post,omitempty"`
-	InlineQuery        *inline_dto.InlineQuery        `json:"inline_query,omitempty"`         // TODO InlineQuery
-	ChosenInlineResult *any                           `json:"chosen_inline_result,omitempty"` // TODO ChosenInlineResult
+	InlineQuery        *inline_dto.InlineQuery        `json:"inline_query,omitempty"`
+	ChosenInlineResult *inline_dto.ChosenInlineResult `json:"chosen_inline_result,omitempty"`
 	CallbackQuery      *message_dto.CallbackQuery     `json:"callback_query,omitempty"`
 	ShippingQuery      *any                           `json:"shipping_query,omitempty"`     // TODO ShippingQuery
 	PreCheckoutQuery   *any                           `json:"pre_checkout_query,omitempty"` // TODO PreCheckoutQuery
