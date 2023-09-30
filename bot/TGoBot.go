@@ -100,7 +100,10 @@ func (t *TGoBot) RunUpdate() {
 					}
 				}
 			}(t.ctx, *response)
-			t.offset = response.Update[len(response.Update)-1].UpdateID + 1
+			lenUpdate := len(response.Update)
+			if lenUpdate > 0 {
+				t.offset = response.Update[lenUpdate-1].UpdateID + 1
+			}
 		}
 	}
 }
