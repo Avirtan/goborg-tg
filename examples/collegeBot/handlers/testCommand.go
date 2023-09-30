@@ -1,7 +1,9 @@
 package handlers
 
 import (
-	"TGoBot/dto"
+	message_dto "TGoBot/dto/message"
+	method_dto "TGoBot/dto/method"
+	update_dto "TGoBot/dto/update"
 	"TGoBot/method"
 	"context"
 )
@@ -9,13 +11,13 @@ import (
 type TestCommandHandler struct {
 }
 
-func (c *TestCommandHandler) Action(ctx context.Context, update *dto.Update, msgHandler *method.MethodHandler) {
+func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Update, msgHandler *method.MethodHandler) {
 	if update.Message != nil {
 		msgHandler.SendMessage(
-			dto.SendMessage{
+			method_dto.SendMessage{
 				ChatID: update.Message.From.Id,
 				Text:   "test",
-				ReplyMarkup: dto.Keyboard{
+				ReplyMarkup: message_dto.Keyboard{
 					// InlineKeyboard: dto.InlineKeyboard{
 					// 	InlineKeyboard: [][]dto.InlineKeyboardButton{
 					// 		{
@@ -35,7 +37,7 @@ func (c *TestCommandHandler) Action(ctx context.Context, update *dto.Update, msg
 					// 			},
 					// 		},
 					// 	}},
-					ForceReply: dto.ForceReply{
+					ForceReply: message_dto.ForceReply{
 						ForceReply:            true,
 						InputFieldPlaceholder: "test",
 					},

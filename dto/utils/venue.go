@@ -1,4 +1,4 @@
-package dto
+package utils_dto
 
 // https://core.telegram.org/bots/api#venue
 type Venue struct {

@@ -1,4 +1,9 @@
-package dto
+package message_dto
+
+import (
+	user_dto "TGoBot/dto/user"
+	utils_dto "TGoBot/dto/utils"
+)
 
 type Keyboard struct {
 	InlineKeyboardMarkup
@@ -15,8 +20,8 @@ type InlineKeyboardButton struct {
 	Text                         string                      `json:"text"`
 	Url                          string                      `json:"url,omitempty"`
 	CallbackData                 string                      `json:"callback_data,omitempty"`
-	WebApp                       WebAppInfo                  `json:"web_app,omitempty"`
-	LoginUrl                     LoginUrl                    `json:"login_url,omitempty"`
+	WebApp                       *utils_dto.WebAppInfo       `json:"web_app,omitempty"`
+	LoginUrl                     *utils_dto.LoginUrl         `json:"login_url,omitempty"`
 	SwitchInlineQuery            string                      `json:"switch_inline_query,omitempty"`
 	SwitchInlineQueryCurrentChat string                      `json:"switch_inline_query_current_chat,omitempty"`
 	SwitchInlineQueryChosenChat  SwitchInlineQueryChosenChat `json:"switch_inline_query_chosen_chat,omitempty"`
@@ -49,7 +54,7 @@ type KeyboardButton struct {
 	RequestContact  bool                      `json:"request_contact,omitempty"`
 	RequestLocation bool                      `json:"request_location,omitempty"`
 	RequestPoll     KeyboardButtonPollType    `json:"request_poll,omitempty"`
-	WebApp          WebAppInfo                `json:"web_app,omitempty"`
+	WebApp          *utils_dto.WebAppInfo     `json:"web_app,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#keyboardbuttonrequestuser
@@ -61,14 +66,14 @@ type KeyboardButtonRequestUser struct {
 
 // https://core.telegram.org/bots/api#keyboardbuttonrequestchat
 type KeyboardButtonRequestChat struct {
-	RequestId               int64                   `json:"request_id"`
-	ChatIsChannel           bool                    `json:"chat_is_channel,omitempty"`
-	ChatIsForum             bool                    `json:"chat_is_forum,omitempty"`
-	ChatHasUsername         bool                    `json:"chat_has_username,omitempty"`
-	ChatIsCreated           bool                    `json:"chat_is_created,omitempty"`
-	BotIsMember             bool                    `json:"bot_is_member,omitempty"`
-	UserAdministratorRights ChatAdministratorRights `json:"user_administrator_rights,omitempty"`
-	BotAdministratorRights  ChatAdministratorRights `json:"bot_administrator_rights,omitempty"`
+	RequestId               int64                    `json:"request_id"`
+	ChatIsChannel           bool                     `json:"chat_is_channel,omitempty"`
+	ChatIsForum             bool                     `json:"chat_is_forum,omitempty"`
+	ChatHasUsername         bool                     `json:"chat_has_username,omitempty"`
+	ChatIsCreated           bool                     `json:"chat_is_created,omitempty"`
+	BotIsMember             bool                     `json:"bot_is_member,omitempty"`
+	UserAdministratorRights *ChatAdministratorRights `json:"user_administrator_rights,omitempty"`
+	BotAdministratorRights  *ChatAdministratorRights `json:"bot_administrator_rights,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#switchinlinequerychosenchat
@@ -105,18 +110,18 @@ type ChatShared struct {
 
 // https://core.telegram.org/bots/api#callbackquery
 type CallbackQuery struct {
-	Id              string  `json:"id"`
-	From            User    `json:"from"`
-	Message         Message `json:"message,omitempty"`
-	InlineMessageId string  `json:"inline_message_id,omitempty"`
-	ChatInstance    string  `json:"chat_instance,omitempty"`
-	Data            string  `json:"data,omitempty"`
-	GameShortName   string  `json:"game_short_name,omitempty"`
+	Id              string         `json:"id"`
+	From            *user_dto.User `json:"from"`
+	Message         *Message       `json:"message,omitempty"`
+	InlineMessageId string         `json:"inline_message_id,omitempty"`
+	ChatInstance    string         `json:"chat_instance,omitempty"`
+	Data            string         `json:"data,omitempty"`
+	GameShortName   string         `json:"game_short_name,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#menubutton
 type MenuButton struct {
-	Type   string     `json:"type"`
-	Text   string     `json:"text"`
-	WebApp WebAppInfo `json:"web_app"`
+	Type   string                `json:"type"`
+	Text   string                `json:"text"`
+	WebApp *utils_dto.WebAppInfo `json:"web_app"`
 }

@@ -1,4 +1,6 @@
-package dto
+package user_dto
+
+import utils_dto "TGoBot/dto/utils"
 
 //https://core.telegram.org/bots/api#user
 type User struct {
@@ -17,6 +19,6 @@ type User struct {
 
 //https://core.telegram.org/bots/api#userprofilephotos
 type UserProfilePhotos struct {
-	TotalCount int64         `json:"total_count"`
-	Photos     [][]PhotoSize `json:"photos"`
+	TotalCount int64                   `json:"total_count"`
+	Photos     [][]utils_dto.PhotoSize `json:"photos"`
 }

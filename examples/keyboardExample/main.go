@@ -2,7 +2,7 @@ package main
 
 import (
 	"TGoBot/bot"
-	"TGoBot/dto"
+	command_dto "TGoBot/dto/command"
 	"TGoBot/examples/collegeBot/handlers"
 	"TGoBot/pkg/logger"
 	"context"
@@ -22,11 +22,11 @@ func main() {
 	})
 
 	cmd := &handlers.TestCommandHandler{}
-	tbot.AddCommand(&dto.BotCommand{
+	tbot.AddCommand(&command_dto.BotCommand{
 		Command:     "/test",
 		Description: "пример использование бота",
 	}, cmd)
-	tbot.AddHandler(cmd)
+	// tbot.AddHandler(cmd)
 
 	go tbot.RunUpdate()
 	interrupt := make(chan os.Signal, 1)

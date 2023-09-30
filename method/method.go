@@ -1,7 +1,9 @@
 package method
 
 import (
-	"TGoBot/dto"
+	command_dto "TGoBot/dto/command"
+	method_dto "TGoBot/dto/method"
+	update_dto "TGoBot/dto/update"
 	"TGoBot/request"
 	"log/slog"
 
@@ -27,8 +29,8 @@ func (m *MethodHandler) GetUrl() string {
 	return fmt.Sprintf(baseUrl, m.Token)
 }
 
-func (m *MethodHandler) GetUpdates(ctx context.Context, offset uint64, limit int, timeout int) (*dto.UpdateResponse, error) {
-	dataRequest := dto.UpdateRequest{
+func (m *MethodHandler) GetUpdates(ctx context.Context, offset uint64, limit int, timeout int) (*update_dto.UpdateResponse, error) {
+	dataRequest := update_dto.UpdateRequest{
 		Offset:  offset,
 		Limit:   limit,
 		Timeout: timeout,
@@ -41,7 +43,7 @@ func (m *MethodHandler) GetUpdates(ctx context.Context, offset uint64, limit int
 	if err != nil {
 		return nil, err
 	}
-	response := dto.UpdateResponse{}
+	response := update_dto.UpdateResponse{}
 	body, _ := io.ReadAll(resp.Body)
 	err = json.Unmarshal(body, &response)
 	if err != nil {
@@ -51,8 +53,8 @@ func (m *MethodHandler) GetUpdates(ctx context.Context, offset uint64, limit int
 	return &response, err
 }
 
-func (m *MethodHandler) SetMyCommands(ctx context.Context, commands []*dto.BotCommand) error {
-	dataRequest := dto.SetCommandRequest{
+func (m *MethodHandler) SetMyCommands(ctx context.Context, commands []*command_dto.BotCommand) error {
+	dataRequest := method_dto.SetCommandRequest{
 		Commands: commands,
 		// LanguageCode: "ru",
 	}
@@ -98,7 +100,7 @@ func (m *MethodHandler) GetMyCommands() error {
 	return nil
 }
 
-func (m *MethodHandler) SendMessage(msg dto.SendMessage) error {
+func (m *MethodHandler) SendMessage(msg method_dto.SendMessage) error {
 	data, err := json.Marshal(msg)
 	if err != nil {
 		return err

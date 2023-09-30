@@ -1,4 +1,4 @@
-package dto
+package message_dto
 
 // https://core.telegram.org/bots/api#dice
 type Dice struct {

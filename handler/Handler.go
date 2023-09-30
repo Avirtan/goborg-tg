@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"TGoBot/dto"
+	update_dto "TGoBot/dto/update"
 	"TGoBot/method"
 	"context"
 )
@@ -16,5 +16,5 @@ const (
 )
 
 type IHandler interface {
-	Action(ctx context.Context, update *dto.Update, msgHandler *method.MethodHandler)
+	Action(ctx context.Context, update *update_dto.Update, msgHandler *method.MethodHandler)
 }

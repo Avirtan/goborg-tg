@@ -1,7 +1,8 @@
 package handlers
 
 import (
-	"TGoBot/dto"
+	method_dto "TGoBot/dto/method"
+	update_dto "TGoBot/dto/update"
 	"TGoBot/examples/collegeBot/model"
 	"TGoBot/method"
 	"TGoBot/request"
@@ -17,7 +18,7 @@ const url = "https://info.kma29.ru/api.php/"
 type CollegeHandler struct {
 }
 
-func (c *CollegeHandler) Action(ctx context.Context, update *dto.Update, msgHandler *method.MethodHandler) {
+func (c *CollegeHandler) Action(ctx context.Context, update *update_dto.Update, msgHandler *method.MethodHandler) {
 	resp, err := request.Request(request.Get, url, []byte{})
 	if err != nil {
 		fmt.Println(err.Error())
@@ -36,7 +37,7 @@ func (c *CollegeHandler) Action(ctx context.Context, update *dto.Update, msgHand
 			cabinet := strings.ReplaceAll(value.Cabinet, "&nbsp;", "")
 			str := fmt.Sprintf("%v - %v\n%v\n%v\n%v", value.Lesson1Start, value.Lesson2End, value.Discipline, value.Teacher, cabinet)
 			msgHandler.SendMessage(
-				dto.SendMessage{
+				method_dto.SendMessage{
 					ChatID: update.Message.From.Id,
 					Text:   str,
 				},

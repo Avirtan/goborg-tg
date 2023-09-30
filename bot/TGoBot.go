@@ -1,7 +1,8 @@
 package bot
 
 import (
-	"TGoBot/dto"
+	command_dto "TGoBot/dto/command"
+	update_dto "TGoBot/dto/update"
 	"TGoBot/handler"
 	"TGoBot/method"
 	"TGoBot/pkg/logger"
@@ -23,7 +24,7 @@ type TGoBot struct {
 	methodHandler *method.MethodHandler
 	ctx           context.Context
 	handlers      []handler.IHandler
-	commands      map[*dto.BotCommand]handler.IHandler
+	commands      map[*command_dto.BotCommand]handler.IHandler
 }
 
 func NewBot(option BotOptions) *TGoBot {
@@ -35,7 +36,7 @@ func NewBot(option BotOptions) *TGoBot {
 		},
 		ctx:      option.Ctx,
 		notify:   make(chan error, 1),
-		commands: make(map[*dto.BotCommand]handler.IHandler),
+		commands: make(map[*command_dto.BotCommand]handler.IHandler),
 	}
 }
 
@@ -47,7 +48,7 @@ func (t *TGoBot) AddHandler(handler handler.IHandler) {
 	t.handlers = append(t.handlers, handler)
 }
 
-func (t *TGoBot) AddCommand(botCommand *dto.BotCommand, handler handler.IHandler) {
+func (t *TGoBot) AddCommand(botCommand *command_dto.BotCommand, handler handler.IHandler) {
 	if botCommand.Command[0] != '/' {
 		t.notify <- errors.New("command must start is /")
 		return
@@ -67,7 +68,7 @@ func (t *TGoBot) DeleteCommand() {
 }
 
 func (t *TGoBot) RunUpdate() {
-	commands := make([]*dto.BotCommand, 0, 10)
+	commands := make([]*command_dto.BotCommand, 0, 10)
 	for command := range t.commands {
 		commands = append(commands, command)
 	}
@@ -85,7 +86,7 @@ func (t *TGoBot) RunUpdate() {
 				t.notify <- err
 				return
 			}
-			go func(context.Context, dto.UpdateResponse) {
+			go func(context.Context, update_dto.UpdateResponse) {
 				for _, value := range response.Update {
 					if value.Message != nil {
 						for key, handler := range t.commands {

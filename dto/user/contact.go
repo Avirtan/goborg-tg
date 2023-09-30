@@ -1,4 +1,4 @@
-package dto
+package user_dto
 
 // https://core.telegram.org/bots/api#contact
 type Contact struct {

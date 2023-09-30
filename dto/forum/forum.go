@@ -1,4 +1,4 @@
-package dto
+package forum_dto
 
 // https://core.telegram.org/bots/api#forumtopiccreated
 type ForumTopicCreated struct {

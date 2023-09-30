@@ -1,4 +1,9 @@
-package dto
+package message_dto
+
+import (
+	user_dto "TGoBot/dto/user"
+	utils_dto "TGoBot/dto/utils"
+)
 
 // https://core.telegram.org/bots/api#chat
 type Chat struct {
@@ -61,21 +66,21 @@ type ChatPermissions struct {
 
 // https://core.telegram.org/bots/api#chatlocation
 type ChatLocation struct {
-	Location Location `json:"location"`
-	Address  string   `json:"address"`
+	Location utils_dto.Location `json:"location"`
+	Address  string             `json:"address"`
 }
 
 // https://core.telegram.org/bots/api#chatinvitelink
 type ChatInviteLink struct {
-	InviteLink              string `json:"invite_link"`
-	Creator                 User   `json:"creator"`
-	CreatesJoinRequest      bool   `json:"creates_join_request"`
-	IsPrimary               bool   `json:"is_primary"`
-	IsRevoked               bool   `json:"is_revoked"`
-	Name                    string `json:"name,omitempty"`
-	ExpireDate              int64  `json:"expire_date,omitempty"`
-	MemberLimit             int    `json:"member_limit,omitempty"`
-	PendingJoinRequestCount int    `json:"pending_join_request_count,omitempty"`
+	InviteLink              string        `json:"invite_link"`
+	Creator                 user_dto.User `json:"creator"`
+	CreatesJoinRequest      bool          `json:"creates_join_request"`
+	IsPrimary               bool          `json:"is_primary"`
+	IsRevoked               bool          `json:"is_revoked"`
+	Name                    string        `json:"name,omitempty"`
+	ExpireDate              int64         `json:"expire_date,omitempty"`
+	MemberLimit             int           `json:"member_limit,omitempty"`
+	PendingJoinRequestCount int           `json:"pending_join_request_count,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#chatadministratorrights
@@ -100,7 +105,7 @@ type ChatAdministratorRights struct {
 // https://core.telegram.org/bots/api#chatjoinrequest
 type ChatJoinRequest struct {
 	Chat       Chat           `json:"chat"`
-	From       User           `json:"from"`
+	From       user_dto.User  `json:"from"`
 	UserChatId int64          `json:"user_chat_id"`
 	Date       int64          `json:"date"`
 	Bio        string         `json:"bio"`

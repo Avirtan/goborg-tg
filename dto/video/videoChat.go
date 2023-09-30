@@ -1,4 +1,8 @@
-package dto
+package video_dto
+
+import (
+	user_dto "TGoBot/dto/user"
+)
 
 // https://core.telegram.org/bots/api#videochatscheduled
 type VideoChatScheduled struct {
@@ -12,5 +16,5 @@ type VideoChatEnded struct {
 
 // https://core.telegram.org/bots/api#videochatparticipantsinvited
 type VideoChatParticipantsInvited struct {
-	Users []User `json:"users"`
+	Users []user_dto.User `json:"users"`
 }

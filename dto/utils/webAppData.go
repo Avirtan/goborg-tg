@@ -1,4 +1,4 @@
-package dto
+package utils_dto
 
 // https://core.telegram.org/bots/api#webappdata
 type WebAppData struct {

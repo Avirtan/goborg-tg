@@ -1,4 +1,4 @@
-package dto
+package command_dto
 
 // https://core.telegram.org/bots/api#botcommandscope
 type BotCommandScope struct {

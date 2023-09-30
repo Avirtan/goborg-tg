@@ -1,7 +1,8 @@
 package handlers
 
 import (
-	"TGoBot/dto"
+	method_dto "TGoBot/dto/method"
+	update_dto "TGoBot/dto/update"
 	"TGoBot/examples/collegeBot/model"
 	"TGoBot/method"
 	"context"
@@ -14,10 +15,10 @@ type StartHandler struct {
 	Db *sqlx.DB
 }
 
-func (c *StartHandler) Action(ctx context.Context, update *dto.Update, msgHandler *method.MethodHandler) {
+func (c *StartHandler) Action(ctx context.Context, update *update_dto.Update, msgHandler *method.MethodHandler) {
 	if update.Message != nil && update.Message.Text == "/start" {
 		msgHandler.SendMessage(
-			dto.SendMessage{
+			method_dto.SendMessage{
 				ChatID: update.Message.From.Id,
 				Text:   "Введите группу в формате */*/*",
 			},
