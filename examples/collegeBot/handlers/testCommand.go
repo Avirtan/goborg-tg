@@ -16,8 +16,8 @@ func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Upda
 		method.SendMessage(
 			ctx,
 			method_dto.SendMessage{
-				ChatID: update.Message.From.Id,
-				Text:   "test",
+				ChatID:      update.Message.From.Id,
+				Text:        "test",
 				ReplyMarkup: message_dto.Keyboard{
 					// InlineKeyboard: dto.InlineKeyboard{
 					// 	InlineKeyboard: [][]dto.InlineKeyboardButton{
@@ -38,10 +38,10 @@ func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Upda
 					// 			},
 					// 		},
 					// 	}},
-					ForceReply: message_dto.ForceReply{
-						ForceReply:            true,
-						InputFieldPlaceholder: "test",
-					},
+					// ForceReply: message_dto.ForceReply{
+					// 	ForceReply:            true,
+					// 	InputFieldPlaceholder: "test",
+					// },
 				},
 			},
 		)

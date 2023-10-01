@@ -5,14 +5,20 @@ import (
 	utils_dto "TGoBot/dto/utils"
 )
 
+type IKeyboard interface {
+	GetType()
+}
+
 type Keyboard struct {
-	InlineKeyboardMarkup
-	ForceReply
+	IKeyboard
 }
 
 // https://core.telegram.org/bots/api#inlinekeyboardmarkup
 type InlineKeyboardMarkup struct {
 	InlineKeyboard [][]InlineKeyboardButton `json:"inline_keyboard,omitempty"`
+}
+
+func (k *InlineKeyboardMarkup) GetType() {
 }
 
 // https://core.telegram.org/bots/api#inlinekeyboardbutton
@@ -36,6 +42,9 @@ type ForceReply struct {
 	Selective             bool   `json:"selective,omitempty"`
 }
 
+func (k *ForceReply) GetType() {
+}
+
 // https://core.telegram.org/bots/api#replykeyboardmarkup
 type ReplyKeyboardMarkup struct {
 	Keyboard              [][]KeyboardButton `json:"keyboard"`
@@ -44,6 +53,9 @@ type ReplyKeyboardMarkup struct {
 	OneTimeKeyboard       bool               `json:"one_time_keyboard,omitempty"`
 	Selective             bool               `json:"selective,omitempty"`
 	InputFieldPlaceholder string             `json:"input_field_placeholder,omitempty"`
+}
+
+func (k *ReplyKeyboardMarkup) GetType() {
 }
 
 // https://core.telegram.org/bots/api#keyboardbutton
@@ -94,6 +106,9 @@ type KeyboardButtonPollType struct {
 type ReplyKeyboardRemove struct {
 	RemoveKeyboard bool `json:"remove_keyboard"`
 	Selective      bool `json:"selective,omitempty"`
+}
+
+func (k *ReplyKeyboardRemove) GetType() {
 }
 
 // https://core.telegram.org/bots/api#usershared

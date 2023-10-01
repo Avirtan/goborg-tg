@@ -16,6 +16,6 @@ func GetMe(ctx context.Context) (*user_dto.User, error) {
 	if err != nil {
 		return nil, err
 	}
-	slog.Info("info", "response", responseJson)
+	slog.Debug("info", "response", responseJson)
 	return responseJson, nil
 }

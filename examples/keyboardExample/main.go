@@ -3,22 +3,18 @@ package main
 import (
 	"TGoBot/bot"
 	command_dto "TGoBot/dto/command"
-	inline_dto "TGoBot/dto/inlineQuery"
+	message_dto "TGoBot/dto/message"
 	method_dto "TGoBot/dto/method"
 	update_dto "TGoBot/dto/update"
 	"TGoBot/examples/collegeBot/model"
 	"TGoBot/method"
 	"TGoBot/pkg/logger"
-	"TGoBot/request"
 	"context"
 	"encoding/json"
 	"fmt"
-	"io"
 	"log/slog"
 	"os"
 	"os/signal"
-	"slices"
-	"strings"
 	"syscall"
 )
 
@@ -68,90 +64,94 @@ type TestCommandHandler struct {
 }
 
 func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Update) {
-	// if update.Message != nil {
-	// 	msgHandler.SendMessage(
-	// 		method_dto.SendMessage{
-	// 			ChatID: update.Message.From.Id,
-	// 			Text:   "test",
-	// 			ReplyMarkup: message_dto.Keyboard{
-	// 				// InlineKeyboard: dto.InlineKeyboard{
-	// 				// 	InlineKeyboard: [][]dto.InlineKeyboardButton{
-	// 				// 		{
-	// 				// 			{
-	// 				// 				Text:         "test",
-	// 				// 				CallbackData: "kb1",
-	// 				// 			},
-	// 				// 			{
-	// 				// 				Text:         "test1",
-	// 				// 				CallbackData: "kb2",
-	// 				// 			},
-	// 				// 		},
-	// 				// 		{
-	// 				// 			{
-	// 				// 				Text:         "test3",
-	// 				// 				CallbackData: "kb3",
-	// 				// 			},
-	// 				// 		},
-	// 				// 	}},
-	// 				ForceReply: message_dto.ForceReply{
-	// 					ForceReply:            true,
-	// 					InputFieldPlaceholder: "test",
-	// 				},
-	// 			},
-	// 		},
-	// 	)
-	// }
 	if update.Message != nil {
-		if update.Message.Text == "run" {
-			resp, err := request.Request(request.Get, url, []byte{})
-			if err != nil {
-				fmt.Println(err.Error())
-				return
-			}
-			body, _ := io.ReadAll(resp.Body)
-			resp.Body.Close()
-			err = os.WriteFile("test.json", body, 0644)
-			if err != nil {
-				fmt.Println(err)
-			}
-			fmt.Println("write")
-		}
-		if update.Message.Text == "get" {
-			method.GetMe(ctx)
-		}
+		method.SendMessage(
+			ctx,
+			method_dto.SendMessage{
+				ChatID: update.Message.From.Id,
+				Text:   "test",
+				ReplyMarkup:
+				//&message_dto.ForceReply{
+				// 	ForceReply:            true,
+				// 	InputFieldPlaceholder: "test1",
+				// },
 
+				&message_dto.InlineKeyboardMarkup{
+					InlineKeyboard: [][]message_dto.InlineKeyboardButton{
+						{
+							{
+								Text:         "test",
+								CallbackData: "kb1",
+							},
+							{
+								Text:         "test1",
+								CallbackData: "kb2",
+							},
+						},
+						{
+							{
+								Text:         "test3",
+								CallbackData: "kb3",
+							},
+						},
+					}},
+			},
+		)
 	}
-	if update.InlineQuery != nil {
-		query := update.InlineQuery
-		groups := make([]string, 0)
-		for _, item := range c.College.Items {
-			if slices.Contains(groups, item.Group) {
-				continue
-			}
-			groups = append(groups, item.Group)
-		}
-		arr := []inline_dto.InlineQueryResult{}
-		for _, item := range groups {
-			if strings.Contains(item, query.Query) {
-				answerArticle := &inline_dto.InlineQueryResultArticle{
-					Type:  "article",
-					Id:    item,
-					Title: item,
-					InputMssageContent: &inline_dto.InputTextMessageContent{
-						MessageText: item,
-					},
-				}
-				arr = append(arr, answerArticle)
-			}
-		}
-		answer := method_dto.AnswerInlineQuery{
-			InlineQueryId: query.Id,
-			Results:       arr,
-		}
-		fmt.Println(answer)
-		method.AnswerInlineQuery(ctx, answer)
+	if update.CallbackQuery != nil {
+		fmt.Println(update.CallbackQuery)
 	}
-	if update.ChosenInlineResult != nil {
-		fmt.Println(update.ChosenInlineResult.Query)
-	}
+	// if update.Message != nil {
+	// 	if update.Message.Text == "run" {
+	// 		resp, err := request.Request(request.Get, url, []byte{})
+	// 		if err != nil {
+	// 			fmt.Println(err.Error())
+	// 			return
+	// 		}
+	// 		body, _ := io.ReadAll(resp.Body)
+	// 		resp.Body.Close()
+	// 		err = os.WriteFile("test.json", body, 0644)
+	// 		if err != nil {
+	// 			fmt.Println(err)
+	// 		}
+	// 		fmt.Println("write")
+	// 	}
+	// 	if update.Message.Text == "get" {
+	// 		method.GetMe(ctx)
+	// 	}
+
+	// }
+	// if update.InlineQuery != nil {
+	// 	query := update.InlineQuery
+	// 	groups := make([]string, 0)
+	// 	for _, item := range c.College.Items {
+	// 		if slices.Contains(groups, item.Group) {
+	// 			continue
+	// 		}
+	// 		groups = append(groups, item.Group)
+	// 	}
+	// 	arr := []inline_dto.InlineQueryResult{}
+	// 	for _, item := range groups {
+	// 		if strings.Contains(item, query.Query) {
+	// 			answerArticle := &inline_dto.InlineQueryResultArticle{
+	// 				Type:  "article",
+	// 				Id:    item,
+	// 				Title: item,
+	// 				InputMssageContent: &inline_dto.InputTextMessageContent{
+	// 					MessageText: item,
+	// 				},
+	// 			}
+	// 			arr = append(arr, answerArticle)
+	// 		}
+	// 	}
+	// 	answer := method_dto.AnswerInlineQuery{
+	// 		InlineQueryId: query.Id,
+	// 		Results:       arr,
+	// 	}
+	// 	fmt.Println(answer)
+	// 	method.AnswerInlineQuery(ctx, answer)
+	// }
+	// if update.ChosenInlineResult != nil {
+	// 	fmt.Println(update.ChosenInlineResult.Query)
+	// }
 }

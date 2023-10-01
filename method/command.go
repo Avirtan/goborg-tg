@@ -26,7 +26,7 @@ func SetMyCommands(ctx context.Context, commands []*command_dto.BotCommand) erro
 	if err != nil {
 		return err
 	}
-	slog.Info("info", "response", responseJson)
+	slog.Debug("info", "response", responseJson)
 	return nil
 }
 
@@ -39,7 +39,7 @@ func DeleteMyCommands(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	slog.Info("info", "response", responseJson)
+	slog.Debug("info", "response", responseJson)
 	return nil
 }
 
@@ -52,6 +52,6 @@ func GetMyCommands(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	slog.Info("info", "response", responseJson)
+	slog.Debug("info", "response", responseJson)
 	return nil
 }
