@@ -8,6 +8,7 @@ import (
 	"TGoBot/pkg/logger"
 	"context"
 	"errors"
+	"log/slog"
 )
 
 type BotOptions struct {
@@ -17,10 +18,9 @@ type BotOptions struct {
 }
 
 type TGoBot struct {
-	token  string
-	offset uint64
-	notify chan error
-	// methodHandler *method.MethodHandler
+	token    string
+	offset   uint64
+	notify   chan error
 	ctx      context.Context
 	handlers []handler.IHandler
 	commands map[*command_dto.BotCommand]handler.IHandler
@@ -37,10 +37,6 @@ func NewBot(option BotOptions) *TGoBot {
 	}
 }
 
-// func (t *TGoBot) GetMethodHandler() *method.MethodHandler {
-// 	return t.methodHandler
-// }
-
 func (t *TGoBot) AddHandler(handler handler.IHandler) {
 	t.handlers = append(t.handlers, handler)
 }
@@ -54,14 +50,14 @@ func (t *TGoBot) AddCommand(botCommand *command_dto.BotCommand, handler handler.
 }
 
 func (t *TGoBot) GetCommand() {
-	// err := t.methodHandler.GetMyCommands()
-	// if err != nil {
-	// 	slog.Error("GetCommand", "error", err.Error())
-	// }
+	err := method.GetMyCommands()
+	if err != nil {
+		slog.Error("GetCommand", "error", err.Error())
+	}
 }
 
 func (t *TGoBot) DeleteCommand() {
-	// t.methodHandler.DeleteMyCommands()
+	method.DeleteMyCommands()
 }
 
 func (t *TGoBot) RunUpdate() {
@@ -70,8 +66,8 @@ func (t *TGoBot) RunUpdate() {
 		commands = append(commands, command)
 	}
 	if len(commands) > 0 {
-		// t.methodHandler.SetMyCommands(t.ctx, commands)
-		// t.GetCommand()
+		method.SetMyCommands(t.ctx, commands)
+		t.GetCommand()
 	}
 	for {
 		select {
