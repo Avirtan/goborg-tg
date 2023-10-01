@@ -25,9 +25,22 @@ func (e RequestType) String() string {
 	}
 }
 
-func RequestWithContext(ctx context.Context, typeRequest RequestType, url string, data []byte) (*http.Response, error) {
+func RequestWithContextAndData(ctx context.Context, typeRequest RequestType, url string, data []byte) (*http.Response, error) {
 	req, err := http.NewRequestWithContext(ctx, typeRequest.String(), url, bytes.NewBuffer(data))
 	req.Header.Set("Content-Type", "application/json")
+	if err != nil {
+		return nil, err
+	}
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
+
+func RequestWithContext(ctx context.Context, typeRequest RequestType, url string) (*http.Response, error) {
+	req, err := http.NewRequestWithContext(ctx, typeRequest.String(), url, bytes.NewBuffer([]byte{}))
 	if err != nil {
 		return nil, err
 	}

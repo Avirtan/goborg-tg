@@ -1,7 +1,6 @@
 package method
 
 import (
-	command_dto "TGoBot/dto/command"
 	method_dto "TGoBot/dto/method"
 	update_dto "TGoBot/dto/update"
 	"TGoBot/request"
@@ -35,7 +34,7 @@ func GetUpdates(ctx context.Context, offset uint64, limit int, timeout int) (*up
 	if err != nil {
 		return nil, err
 	}
-	resp, err := request.RequestWithContext(ctx, request.Get, GetUrl()+"/getUpdates", data)
+	resp, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getUpdates", data)
 	if err != nil {
 		return nil, err
 	}
@@ -49,59 +48,12 @@ func GetUpdates(ctx context.Context, offset uint64, limit int, timeout int) (*up
 	return &response, err
 }
 
-func SetMyCommands(ctx context.Context, commands []*command_dto.BotCommand) error {
-	dataRequest := method_dto.SetCommandRequest{
-		Commands: commands,
-		// LanguageCode: "ru",
-	}
-	data, err := json.Marshal(dataRequest)
-	if err != nil {
-		return err
-	}
-	response, err := request.RequestWithContext(ctx, request.Get, GetUrl()+"/setMyCommands", data)
-	if err != nil {
-		return err
-	}
-	responseJson, err := request.ResponseHandler(response)
-	if err != nil {
-		return err
-	}
-	slog.Info("info", "response", responseJson)
-	return nil
-}
-
-func DeleteMyCommands() error {
-	response, err := request.Request(request.Get, GetUrl()+"/deleteMyCommands", []byte{})
-	if err != nil {
-		return err
-	}
-	responseJson, err := request.ResponseHandler(response)
-	if err != nil {
-		return err
-	}
-	slog.Info("info", "response", responseJson)
-	return nil
-}
-
-func GetMyCommands() error {
-	response, err := request.Request(request.Get, GetUrl()+"/getMyCommands", []byte{})
-	if err != nil {
-		return err
-	}
-	responseJson, err := request.ResponseHandler(response)
-	if err != nil {
-		return err
-	}
-	slog.Info("info", "response", responseJson)
-	return nil
-}
-
-func SendMessage(msg method_dto.SendMessage) error {
+func SendMessage(ctx context.Context, msg method_dto.SendMessage) error {
 	data, err := json.Marshal(msg)
 	if err != nil {
 		return err
 	}
-	response, err := request.Request(request.Get, GetUrl()+"/sendMessage", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendMessage", data)
 	if err != nil {
 		return err
 	}
@@ -113,12 +65,12 @@ func SendMessage(msg method_dto.SendMessage) error {
 	return nil
 }
 
-func AnswerInlineQuery(msg method_dto.AnswerInlineQuery) error {
+func AnswerInlineQuery(ctx context.Context, msg method_dto.AnswerInlineQuery) error {
 	data, err := json.Marshal(msg)
 	if err != nil {
 		return err
 	}
-	response, err := request.Request(request.Get, GetUrl()+"/answerInlineQuery", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/answerInlineQuery", data)
 	if err != nil {
 		return err
 	}

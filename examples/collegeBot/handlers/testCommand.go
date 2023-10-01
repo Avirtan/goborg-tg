@@ -14,6 +14,7 @@ type TestCommandHandler struct {
 func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Update) {
 	if update.Message != nil {
 		method.SendMessage(
+			ctx,
 			method_dto.SendMessage{
 				ChatID: update.Message.From.Id,
 				Text:   "test",

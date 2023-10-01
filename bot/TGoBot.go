@@ -43,7 +43,7 @@ func (t *TGoBot) AddHandler(handler handler.IHandler) {
 
 func (t *TGoBot) AddCommand(botCommand *command_dto.BotCommand, handler handler.IHandler) {
 	if botCommand.Command[0] != '/' {
-		t.notify <- errors.New("command must start is /")
+		t.notify <- errors.New("command must start with /")
 		return
 	}
 	t.commands[botCommand] = handler

@@ -18,6 +18,7 @@ type StartHandler struct {
 func (c *StartHandler) Action(ctx context.Context, update *update_dto.Update) {
 	if update.Message != nil && update.Message.Text == "/start" {
 		method.SendMessage(
+			ctx,
 			method_dto.SendMessage{
 				ChatID: update.Message.From.Id,
 				Text:   "Введите группу в формате */*/*",

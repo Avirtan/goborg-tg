@@ -37,6 +37,7 @@ func (c *CollegeHandler) Action(ctx context.Context, update *update_dto.Update) 
 			cabinet := strings.ReplaceAll(value.Cabinet, "&nbsp;", "")
 			str := fmt.Sprintf("%v - %v\n%v\n%v\n%v", value.Lesson1Start, value.Lesson2End, value.Discipline, value.Teacher, cabinet)
 			method.SendMessage(
+				ctx,
 				method_dto.SendMessage{
 					ChatID: update.Message.From.Id,
 					Text:   str,

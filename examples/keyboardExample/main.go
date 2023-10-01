@@ -2,6 +2,7 @@ package main
 
 import (
 	"TGoBot/bot"
+	command_dto "TGoBot/dto/command"
 	inline_dto "TGoBot/dto/inlineQuery"
 	method_dto "TGoBot/dto/method"
 	update_dto "TGoBot/dto/update"
@@ -41,7 +42,13 @@ func main() {
 		College: college,
 	}
 	tbot.AddHandler(cmd)
-
+	tbot.AddCommand(
+		&command_dto.BotCommand{
+			Command:     "/test",
+			Description: "test",
+		},
+		cmd,
+	)
 	go tbot.RunUpdate()
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM)
@@ -138,7 +145,7 @@ func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Upda
 			Results:       arr,
 		}
 		fmt.Println(answer)
-		method.AnswerInlineQuery(answer)
+		method.AnswerInlineQuery(ctx, answer)
 	}
 	if update.ChosenInlineResult != nil {
 		fmt.Println(update.ChosenInlineResult.Query)

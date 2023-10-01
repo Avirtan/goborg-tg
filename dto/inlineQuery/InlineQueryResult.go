@@ -2,6 +2,9 @@ package inline_dto
 
 import message_dto "TGoBot/dto/message"
 
+// TODO Сделать билдер для каждого класса, и сделать создание резеультатов черезе New, NewТИП_РЕЗУЛЬТАТА параметры в New будут все, кроме omitempty
+// для omitempty параметров делать методы и возвращать сам объект, тем самы получится билдер
+
 // https://core.telegram.org/bots/api#inlinequeryresult
 type InlineQueryResult interface {
 	GetType() string
@@ -60,6 +63,10 @@ type InlineQueryResultCachedPhoto struct {
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
 }
 
+func (q *InlineQueryResultCachedPhoto) GetType() string {
+	return "photo"
+}
+
 // https://core.telegram.org/bots/api#inlinequeryresultgif
 type InlineQueryResultGif struct {
 	Type                string                            `json:"type"`
@@ -78,6 +85,10 @@ type InlineQueryResultGif struct {
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
 }
 
+func (q *InlineQueryResultGif) GetType() string {
+	return "gif"
+}
+
 // https://core.telegram.org/bots/api#inlinequeryresultcachedgif
 type InlineQueryResultCachedGif struct {
 	Type                string                            `json:"type"`
@@ -89,6 +100,10 @@ type InlineQueryResultCachedGif struct {
 	CaptionEntities     []*message_dto.MessageEntity      `json:"caption_entities,omitempty"`
 	ReplyMarkup         *message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
+}
+
+func (q *InlineQueryResultCachedGif) GetType() string {
+	return "gif"
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultmpeg4gif
@@ -109,6 +124,10 @@ type InlineQueryResultMpeg4Gif struct {
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
 }
 
+func (q *InlineQueryResultMpeg4Gif) GetType() string {
+	return "mpeg4_gif"
+}
+
 // https://core.telegram.org/bots/api#inlinequeryresultcachedmpeg4gif
 type InlineQueryResultCachedMpeg4Gif struct {
 	Type                string                            `json:"type"`
@@ -120,6 +139,10 @@ type InlineQueryResultCachedMpeg4Gif struct {
 	CaptionEntities     []*message_dto.MessageEntity      `json:"caption_entities,omitempty"`
 	ReplyMarkup         *message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
+}
+
+func (q *InlineQueryResultCachedMpeg4Gif) GetType() string {
+	return "mpeg4_gif"
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultvideo
@@ -141,6 +164,10 @@ type InlineQueryResultVideo struct {
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
 }
 
+func (q *InlineQueryResultVideo) GetType() string {
+	return "video"
+}
+
 // https://core.telegram.org/bots/api#inlinequeryresultcachedvideo
 type InlineQueryResultCachedVideo struct {
 	Type                string                            `json:"type"`
@@ -153,6 +180,10 @@ type InlineQueryResultCachedVideo struct {
 	CaptionEntities     []message_dto.MessageEntity       `json:"caption_entities,omitempty"`
 	ReplyMarkup         *message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
+}
+
+func (q *InlineQueryResultCachedVideo) GetType() string {
+	return "video"
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultaudio
@@ -170,6 +201,10 @@ type InlineQueryResultAudio struct {
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
 }
 
+func (q *InlineQueryResultAudio) GetType() string {
+	return "audio"
+}
+
 // https://core.telegram.org/bots/api#inlinequeryresultcachedaudio
 type InlineQueryResultCachedAudio struct {
 	Type                string                            `json:"type"`
@@ -180,6 +215,10 @@ type InlineQueryResultCachedAudio struct {
 	CaptionEntities     []message_dto.MessageEntity       `json:"caption_entities,omitempty"`
 	ReplyMarkup         *message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
+}
+
+func (q *InlineQueryResultCachedAudio) GetType() string {
+	return "audio"
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultvoice
@@ -195,6 +234,10 @@ type InlineQueryResultVoice struct {
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
 }
 
+func (q *InlineQueryResultVoice) GetType() string {
+	return "voice"
+}
+
 // https://core.telegram.org/bots/api#inlinequeryresultcachedvoice
 type InlineQueryResultCachedVoice struct {
 	Type                string                            `json:"type"`
@@ -206,6 +249,10 @@ type InlineQueryResultCachedVoice struct {
 	CaptionEntities     []message_dto.MessageEntity       `json:"caption_entities,omitempty"`
 	ReplyMarkup         *message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
+}
+
+func (q *InlineQueryResultCachedVoice) GetType() string {
+	return "voice"
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultdocument
@@ -226,6 +273,10 @@ type InlineQueryResultDocument struct {
 	ThumbnailHeight     int                               `json:"thumbnail_height,omitempty"`
 }
 
+func (q *InlineQueryResultDocument) GetType() string {
+	return "document"
+}
+
 // https://core.telegram.org/bots/api#inlinequeryresultcacheddocument
 type InlineQueryResultCachedDocument struct {
 	Type                string                            `json:"type"`
@@ -238,6 +289,10 @@ type InlineQueryResultCachedDocument struct {
 	Description         string                            `json:"description,omitempty"`
 	ReplyMarkup         *message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
+}
+
+func (q *InlineQueryResultCachedDocument) GetType() string {
+	return "document"
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultlocation
@@ -256,6 +311,10 @@ type InlineQueryResultLocation struct {
 	ThumbnailUrl         string                            `json:"thumbnail_url,omitempty"`
 	ThumbnailWidth       uint                              `json:"thumbnail_width,omitempty"`
 	ThumbnailHeight      uint                              `json:"thumbnail_height,omitempty"`
+}
+
+func (q *InlineQueryResultLocation) GetType() string {
+	return "location"
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultvenue
@@ -277,6 +336,10 @@ type InlineQueryResultVenue struct {
 	ThumbnailHeight     uint                              `json:"thumbnail_height,omitempty"`
 }
 
+func (q *InlineQueryResultVenue) GetType() string {
+	return "venue"
+}
+
 // https://core.telegram.org/bots/api#inlinequeryresultcontact
 type InlineQueryResultContact struct {
 	Type                string                            `json:"type"`
@@ -292,12 +355,20 @@ type InlineQueryResultContact struct {
 	ThumbnailHeight     uint                              `json:"thumbnail_height,omitempty"`
 }
 
+func (q *InlineQueryResultContact) GetType() string {
+	return "contact"
+}
+
 // https://core.telegram.org/bots/api#inlinequeryresultcontact
 type InlineQueryResultGame struct {
 	Type          string                            `json:"type"`
 	Id            string                            `json:"id"`
 	GameShortName string                            `json:"game_short_name"`
 	ReplyMarkup   *message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+}
+
+func (q *InlineQueryResultGame) GetType() string {
+	return "game"
 }
 
 // https://core.telegram.org/bots/api#inlinequeryresultcachedsticker
@@ -307,4 +378,8 @@ type InlineQueryResultCachedSticker struct {
 	StickerFileId       string                            `json:"sticker_file_id"`
 	ReplyMarkup         *message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
 	InputMessageContent InputMessageContent               `json:"input_message_content,omitempty"`
+}
+
+func (q *InlineQueryResultCachedSticker) GetType() string {
+	return "sticker"
 }
