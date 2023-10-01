@@ -50,14 +50,14 @@ func (t *TGoBot) AddCommand(botCommand *command_dto.BotCommand, handler handler.
 }
 
 func (t *TGoBot) GetCommand() {
-	err := method.GetMyCommands()
+	err := method.GetMyCommands(t.ctx)
 	if err != nil {
 		slog.Error("GetCommand", "error", err.Error())
 	}
 }
 
 func (t *TGoBot) DeleteCommand() {
-	method.DeleteMyCommands()
+	method.DeleteMyCommands(t.ctx)
 }
 
 func (t *TGoBot) RunUpdate() {
