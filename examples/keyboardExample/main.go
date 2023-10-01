@@ -116,6 +116,10 @@ func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Upda
 			}
 			fmt.Println("write")
 		}
+		if update.Message.Text == "get" {
+			method.GetMe(ctx)
+		}
+
 	}
 	if update.InlineQuery != nil {
 		query := update.InlineQuery

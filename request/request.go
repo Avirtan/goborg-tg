@@ -44,6 +44,7 @@ func RequestWithContext(ctx context.Context, typeRequest RequestType, url string
 	if err != nil {
 		return nil, err
 	}
+	req.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
