@@ -15,21 +15,17 @@ import (
 
 const baseUrl = "https://api.telegram.org/bot%s"
 
-type MethodHandler struct {
-	Token string
+var tokenNew string
+
+func New(token string) {
+	tokenNew = token
 }
 
-func New(token string) *MethodHandler {
-	return &MethodHandler{
-		Token: token,
-	}
+func GetUrl() string {
+	return fmt.Sprintf(baseUrl, tokenNew)
 }
 
-func (m *MethodHandler) GetUrl() string {
-	return fmt.Sprintf(baseUrl, m.Token)
-}
-
-func (m *MethodHandler) GetUpdates(ctx context.Context, offset uint64, limit int, timeout int) (*update_dto.UpdateResponse, error) {
+func GetUpdates(ctx context.Context, offset uint64, limit int, timeout int) (*update_dto.UpdateResponse, error) {
 	dataRequest := update_dto.UpdateRequest{
 		Offset:  offset,
 		Limit:   limit,
@@ -39,7 +35,7 @@ func (m *MethodHandler) GetUpdates(ctx context.Context, offset uint64, limit int
 	if err != nil {
 		return nil, err
 	}
-	resp, err := request.RequestWithContext(ctx, request.Get, m.GetUrl()+"/getUpdates", data)
+	resp, err := request.RequestWithContext(ctx, request.Get, GetUrl()+"/getUpdates", data)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +49,7 @@ func (m *MethodHandler) GetUpdates(ctx context.Context, offset uint64, limit int
 	return &response, err
 }
 
-func (m *MethodHandler) SetMyCommands(ctx context.Context, commands []*command_dto.BotCommand) error {
+func SetMyCommands(ctx context.Context, commands []*command_dto.BotCommand) error {
 	dataRequest := method_dto.SetCommandRequest{
 		Commands: commands,
 		// LanguageCode: "ru",
@@ -62,7 +58,7 @@ func (m *MethodHandler) SetMyCommands(ctx context.Context, commands []*command_d
 	if err != nil {
 		return err
 	}
-	response, err := request.RequestWithContext(ctx, request.Get, m.GetUrl()+"/setMyCommands", data)
+	response, err := request.RequestWithContext(ctx, request.Get, GetUrl()+"/setMyCommands", data)
 	if err != nil {
 		return err
 	}
@@ -74,8 +70,8 @@ func (m *MethodHandler) SetMyCommands(ctx context.Context, commands []*command_d
 	return nil
 }
 
-func (m *MethodHandler) DeleteMyCommands() error {
-	response, err := request.Request(request.Get, m.GetUrl()+"/deleteMyCommands", []byte{})
+func DeleteMyCommands() error {
+	response, err := request.Request(request.Get, GetUrl()+"/deleteMyCommands", []byte{})
 	if err != nil {
 		return err
 	}
@@ -87,8 +83,8 @@ func (m *MethodHandler) DeleteMyCommands() error {
 	return nil
 }
 
-func (m *MethodHandler) GetMyCommands() error {
-	response, err := request.Request(request.Get, m.GetUrl()+"/getMyCommands", []byte{})
+func GetMyCommands() error {
+	response, err := request.Request(request.Get, GetUrl()+"/getMyCommands", []byte{})
 	if err != nil {
 		return err
 	}
@@ -100,12 +96,12 @@ func (m *MethodHandler) GetMyCommands() error {
 	return nil
 }
 
-func (m *MethodHandler) SendMessage(msg method_dto.SendMessage) error {
+func SendMessage(msg method_dto.SendMessage) error {
 	data, err := json.Marshal(msg)
 	if err != nil {
 		return err
 	}
-	response, err := request.Request(request.Get, m.GetUrl()+"/sendMessage", data)
+	response, err := request.Request(request.Get, GetUrl()+"/sendMessage", data)
 	if err != nil {
 		return err
 	}
@@ -117,12 +113,12 @@ func (m *MethodHandler) SendMessage(msg method_dto.SendMessage) error {
 	return nil
 }
 
-func (m *MethodHandler) AnswerInlineQuery(msg method_dto.AnswerInlineQuery) error {
+func AnswerInlineQuery(msg method_dto.AnswerInlineQuery) error {
 	data, err := json.Marshal(msg)
 	if err != nil {
 		return err
 	}
-	response, err := request.Request(request.Get, m.GetUrl()+"/answerInlineQuery", data)
+	response, err := request.Request(request.Get, GetUrl()+"/answerInlineQuery", data)
 	if err != nil {
 		return err
 	}

@@ -40,10 +40,6 @@ func main() {
 	cmd := &TestCommandHandler{
 		College: college,
 	}
-	// tbot.AddCommand(&command_dto.BotCommand{
-	// 	Command:     "/test",
-	// 	Description: "пример использование бота",
-	// }, cmd)
 	tbot.AddHandler(cmd)
 
 	go tbot.RunUpdate()
@@ -56,7 +52,6 @@ func main() {
 	case err := <-tbot.Notify():
 		slog.Error("tbot eror " + err.Error())
 	}
-	// s.Stop()
 	tbot.DeleteCommand()
 	cancelFunction()
 }
@@ -65,7 +60,7 @@ type TestCommandHandler struct {
 	College model.ApiCollege
 }
 
-func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Update, msgHandler *method.MethodHandler) {
+func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Update) {
 	// if update.Message != nil {
 	// 	msgHandler.SendMessage(
 	// 		method_dto.SendMessage{
@@ -138,29 +133,12 @@ func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Upda
 				arr = append(arr, answerArticle)
 			}
 		}
-		// answerArticle := &inline_dto.InlineQueryResultArticle{
-		// 	Type:  "article",
-		// 	Id:    "test_id",
-		// 	Title: "Test_title",
-		// 	InputMssageContent: &inline_dto.InputTextMessageContent{
-		// 		MessageText: "tst_message",
-		// 	},
-		// }
-		// answerArticle1 := &inline_dto.InlineQueryResultArticle{
-		// 	Type:  "article",
-		// 	Id:    "test_id2",
-		// 	Title: "Test_title1",
-		// 	InputMssageContent: &inline_dto.InputTextMessageContent{
-		// 		MessageText: "tst_message1",
-		// 	},
-		// }
-		// arr = append(arr, answerArticle)
-		// arr = append(arr, answerArticle1)
 		answer := method_dto.AnswerInlineQuery{
 			InlineQueryId: query.Id,
 			Results:       arr,
 		}
-		msgHandler.AnswerInlineQuery(answer)
+		fmt.Println(answer)
+		method.AnswerInlineQuery(answer)
 	}
 	if update.ChosenInlineResult != nil {
 		fmt.Println(update.ChosenInlineResult.Query)
