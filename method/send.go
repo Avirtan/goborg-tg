@@ -115,3 +115,57 @@ func SendVoice[ID int64 | string](ctx context.Context, msg method_dto.SendVoice[
 	slog.Debug("info", "response", responseJson)
 	return nil
 }
+
+// https://core.telegram.org/bots/api#sendvideonote
+func SendVideoNote[ID int64 | string](ctx context.Context, msg method_dto.SendVideoNote[ID]) error {
+	data, err := json.Marshal(msg)
+	if err != nil {
+		return err
+	}
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendVideoNote", data)
+	if err != nil {
+		return err
+	}
+	responseJson, err := request.ResponseHandler(response)
+	if err != nil {
+		return err
+	}
+	slog.Debug("info", "response", responseJson)
+	return nil
+}
+
+// https://core.telegram.org/bots/api#sendmediagroup
+func SendMediaGroup[ID int64 | string](ctx context.Context, msg method_dto.SendMediaGroup[ID]) error {
+	data, err := json.Marshal(msg)
+	if err != nil {
+		return err
+	}
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendMediaGroup", data)
+	if err != nil {
+		return err
+	}
+	responseJson, err := request.ResponseHandler(response)
+	if err != nil {
+		return err
+	}
+	slog.Debug("info", "response", responseJson)
+	return nil
+}
+
+// https://core.telegram.org/bots/api#sendlocation
+func SendLocation[ID int64 | string](ctx context.Context, msg method_dto.SendLocation[ID]) error {
+	data, err := json.Marshal(msg)
+	if err != nil {
+		return err
+	}
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendLocation", data)
+	if err != nil {
+		return err
+	}
+	responseJson, err := request.ResponseHandler(response)
+	if err != nil {
+		return err
+	}
+	slog.Debug("info", "response", responseJson)
+	return nil
+}
