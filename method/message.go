@@ -9,7 +9,7 @@ import (
 )
 
 // https://core.telegram.org/bots/api#sendmessage
-func SendMessage(ctx context.Context, msg method_dto.SendMessage) error {
+func SendMessage[ID int64 | string](ctx context.Context, msg method_dto.SendMessage[ID]) error {
 	data, err := json.Marshal(msg)
 	if err != nil {
 		return err
