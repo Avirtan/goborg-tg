@@ -42,3 +42,134 @@ type CopyMessage struct {
 	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
 	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
 }
+
+// конструктор для SendMessage
+func NewSendMessage[ID int64 | string](chatID ID, text string) *SendMessage[ID] {
+	return &SendMessage[ID]{
+		ChatID: chatID,
+		Text:   text,
+	}
+}
+
+func (sm *SendMessage[ID]) SetMessageThreadId(messageThreadId int) *SendMessage[ID] {
+	sm.MessageThreadId = messageThreadId
+	return sm
+}
+
+func (sm *SendMessage[ID]) SetParseMode(parseMode string) *SendMessage[ID] {
+	sm.ParseMode = parseMode
+	return sm
+}
+
+func (sm *SendMessage[ID]) SetEntities(entities []message_dto.MessageEntity) *SendMessage[ID] {
+	sm.Entities = entities
+	return sm
+}
+
+func (sm *SendMessage[ID]) SetDisableWebPagePreview(disableWebPagePreview bool) *SendMessage[ID] {
+	sm.DisableWebPagePreview = disableWebPagePreview
+	return sm
+}
+
+func (sm *SendMessage[ID]) SetDisableNotification(disableNotification bool) *SendMessage[ID] {
+	sm.DisableNotification = disableNotification
+	return sm
+}
+
+func (sm *SendMessage[ID]) SetProtectContent(protectContent bool) *SendMessage[ID] {
+	sm.ProtectContent = protectContent
+	return sm
+}
+
+func (sm *SendMessage[ID]) SetReplyToMessageId(replyToMessageId uint64) *SendMessage[ID] {
+	sm.ReplyToMessageId = replyToMessageId
+	return sm
+}
+
+func (sm *SendMessage[ID]) SetAllowSendingWithoutReply(allowSendingWithoutReply bool) *SendMessage[ID] {
+	sm.AllowSendingWithoutReply = allowSendingWithoutReply
+	return sm
+}
+
+func (sm *SendMessage[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *SendMessage[ID] {
+	sm.ReplyMarkup = replyMarkup
+	return sm
+}
+
+// конструктор для ForwardMessage
+func NewForwardMessage(chatID, fromChatID, messageID int64) *ForwardMessage {
+	return &ForwardMessage{
+		ChatID:     chatID,
+		FromChatId: fromChatID,
+		MessageId:  messageID,
+	}
+}
+
+func (fm *ForwardMessage) SetMessageThreadId(messageThreadId int) *ForwardMessage {
+	fm.MessageThreadId = messageThreadId
+	return fm
+}
+
+func (fm *ForwardMessage) SetProtectContent(protectContent bool) *ForwardMessage {
+	fm.ProtectContent = protectContent
+	return fm
+}
+
+func (fm *ForwardMessage) SetDisableNotification(disableNotification bool) *ForwardMessage {
+	fm.DisableNotification = disableNotification
+	return fm
+}
+
+// конструктор для CopyMessage
+func NewCopyMessage(chatID, fromChatID, messageID int64) *CopyMessage {
+	return &CopyMessage{
+		ChatID:     chatID,
+		FromChatId: fromChatID,
+		MessageId:  messageID,
+	}
+}
+
+func (cm *CopyMessage) SetMessageThreadId(messageThreadId int) *CopyMessage {
+	cm.MessageThreadId = messageThreadId
+	return cm
+}
+
+func (cm *CopyMessage) SetCaption(caption int64) *CopyMessage {
+	cm.Caption = caption
+	return cm
+}
+
+func (cm *CopyMessage) SetParseMode(parseMode string) *CopyMessage {
+	cm.ParseMode = parseMode
+	return cm
+}
+
+func (cm *CopyMessage) SetEntities(entities []message_dto.MessageEntity) *CopyMessage {
+	cm.Entities = entities
+	return cm
+}
+
+func (cm *CopyMessage) SetDisableNotification(disableNotification bool) *CopyMessage {
+	cm.DisableNotification = disableNotification
+	return cm
+}
+
+func (cm *CopyMessage) SetProtectContent(protectContent bool) *CopyMessage {
+	cm.ProtectContent = protectContent
+	return cm
+}
+
+func (cm *CopyMessage) SetReplyToMessageId(replyToMessageId uint64) *CopyMessage {
+	cm.ReplyToMessageId = replyToMessageId
+	return cm
+}
+
+func (cm *CopyMessage) SetAllowSendingWithoutReply(allowSendingWithoutReply bool) *CopyMessage {
+	cm.AllowSendingWithoutReply = allowSendingWithoutReply
+	return cm
+}
+
+func (cm *CopyMessage) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *CopyMessage {
+	cm.ReplyMarkup = replyMarkup
+	return cm
+}
