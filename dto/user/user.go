@@ -23,21 +23,15 @@ type UserProfilePhotos struct {
 	Photos     [][]utils_dto.PhotoSize `json:"photos"`
 }
 
-type UserBuilder struct {
-	user User
-}
-
-func NewUserBuilder(id int64, isBot bool, firstName string) *UserBuilder {
-	return &UserBuilder{
-		user: User{
-			Id:        id,
-			IsBot:     isBot,
-			FirstName: firstName,
-		},
+func NewUser(id int64, isBot bool, firstName string) *User {
+	return &User{
+		Id:        id,
+		IsBot:     isBot,
+		FirstName: firstName,
 	}
 }
 
-func (ub *UserBuilder) SetLastName(lastName string) *UserBuilder {
-	ub.user.LastName = lastName
+func (ub *User) SetLastName(lastName string) *User {
+	ub.LastName = lastName
 	return ub
 }
