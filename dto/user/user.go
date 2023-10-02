@@ -22,16 +22,3 @@ type UserProfilePhotos struct {
 	TotalCount int64                   `json:"total_count"`
 	Photos     [][]utils_dto.PhotoSize `json:"photos"`
 }
-
-func NewUser(id int64, isBot bool, firstName string) *User {
-	return &User{
-		Id:        id,
-		IsBot:     isBot,
-		FirstName: firstName,
-	}
-}
-
-func (ub *User) SetLastName(lastName string) *User {
-	ub.LastName = lastName
-	return ub
-}
