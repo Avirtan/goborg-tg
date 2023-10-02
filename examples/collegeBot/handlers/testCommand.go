@@ -15,7 +15,7 @@ func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Upda
 	if update.Message != nil {
 		method.SendMessage(
 			ctx,
-			method_dto.SendMessage{
+			method_dto.SendMessage[int64]{
 				ChatID:      update.Message.From.Id,
 				Text:        "test",
 				ReplyMarkup: message_dto.Keyboard{

@@ -38,7 +38,7 @@ func (c *CollegeHandler) Action(ctx context.Context, update *update_dto.Update) 
 			str := fmt.Sprintf("%v - %v\n%v\n%v\n%v", value.Lesson1Start, value.Lesson2End, value.Discipline, value.Teacher, cabinet)
 			method.SendMessage(
 				ctx,
-				method_dto.SendMessage{
+				method_dto.SendMessage[int64]{
 					ChatID: update.Message.From.Id,
 					Text:   str,
 				},

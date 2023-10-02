@@ -19,7 +19,7 @@ func (c *StartHandler) Action(ctx context.Context, update *update_dto.Update) {
 	if update.Message != nil && update.Message.Text == "/start" {
 		method.SendMessage(
 			ctx,
-			method_dto.SendMessage{
+			method_dto.SendMessage[int64]{
 				ChatID: update.Message.From.Id,
 				Text:   "Введите группу в формате */*/*",
 			},

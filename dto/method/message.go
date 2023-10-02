@@ -3,8 +3,8 @@ package method_dto
 import message_dto "TGoBot/dto/message"
 
 // https://core.telegram.org/bots/api#sendmessage
-type SendMessage struct {
-	ChatID                   int64                       `json:"chat_id"`
+type SendMessage[ID int64 | string] struct {
+	ChatID                   ID                          `json:"chat_id"`
 	Text                     string                      `json:"text"`
 	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
 	ParseMode                string                      `json:"parse_mode,omitempty"`
