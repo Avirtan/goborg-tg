@@ -1,4 +1,4 @@
-package passort_dto
+package passport_dto
 
 // https://core.telegram.org/bots/api#passportdata
 type PassportData struct {
