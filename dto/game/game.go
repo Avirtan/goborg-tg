@@ -1,4 +1,4 @@
-package games
+package game_dto
 
 import (
 	message_dto "TGoBot/dto/message"
