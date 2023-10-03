@@ -2,7 +2,7 @@ package user_dto
 
 import utils_dto "TGoBot/dto/utils"
 
-//https://core.telegram.org/bots/api#user
+// https://core.telegram.org/bots/api#user
 type User struct {
 	Id                      int64  `json:"id"`
 	FirstName               string `json:"first_name,omitempty"`
@@ -17,7 +17,7 @@ type User struct {
 	SupportsInlineQueries   bool   `json:"supports_inline_queries,omitempty"`
 }
 
-//https://core.telegram.org/bots/api#userprofilephotos
+// https://core.telegram.org/bots/api#userprofilephotos
 type UserProfilePhotos struct {
 	TotalCount int64                   `json:"total_count"`
 	Photos     [][]utils_dto.PhotoSize `json:"photos"`

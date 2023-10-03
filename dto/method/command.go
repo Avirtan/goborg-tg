@@ -8,3 +8,19 @@ type SetCommandRequest struct {
 	Scope        any                       `json:"scope,omitempty"`
 	LanguageCode string                    `json:"language_code,omitempty"`
 }
+
+func NewSetCommandRequest(commands []*command_dto.BotCommand) *SetCommandRequest {
+	return &SetCommandRequest{
+		Commands: commands,
+	}
+}
+
+func (scr *SetCommandRequest) SetScope(scope any) *SetCommandRequest {
+	scr.Scope = scope
+	return scr
+}
+
+func (scr *SetCommandRequest) SetLanguageCode(languageCode string) *SetCommandRequest {
+	scr.LanguageCode = languageCode
+	return scr
+}
