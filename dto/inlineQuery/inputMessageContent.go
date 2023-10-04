@@ -1,6 +1,6 @@
 package inline_dto
 
-import message_dto "TGoBot/dto/message"
+import message_dto "github.com/Avirtan/TGoBot/dto/message"
 
 // https://core.telegram.org/bots/api#inputmessagecontent
 type InputMessageContent interface {

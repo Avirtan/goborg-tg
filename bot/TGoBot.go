@@ -1,14 +1,15 @@
 package bot
 
 import (
-	command_dto "TGoBot/dto/command"
-	update_dto "TGoBot/dto/update"
-	"TGoBot/handler"
-	"TGoBot/method"
-	"TGoBot/pkg/logger"
 	"context"
 	"errors"
 	"log/slog"
+
+	command_dto "github.com/Avirtan/TGoBot/dto/command"
+	update_dto "github.com/Avirtan/TGoBot/dto/update"
+	"github.com/Avirtan/TGoBot/handler"
+	"github.com/Avirtan/TGoBot/method"
+	"github.com/Avirtan/TGoBot/pkg/logger"
 )
 
 type BotOptions struct {

@@ -1,16 +1,18 @@
 package handlers
 
 import (
-	method_dto "TGoBot/dto/method"
-	update_dto "TGoBot/dto/update"
-	"TGoBot/examples/collegeBot/model"
-	"TGoBot/method"
-	"TGoBot/request"
 	"context"
 	"encoding/json"
 	"fmt"
 	"io"
 	"strings"
+
+	"github.com/Avirtan/TGoBot/method"
+
+	method_dto "github.com/Avirtan/TGoBot/dto/method"
+	update_dto "github.com/Avirtan/TGoBot/dto/update"
+	"github.com/Avirtan/TGoBot/examples/collegeBot/model"
+	"github.com/Avirtan/TGoBot/request"
 )
 
 const url = "https://info.kma29.ru/api.php/"

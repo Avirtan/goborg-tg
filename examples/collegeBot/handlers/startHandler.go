@@ -1,12 +1,13 @@
 package handlers
 
 import (
-	method_dto "TGoBot/dto/method"
-	update_dto "TGoBot/dto/update"
-	"TGoBot/examples/collegeBot/model"
-	"TGoBot/method"
 	"context"
 	"fmt"
+
+	method_dto "github.com/Avirtan/TGoBot/dto/method"
+	update_dto "github.com/Avirtan/TGoBot/dto/update"
+	"github.com/Avirtan/TGoBot/examples/collegeBot/model"
+	"github.com/Avirtan/TGoBot/method"
 
 	"github.com/jmoiron/sqlx"
 )

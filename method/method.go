@@ -1,13 +1,13 @@
 package method
 
 import (
-	update_dto "TGoBot/dto/update"
-	"TGoBot/request"
-
 	"context"
 	"encoding/json"
 	"fmt"
 	"io"
+
+	update_dto "github.com/Avirtan/TGoBot/dto/update"
+	"github.com/Avirtan/TGoBot/request"
 )
 
 const baseUrl = "https://api.telegram.org/bot%s"

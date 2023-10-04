@@ -1,6 +1,6 @@
 package payment_dto
 
-import user_dto "TGoBot/dto/user"
+import user_dto "github.com/Avirtan/TGoBot/dto/user"
 
 // https://core.telegram.org/bots/api#labeledprice
 type LabeledPrice struct {

@@ -1,9 +1,9 @@
 package game_dto
 
 import (
-	message_dto "TGoBot/dto/message"
-	user_dto "TGoBot/dto/user"
-	utils_dto "TGoBot/dto/utils"
+	message_dto "github.com/Avirtan/TGoBot/dto/message"
+	user_dto "github.com/Avirtan/TGoBot/dto/user"
+	utils_dto "github.com/Avirtan/TGoBot/dto/utils"
 )
 
 // https://core.telegram.org/bots/api#game

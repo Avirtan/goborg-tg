@@ -1,14 +1,15 @@
 package main
 
 import (
-	"TGoBot/bot"
-	command_dto "TGoBot/dto/command"
-	"TGoBot/examples/collegeBot/handlers"
 	"context"
 	"log/slog"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/Avirtan/TGoBot/bot"
+	command_dto "github.com/Avirtan/TGoBot/dto/command"
+	"github.com/Avirtan/TGoBot/examples/collegeBot/handlers"
 
 	_ "github.com/lib/pq"
 )

@@ -1,8 +1,9 @@
 package handler
 
 import (
-	update_dto "TGoBot/dto/update"
 	"context"
+
+	update_dto "github.com/Avirtan/TGoBot/dto/update"
 )
 
 type TypeHandler uint64

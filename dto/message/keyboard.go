@@ -1,8 +1,8 @@
 package message_dto
 
 import (
-	user_dto "TGoBot/dto/user"
-	utils_dto "TGoBot/dto/utils"
+	user_dto "github.com/Avirtan/TGoBot/dto/user"
+	utils_dto "github.com/Avirtan/TGoBot/dto/utils"
 )
 
 type IKeyboard interface {

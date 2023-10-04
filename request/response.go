@@ -1,10 +1,11 @@
 package request
 
 import (
-	"TGoBot/dto"
 	"encoding/json"
 	"io"
 	"net/http"
+
+	"github.com/Avirtan/TGoBot/dto"
 )
 
 func ResponseHandler(response *http.Response) (*dto.Response, error) {

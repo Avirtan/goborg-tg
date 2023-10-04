@@ -1,6 +1,6 @@
 package method_dto
 
-import message_dto "TGoBot/dto/message"
+import message_dto "github.com/Avirtan/TGoBot/dto/message"
 
 // https://core.telegram.org/bots/api#sendphoto
 type SendPhoto[ID string | int64] struct {

@@ -1,11 +1,12 @@
 package method
 
 import (
-	method_dto "TGoBot/dto/method"
-	"TGoBot/request"
 	"context"
 	"encoding/json"
 	"log/slog"
+
+	method_dto "github.com/Avirtan/TGoBot/dto/method"
+	"github.com/Avirtan/TGoBot/request"
 )
 
 func AnswerInlineQuery(ctx context.Context, msg method_dto.AnswerInlineQuery) error {

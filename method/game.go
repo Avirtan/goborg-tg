@@ -1,14 +1,15 @@
 package method
 
 import (
-	"TGoBot/dto"
-	game_dto "TGoBot/dto/game"
-	message_dto "TGoBot/dto/message"
-	method_dto "TGoBot/dto/method"
-	"TGoBot/request"
 	"context"
 	"encoding/json"
 	"log/slog"
+
+	"github.com/Avirtan/TGoBot/dto"
+	game_dto "github.com/Avirtan/TGoBot/dto/game"
+	message_dto "github.com/Avirtan/TGoBot/dto/message"
+	method_dto "github.com/Avirtan/TGoBot/dto/method"
+	"github.com/Avirtan/TGoBot/request"
 )
 
 // https://core.telegram.org/bots/api#sendgame

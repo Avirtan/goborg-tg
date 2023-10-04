@@ -1,14 +1,15 @@
 package main
 
 import (
-	"TGoBot/bot"
-	command_dto "TGoBot/dto/command"
-	message_dto "TGoBot/dto/message"
-	method_dto "TGoBot/dto/method"
-	update_dto "TGoBot/dto/update"
-	"TGoBot/examples/collegeBot/model"
-	"TGoBot/method"
-	"TGoBot/pkg/logger"
+	"github.com/Avirtan/TGoBot/bot"
+	command_dto "github.com/Avirtan/TGoBot/dto/command"
+	message_dto "github.com/Avirtan/TGoBot/dto/message"
+	method_dto "github.com/Avirtan/TGoBot/dto/method"
+	update_dto "github.com/Avirtan/TGoBot/dto/update"
+	"github.com/Avirtan/TGoBot/examples/collegeBot/model"
+	"github.com/Avirtan/TGoBot/method"
+	"github.com/Avirtan/TGoBot/pkg/logger"
+
 	"context"
 	"encoding/json"
 	"fmt"

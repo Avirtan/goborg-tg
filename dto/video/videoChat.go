@@ -1,7 +1,7 @@
 package video_dto
 
 import (
-	user_dto "TGoBot/dto/user"
+	user_dto "github.com/Avirtan/TGoBot/dto/user"
 )
 
 // https://core.telegram.org/bots/api#videochatscheduled

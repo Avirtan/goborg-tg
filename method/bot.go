@@ -1,10 +1,11 @@
 package method
 
 import (
-	user_dto "TGoBot/dto/user"
-	"TGoBot/request"
 	"context"
 	"log/slog"
+
+	user_dto "github.com/Avirtan/TGoBot/dto/user"
+	"github.com/Avirtan/TGoBot/request"
 )
 
 func GetMe(ctx context.Context) (*user_dto.User, error) {

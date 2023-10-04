@@ -1,12 +1,13 @@
 package method
 
 import (
-	command_dto "TGoBot/dto/command"
-	method_dto "TGoBot/dto/method"
-	"TGoBot/request"
 	"context"
 	"encoding/json"
 	"log/slog"
+
+	command_dto "github.com/Avirtan/TGoBot/dto/command"
+	method_dto "github.com/Avirtan/TGoBot/dto/method"
+	"github.com/Avirtan/TGoBot/request"
 )
 
 func SetMyCommands(ctx context.Context, commands []*command_dto.BotCommand) error {

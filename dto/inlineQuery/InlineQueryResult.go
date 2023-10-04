@@ -1,6 +1,6 @@
 package inline_dto
 
-import message_dto "TGoBot/dto/message"
+import message_dto "github.com/Avirtan/TGoBot/dto/message"
 
 // TODO Сделать билдер для каждого класса, и сделать создание резеультатов черезе New, NewТИП_РЕЗУЛЬТАТА параметры в New будут все, кроме omitempty
 // для omitempty параметров делать методы и возвращать сам объект, тем самы получится билдер

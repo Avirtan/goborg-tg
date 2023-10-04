@@ -1,6 +1,6 @@
 package video_dto
 
-import utils_dto "TGoBot/dto/utils"
+import utils_dto "github.com/Avirtan/TGoBot/dto/utils"
 
 // https://core.telegram.org/bots/api#video
 type Video struct {

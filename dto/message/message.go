@@ -1,10 +1,10 @@
 package message_dto
 
 import (
-	forum_dto "TGoBot/dto/forum"
-	user_dto "TGoBot/dto/user"
-	utils_dto "TGoBot/dto/utils"
-	video_dto "TGoBot/dto/video"
+	forum_dto "github.com/Avirtan/TGoBot/dto/forum"
+	user_dto "github.com/Avirtan/TGoBot/dto/user"
+	utils_dto "github.com/Avirtan/TGoBot/dto/utils"
+	video_dto "github.com/Avirtan/TGoBot/dto/video"
 )
 
 // https://core.telegram.org/bots/api#message
