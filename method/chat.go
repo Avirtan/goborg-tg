@@ -33,3 +33,16 @@ func GetChatAdministrators[ID int64 | string](ctx context.Context) (*message_dto
 	slog.Debug("info", "response", responseJson)
 	return responseJson, nil
 }
+
+func GetChatMemberCount[ID int64 | string](ctx context.Context) (*int64, error) {
+	response, err := request.RequestWithContext(ctx, request.Get, GetUrl()+"/getChatMemberCount")
+	if err != nil {
+		return nil, err
+	}
+	responseJson, err := request.ResponseHandlerToType[int64](response)
+	if err != nil {
+		return nil, err
+	}
+	slog.Debug("info", "response", responseJson)
+	return responseJson, nil
+}
