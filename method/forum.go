@@ -164,3 +164,16 @@ func UnhideGeneralForumTopic[ID int64 | string](ctx context.Context) (*bool, err
 	slog.Debug("info", "response", responseJson)
 	return responseJson, nil
 }
+
+func UnpinAllGeneralForumTopicMessages[ID int64 | string](ctx context.Context) (*bool, error) {
+	response, err := request.RequestWithContext(ctx, request.Get, GetUrl()+"/unpinAllGeneralForumTopicMessages")
+	if err != nil {
+		return nil, err
+	}
+	responseJson, err := request.ResponseHandlerToType[bool](response)
+	if err != nil {
+		return nil, err
+	}
+	slog.Debug("info", "response", responseJson)
+	return responseJson, nil
+}
