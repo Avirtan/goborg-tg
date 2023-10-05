@@ -99,3 +99,16 @@ func UnpinAllForumTopicMessages[ID int64 | string](ctx context.Context, messageT
 	slog.Debug("info", "response", responseJson)
 	return responseJson, nil
 }
+
+func EditGeneralForumTopic[ID int64 | string](ctx context.Context, name string) (*bool, error) {
+	response, err := request.RequestWithContext(ctx, request.Get, GetUrl()+"/editGeneralForumTopic")
+	if err != nil {
+		return nil, err
+	}
+	responseJson, err := request.ResponseHandlerToType[bool](response)
+	if err != nil {
+		return nil, err
+	}
+	slog.Debug("info", "response", responseJson)
+	return responseJson, nil
+}
