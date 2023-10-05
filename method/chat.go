@@ -59,3 +59,16 @@ func GetChatMember[ID int64 | string](ctx context.Context, userId int64) (*messa
 	slog.Debug("info", "response", responseJson)
 	return responseJson, nil
 }
+
+func SetChatStickerSet[ID int64 | string](ctx context.Context, stickerSetName string) (*bool, error) {
+	response, err := request.RequestWithContext(ctx, request.Get, GetUrl()+"/setChatStickerSet")
+	if err != nil {
+		return nil, err
+	}
+	responseJson, err := request.ResponseHandlerToType[bool](response)
+	if err != nil {
+		return nil, err
+	}
+	slog.Debug("info", "response", responseJson)
+	return responseJson, nil
+}
