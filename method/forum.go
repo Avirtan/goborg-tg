@@ -86,3 +86,16 @@ func DeleteForumTopic[ID int64 | string](ctx context.Context, messageThreadId in
 	slog.Debug("info", "response", responseJson)
 	return responseJson, nil
 }
+
+func UnpinAllForumTopicMessages[ID int64 | string](ctx context.Context, messageThreadId int64) (*bool, error) {
+	response, err := request.RequestWithContext(ctx, request.Get, GetUrl()+"/unpinAllForumTopicMessages")
+	if err != nil {
+		return nil, err
+	}
+	responseJson, err := request.ResponseHandlerToType[bool](response)
+	if err != nil {
+		return nil, err
+	}
+	slog.Debug("info", "response", responseJson)
+	return responseJson, nil
+}
