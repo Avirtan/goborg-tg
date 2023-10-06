@@ -51,3 +51,12 @@ func NewAnswerWebAppQuery(webAppQueryId string, result inline_dto.InlineQueryRes
 		Result:        result,
 	}
 }
+
+// https://core.telegram.org/bots/api#answercallbackquery
+type AnswerCallbackQuery struct {
+	CallbackQueryId string `json:"callback_query_id"`
+	Text            string `json:"text,omitempty"`
+	ShowAlert       bool   `json:"show_alert,omitempty"`
+	Url             string `json:"url,omitempty"`
+	CacheTime       uint64 `json:"cache_time,omitempty"`
+}

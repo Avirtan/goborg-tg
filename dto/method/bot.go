@@ -56,3 +56,8 @@ type SetMyName struct {
 	Name         string `json:"name,omitempty"`
 	LanguageCode string `json:"language_code,omitempty"`
 }
+
+// https://core.telegram.org/bots/api#getfile
+type GetFile struct {
+	FileId string `json:"file_id,omitempty"`
+}

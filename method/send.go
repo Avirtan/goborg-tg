@@ -170,3 +170,39 @@ func SendLocation[ID int64 | string](ctx context.Context, msg method_dto.SendLoc
 	slog.Debug("info", "response", responseJson)
 	return nil
 }
+
+// https://core.telegram.org/bots/api#sendchataction
+func SendChatAction[ID int64 | string](ctx context.Context, msg method_dto.SendChatAction[ID]) error {
+	data, err := json.Marshal(msg)
+	if err != nil {
+		return err
+	}
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendChatAction", data)
+	if err != nil {
+		return err
+	}
+	responseJson, err := request.ResponseHandler(response)
+	if err != nil {
+		return err
+	}
+	slog.Debug("info", "response", responseJson)
+	return nil
+}
+
+// https://core.telegram.org/bots/api#senddice
+func SendDice[ID int64 | string](ctx context.Context, msg method_dto.SendDice[ID]) error {
+	data, err := json.Marshal(msg)
+	if err != nil {
+		return err
+	}
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendDice", data)
+	if err != nil {
+		return err
+	}
+	responseJson, err := request.ResponseHandler(response)
+	if err != nil {
+		return err
+	}
+	slog.Debug("info", "response", responseJson)
+	return nil
+}

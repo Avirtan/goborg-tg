@@ -9,6 +9,7 @@ import (
 	message_dto "github.com/Avirtan/TGoBot/dto/message"
 	method_dto "github.com/Avirtan/TGoBot/dto/method"
 	user_dto "github.com/Avirtan/TGoBot/dto/user"
+	utils_dto "github.com/Avirtan/TGoBot/dto/utils"
 	"github.com/Avirtan/TGoBot/request"
 )
 
@@ -224,4 +225,24 @@ func SetMyName(ctx context.Context, desc method_dto.SetMyName) error {
 	}
 	slog.Debug("info", "response", responseJson)
 	return nil
+}
+
+// https://core.telegram.org/bots/api#getfile
+func GetFile(ctx context.Context, desc method_dto.GetFile) (*utils_dto.File, error) {
+	data, err := json.Marshal(desc)
+	if err != nil {
+		return nil, err
+	}
+
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getFile", data)
+	if err != nil {
+		return nil, err
+	}
+
+	responseJson, err := request.ResponseHandlerToType[utils_dto.File](response)
+	if err != nil {
+		return nil, err
+	}
+	slog.Debug("info", "response", responseJson)
+	return responseJson, nil
 }
