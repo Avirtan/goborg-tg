@@ -19,13 +19,11 @@ import (
 	"syscall"
 )
 
-const url = "https://info.kma29.ru/api.php/"
-
 func main() {
 	ctx := context.Background()
 	ctxWithCancel, cancelFunction := context.WithCancel(ctx)
 	tbot := tgobot.NewBot(tgobot.BotOptions{
-		Token:       "6584315900:AAHVPF9Xx_ydCfyVPZn1h_S3OPLRtWTpZ9c",
+		Token:       "your_token",
 		Ctx:         ctxWithCancel,
 		LoggerLevel: logger.LevelDebug,
 	})

@@ -2,18 +2,13 @@ package handlers
 
 import (
 	"context"
-	"fmt"
 
 	method_dto "github.com/Avirtan/TGoBot/dto/method"
 	update_dto "github.com/Avirtan/TGoBot/dto/update"
-	"github.com/Avirtan/TGoBot/examples/collegeBot/model"
 	"github.com/Avirtan/TGoBot/method"
-
-	"github.com/jmoiron/sqlx"
 )
 
 type StartHandler struct {
-	Db *sqlx.DB
 }
 
 func (c *StartHandler) Action(ctx context.Context, update *update_dto.Update) {
@@ -25,18 +20,18 @@ func (c *StartHandler) Action(ctx context.Context, update *update_dto.Update) {
 				Text:   "Введите группу в формате */*/*",
 			},
 		)
-		student := model.Student{
-			UserId:    update.Message.From.Id,
-			FirstName: update.Message.From.FirstName,
-			LastName:  update.Message.From.LastName,
-			Username:  update.Message.From.Username,
-			Grout:     "",
-		}
+		// student := model.Student{
+		// 	UserId:    update.Message.From.Id,
+		// 	FirstName: update.Message.From.FirstName,
+		// 	LastName:  update.Message.From.LastName,
+		// 	Username:  update.Message.From.Username,
+		// 	Grout:     "",
+		// }
 
-		_, err := c.Db.NamedExec(`INSERT INTO student (user_id, first_name, last_name, username)
-		VALUES (:user_id, :first_name, :last_name, :username)`, student)
-		if err != nil {
-			fmt.Println(err.Error())
-		}
+		// _, err := c.Db.NamedExec(`INSERT INTO student (user_id, first_name, last_name, username)
+		// VALUES (:user_id, :first_name, :last_name, :username)`, student)
+		// if err != nil {
+		// 	fmt.Println(err.Error())
+		// }
 	}
 }

@@ -10,20 +10,7 @@ import (
 	tgobot "github.com/Avirtan/TGoBot"
 	command_dto "github.com/Avirtan/TGoBot/dto/command"
 	"github.com/Avirtan/TGoBot/examples/collegeBot/handlers"
-
-	_ "github.com/lib/pq"
 )
-
-var schema = `
-CREATE TABLE IF NOT EXISTS student (
-	user_id    INTEGER PRIMARY KEY,
-    first_name VARCHAR(250)  DEFAULT '',
-    last_name  VARCHAR(250)  DEFAULT '',
-	username   VARCHAR(250) DEFAULT '',
-	grp VARCHAR(250) DEFAULT '',
-	isSub boolean DEFAULT false
-);
-`
 
 func main() {
 	// db, err := sqlx.Connect("postgres", "postgres://user:pass@localhost:5432/mangust?sslmode=disable")
@@ -36,7 +23,7 @@ func main() {
 	ctx := context.Background()
 	ctxWithCancel, cancelFunction := context.WithCancel(ctx)
 	tbot := tgobot.NewBot(tgobot.BotOptions{
-		Token: "6584315900:AAHVPF9Xx_ydCfyVPZn1h_S3OPLRtWTpZ9c",
+		Token: "your_token",
 		Ctx:   ctxWithCancel,
 	})
 
