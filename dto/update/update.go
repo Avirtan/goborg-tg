@@ -3,6 +3,7 @@ package update_dto
 import (
 	inline_dto "github.com/Avirtan/TGoBot/dto/inlineQuery"
 	message_dto "github.com/Avirtan/TGoBot/dto/message"
+	payment_dto "github.com/Avirtan/TGoBot/dto/payment"
 )
 
 type UpdateResponse struct {
@@ -20,8 +21,8 @@ type Update struct {
 	InlineQuery        *inline_dto.InlineQuery        `json:"inline_query,omitempty"`
 	ChosenInlineResult *inline_dto.ChosenInlineResult `json:"chosen_inline_result,omitempty"`
 	CallbackQuery      *message_dto.CallbackQuery     `json:"callback_query,omitempty"`
-	ShippingQuery      *any                           `json:"shipping_query,omitempty"`     // TODO ShippingQuery
-	PreCheckoutQuery   *any                           `json:"pre_checkout_query,omitempty"` // TODO PreCheckoutQuery
+	ShippingQuery      *payment_dto.ShippingQuery     `json:"shipping_query,omitempty"`
+	PreCheckoutQuery   *payment_dto.PreCheckoutQuery  `json:"pre_checkout_query,omitempty"`
 	Poll               *message_dto.Poll              `json:"poll,omitempty"`
 	PollAnswer         *message_dto.PollAnswer        `json:"poll_answer,omitempty"`
 	MyChatMember       *message_dto.ChatMemberUpdated `json:"my_chat_member,omitempty"`

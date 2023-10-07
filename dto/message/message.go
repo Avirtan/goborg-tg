@@ -2,6 +2,10 @@ package message_dto
 
 import (
 	forum_dto "github.com/Avirtan/TGoBot/dto/forum"
+	game_dto "github.com/Avirtan/TGoBot/dto/game"
+	passport_dto "github.com/Avirtan/TGoBot/dto/passport"
+	payment_dto "github.com/Avirtan/TGoBot/dto/payment"
+	stickers_dto "github.com/Avirtan/TGoBot/dto/stickers"
 	user_dto "github.com/Avirtan/TGoBot/dto/user"
 	utils_dto "github.com/Avirtan/TGoBot/dto/utils"
 	video_dto "github.com/Avirtan/TGoBot/dto/video"
@@ -35,7 +39,7 @@ type Message struct {
 	Audio                         *utils_dto.Audio                        `json:"audio,omitempty"`
 	Document                      *utils_dto.Document                     `json:"document,omitempty"`
 	Photo                         []*utils_dto.PhotoSize                  `json:"photo,omitempty"`
-	Sticker                       any                                     `json:"sticker,omitempty"` // TODO Sticker
+	Sticker                       *stickers_dto.Sticker                   `json:"sticker,omitempty"`
 	Story                         any                                     `json:"story,omitempty"`
 	Video                         *video_dto.Video                        `json:"video,omitempty"`
 	VideoNote                     *video_dto.VideoNote                    `json:"video_note,omitempty"`
@@ -45,7 +49,7 @@ type Message struct {
 	HasMediaSpoiler               bool                                    `json:"has_media_spoiler,omitempty"`
 	Contact                       *user_dto.Contact                       `json:"contact,omitempty"`
 	Dice                          Dice                                    `json:"dice,omitempty"`
-	Game                          any                                     `json:"game,omitempty"`
+	Game                          *game_dto.Game                          `json:"game,omitempty"`
 	Poll                          *Poll                                   `json:"poll,omitempty"`
 	Venue                         *utils_dto.Venue                        `json:"venue,omitempty"`
 	Location                      *utils_dto.Location                     `json:"location,omitempty"`
@@ -61,13 +65,13 @@ type Message struct {
 	MigrateToChatId               int                                     `json:"migrate_to_chat_id,omitempty"`
 	MigrateFromChatId             int                                     `json:"migrate_from_chat_id,omitempty"`
 	PinnedMessage                 *Message                                `json:"pinned_message,omitempty"`
-	Invoice                       any                                     `json:"invoice,omitempty"`            // TODO Invoice
-	SuccessfulPayment             any                                     `json:"successful_payment,omitempty"` // TODO SuccessfulPayment
+	Invoice                       *payment_dto.Invoice                    `json:"invoice,omitempty"`
+	SuccessfulPayment             *payment_dto.SuccessfulPayment          `json:"successful_payment,omitempty"`
 	UserShared                    *UserShared                             `json:"user_shared,omitempty"`
 	ChatShared                    *ChatShared                             `json:"chat_shared,omitempty"`
 	ConnectedWebsite              string                                  `json:"connected_website,omitempty"`
 	WriteAccessAllowed            *utils_dto.WriteAccessAllowed           `json:"write_access_allowed,omitempty"`
-	PassportData                  any                                     `json:"passport_data,omitempty"` // TODO PassportData
+	PassportData                  *passport_dto.PassportData              `json:"passport_data,omitempty"`
 	ProximityAlertTriggered       ProximityAlertTriggered                 `json:"proximity_alert_triggered,omitempty"`
 	ForumTopicCreated             *forum_dto.ForumTopicCreated            `json:"forum_topic_created,omitempty"`
 	ForumTopicEdited              *forum_dto.ForumTopicEdited             `json:"forum_topic_edited,omitempty"`
