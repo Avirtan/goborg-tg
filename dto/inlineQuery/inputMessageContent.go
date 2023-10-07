@@ -1,6 +1,6 @@
 package inline_dto
 
-import message_dto "github.com/Avirtan/TGoBot/dto/message"
+import message_entity_dto "github.com/Avirtan/TGoBot/dto/message_entity"
 
 // https://core.telegram.org/bots/api#inputmessagecontent
 type InputMessageContent interface {
@@ -9,10 +9,10 @@ type InputMessageContent interface {
 
 // https://core.telegram.org/bots/api#inputtextmessagecontent
 type InputTextMessageContent struct {
-	MessageText           string                      `json:"message_text"`
-	ParseMode             string                      `json:"parse_mode,omitempty"`
-	Entities              []message_dto.MessageEntity `json:"entities,omitempty"`
-	DisableWebPagePreview bool                        `json:"disable_web_page_preview,omitempty"`
+	MessageText           string                             `json:"message_text"`
+	ParseMode             string                             `json:"parse_mode,omitempty"`
+	Entities              []message_entity_dto.MessageEntity `json:"entities,omitempty"`
+	DisableWebPagePreview bool                               `json:"disable_web_page_preview,omitempty"`
 }
 
 func (m *InputTextMessageContent) InputMessage() {
