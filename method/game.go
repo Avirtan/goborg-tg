@@ -13,67 +13,67 @@ import (
 )
 
 // https://core.telegram.org/bots/api#sendgame
-func SendGame(ctx context.Context, sg method_dto.SendGame) (*message_dto.Message, error) {
-	data, err := json.Marshal(sg)
+func SendGame(ctx context.Context, data method_dto.SendGame) (*message_dto.Message, error) {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendGame", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendGame", marshalBytes)
 	if err != nil {
 		return nil, err
 	}
 
-	responseJson, err := request.ResponseHandlerToType[message_dto.Message](response)
+	responseData, err := request.ResponseHandlerToType[message_dto.Message](response)
 	if err != nil {
 		return nil, err
 	}
 
-	slog.Debug("info", "response", responseJson)
+	slog.Debug("info", "response", responseData)
 
-	return responseJson, nil
+	return responseData, nil
 }
 
 // https://core.telegram.org/bots/api#setgamescore
-func SetGameScore(ctx context.Context, sgs method_dto.SetGameScore) (*dto.Response, error) {
-	data, err := json.Marshal(sgs)
+func SetGameScore(ctx context.Context, data method_dto.SetGameScore) (*dto.Response, error) {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setGameScore", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setGameScore", marshalBytes)
 	if err != nil {
 		return nil, err
 	}
 
-	responseJson, err := request.ResponseHandler(response)
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return nil, err
 	}
 
-	slog.Debug("info", "response", responseJson)
+	slog.Debug("info", "response", responseData)
 
-	return responseJson, nil
+	return responseData, nil
 }
 
 // https://core.telegram.org/bots/api#getgamehighscores
-func GetGameHighScores(ctx context.Context, gghs method_dto.GetGameHighScores) (*[]game_dto.GameHighScore, error) {
-	data, err := json.Marshal(gghs)
+func GetGameHighScores(ctx context.Context, data method_dto.GetGameHighScores) (*[]game_dto.GameHighScore, error) {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getGameHighScores", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getGameHighScores", marshalBytes)
 	if err != nil {
 		return nil, err
 	}
 
-	responseJson, err := request.ResponseHandlerToType[[]game_dto.GameHighScore](response)
+	responseData, err := request.ResponseHandlerToType[[]game_dto.GameHighScore](response)
 	if err != nil {
 		return nil, err
 	}
 
-	slog.Debug("info", "response", responseJson)
+	slog.Debug("info", "response", responseData)
 
-	return responseJson, nil
+	return responseData, nil
 }
