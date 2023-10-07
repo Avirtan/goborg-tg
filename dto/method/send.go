@@ -18,119 +18,6 @@ type SendPhoto[ID string | int64] struct {
 	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
 }
 
-// https://core.telegram.org/bots/api#sendaudio
-type SendAudio[ID string | int64] struct {
-	ChatID                   ID                          `json:"chat_id"`
-	Audio                    string                      `json:"audio"`
-	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
-	Caption                  string                      `json:"caption,omitempty"`
-	ParseMode                string                      `json:"parse_mode,omitempty"`
-	CaptionEntities          []message_dto.MessageEntity `json:"caption_entities,omitempty"`
-	Duration                 int                         `json:"duration,omitempty"`
-	Performer                string                      `json:"performer,omitempty"`
-	Title                    string                      `json:"title,omitempty"`
-	Thumbnail                string                      `json:"thumbnail,omitempty"`
-	DisableNotification      bool                        `json:"disable_notification,omitempty"`
-	ProtectContent           bool                        `json:"protect_content,omitempty"`
-	ReplyToMessageId         uint64                      `json:"reply_to_message_id,omitempty"`
-	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
-	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
-}
-
-// https://core.telegram.org/bots/api#senddocument
-type SendDocument[ID string | int64] struct {
-	ChatID                      ID                          `json:"chat_id"`
-	Document                    string                      `json:"document"`
-	Thumbnail                   string                      `json:"thumbnail,omitempty"`
-	MessageThreadId             int                         `json:"message_thread_id,omitempty"`
-	Caption                     string                      `json:"caption,omitempty"`
-	ParseMode                   string                      `json:"parse_mode,omitempty"`
-	CaptionEntities             []message_dto.MessageEntity `json:"caption_entities,omitempty"`
-	DisableContentTypeDetection bool                        `json:"disable_content_type_detection,omitempty"`
-	DisableNotification         bool                        `json:"disable_notification,omitempty"`
-	ProtectContent              bool                        `json:"protect_content,omitempty"`
-	ReplyToMessageId            uint64                      `json:"reply_to_message_id,omitempty"`
-	AllowSendingWithoutReply    bool                        `json:"allow_sending_without_reply,omitempty"`
-	ReplyMarkup                 message_dto.IKeyboard       `json:"reply_markup,omitempty"`
-}
-
-// https://core.telegram.org/bots/api#sendvideo
-type SendVideo[ID string | int64] struct {
-	ChatID                   ID                          `json:"chat_id"`
-	Video                    string                      `json:"video"`
-	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
-	Duration                 int                         `json:"duration,omitempty"`
-	Width                    int                         `json:"width,omitempty"`
-	Height                   int                         `json:"height,omitempty"`
-	Thumbnail                string                      `json:"thumbnail,omitempty"`
-	Caption                  string                      `json:"caption,omitempty"`
-	ParseMode                string                      `json:"parse_mode,omitempty"`
-	CaptionEntities          []message_dto.MessageEntity `json:"caption_entities,omitempty"`
-	HasSpoiler               bool                        `json:"has_spoiler,omitempty"`
-	SupportsStreaming        bool                        `json:"supports_streaming,omitempty"`
-	DisableNotification      bool                        `json:"disable_notification,omitempty"`
-	ProtectContent           bool                        `json:"protect_content,omitempty"`
-	ReplyToMessageId         uint64                      `json:"reply_to_message_id,omitempty"`
-	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
-	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
-}
-
-// https://core.telegram.org/bots/api#sendanimation
-type SendAnimation[ID string | int64] struct {
-	ChatID                   ID                          `json:"chat_id"`
-	Animation                string                      `json:"animation"`
-	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
-	Duration                 int                         `json:"duration,omitempty"`
-	Width                    int                         `json:"width,omitempty"`
-	Height                   int                         `json:"height,omitempty"`
-	Thumbnail                string                      `json:"thumbnail,omitempty"`
-	Caption                  string                      `json:"caption,omitempty"`
-	ParseMode                string                      `json:"parse_mode,omitempty"`
-	CaptionEntities          []message_dto.MessageEntity `json:"caption_entities,omitempty"`
-	HasSpoiler               bool                        `json:"has_spoiler,omitempty"`
-	DisableNotification      bool                        `json:"disable_notification,omitempty"`
-	ProtectContent           bool                        `json:"protect_content,omitempty"`
-	ReplyToMessageId         uint64                      `json:"reply_to_message_id,omitempty"`
-	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
-	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
-}
-
-// https://core.telegram.org/bots/api#sendvoice
-type SendVoice[ID string | int64] struct {
-	ChatID                   ID                          `json:"chat_id"`
-	Voice                    string                      `json:"voice"`
-	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
-	Caption                  string                      `json:"caption,omitempty"`
-	ParseMode                string                      `json:"parse_mode,omitempty"`
-	CaptionEntities          []message_dto.MessageEntity `json:"caption_entities,omitempty"`
-	Duration                 int                         `json:"duration,omitempty"`
-	DisableNotification      bool                        `json:"disable_notification,omitempty"`
-	ProtectContent           bool                        `json:"protect_content,omitempty"`
-	ReplyToMessageId         uint64                      `json:"reply_to_message_id,omitempty"`
-	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
-	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
-}
-
-// https://core.telegram.org/bots/api#senddice
-type SendDice[ID string | int64] struct {
-	ChatID                   ID                    `json:"chat_id"`
-	Emoji                    string                `json:"voice,omitempty"`
-	MessageThreadId          int                   `json:"message_thread_id,omitempty"`
-	DisableNotification      bool                  `json:"disable_notification,omitempty"`
-	ProtectContent           bool                  `json:"protect_content,omitempty"`
-	ReplyToMessageId         uint64                `json:"reply_to_message_id,omitempty"`
-	AllowSendingWithoutReply bool                  `json:"allow_sending_without_reply,omitempty"`
-	ReplyMarkup              message_dto.IKeyboard `json:"reply_markup,omitempty"`
-}
-
-// https://core.telegram.org/bots/api#sendchataction
-type SendChatAction[ID string | int64] struct {
-	ChatID          ID     `json:"chat_id"`
-	MessageThreadId int    `json:"message_thread_id,omitempty"`
-	Action          string `json:"caption"`
-}
-
-// конструктор SendPhoto
 func NewSendPhoto[ID string | int64](chatID ID, photo string) *SendPhoto[ID] {
 	return &SendPhoto[ID]{
 		ChatID: chatID,
@@ -188,7 +75,25 @@ func (sp *SendPhoto[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *Send
 	return sp
 }
 
-// констроктор SendAudio
+// https://core.telegram.org/bots/api#sendaudio
+type SendAudio[ID string | int64] struct {
+	ChatID                   ID                          `json:"chat_id"`
+	Audio                    string                      `json:"audio"`
+	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
+	Caption                  string                      `json:"caption,omitempty"`
+	ParseMode                string                      `json:"parse_mode,omitempty"`
+	CaptionEntities          []message_dto.MessageEntity `json:"caption_entities,omitempty"`
+	Duration                 int                         `json:"duration,omitempty"`
+	Performer                string                      `json:"performer,omitempty"`
+	Title                    string                      `json:"title,omitempty"`
+	Thumbnail                string                      `json:"thumbnail,omitempty"`
+	DisableNotification      bool                        `json:"disable_notification,omitempty"`
+	ProtectContent           bool                        `json:"protect_content,omitempty"`
+	ReplyToMessageId         uint64                      `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
+	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
+}
+
 func NewSendAudio[ID string | int64](chatID ID, audio string) *SendAudio[ID] {
 	return &SendAudio[ID]{
 		ChatID: chatID,
@@ -261,7 +166,23 @@ func (sa *SendAudio[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *Send
 	return sa
 }
 
-// конструктор для SendDocument
+// https://core.telegram.org/bots/api#senddocument
+type SendDocument[ID string | int64] struct {
+	ChatID                      ID                          `json:"chat_id"`
+	Document                    string                      `json:"document"`
+	Thumbnail                   string                      `json:"thumbnail,omitempty"`
+	MessageThreadId             int                         `json:"message_thread_id,omitempty"`
+	Caption                     string                      `json:"caption,omitempty"`
+	ParseMode                   string                      `json:"parse_mode,omitempty"`
+	CaptionEntities             []message_dto.MessageEntity `json:"caption_entities,omitempty"`
+	DisableContentTypeDetection bool                        `json:"disable_content_type_detection,omitempty"`
+	DisableNotification         bool                        `json:"disable_notification,omitempty"`
+	ProtectContent              bool                        `json:"protect_content,omitempty"`
+	ReplyToMessageId            uint64                      `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply    bool                        `json:"allow_sending_without_reply,omitempty"`
+	ReplyMarkup                 message_dto.IKeyboard       `json:"reply_markup,omitempty"`
+}
+
 func NewSendDocument[ID string | int64](chatID ID, document string) *SendDocument[ID] {
 	return &SendDocument[ID]{
 		ChatID:   chatID,
@@ -324,7 +245,27 @@ func (sd *SendDocument[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *S
 	return sd
 }
 
-// конструктор для SendVideo
+// https://core.telegram.org/bots/api#sendvideo
+type SendVideo[ID string | int64] struct {
+	ChatID                   ID                          `json:"chat_id"`
+	Video                    string                      `json:"video"`
+	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
+	Duration                 int                         `json:"duration,omitempty"`
+	Width                    int                         `json:"width,omitempty"`
+	Height                   int                         `json:"height,omitempty"`
+	Thumbnail                string                      `json:"thumbnail,omitempty"`
+	Caption                  string                      `json:"caption,omitempty"`
+	ParseMode                string                      `json:"parse_mode,omitempty"`
+	CaptionEntities          []message_dto.MessageEntity `json:"caption_entities,omitempty"`
+	HasSpoiler               bool                        `json:"has_spoiler,omitempty"`
+	SupportsStreaming        bool                        `json:"supports_streaming,omitempty"`
+	DisableNotification      bool                        `json:"disable_notification,omitempty"`
+	ProtectContent           bool                        `json:"protect_content,omitempty"`
+	ReplyToMessageId         uint64                      `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
+	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
+}
+
 func NewSendVideo[ID string | int64](chatID ID, video string) *SendVideo[ID] {
 	return &SendVideo[ID]{
 		ChatID: chatID,
@@ -407,7 +348,26 @@ func (sv *SendVideo[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *Send
 	return sv
 }
 
-// конструктор SendAnimation
+// https://core.telegram.org/bots/api#sendanimation
+type SendAnimation[ID string | int64] struct {
+	ChatID                   ID                          `json:"chat_id"`
+	Animation                string                      `json:"animation"`
+	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
+	Duration                 int                         `json:"duration,omitempty"`
+	Width                    int                         `json:"width,omitempty"`
+	Height                   int                         `json:"height,omitempty"`
+	Thumbnail                string                      `json:"thumbnail,omitempty"`
+	Caption                  string                      `json:"caption,omitempty"`
+	ParseMode                string                      `json:"parse_mode,omitempty"`
+	CaptionEntities          []message_dto.MessageEntity `json:"caption_entities,omitempty"`
+	HasSpoiler               bool                        `json:"has_spoiler,omitempty"`
+	DisableNotification      bool                        `json:"disable_notification,omitempty"`
+	ProtectContent           bool                        `json:"protect_content,omitempty"`
+	ReplyToMessageId         uint64                      `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
+	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
+}
+
 func NewSendAnimation[ID string | int64](chatID ID, animation string) *SendAnimation[ID] {
 	return &SendAnimation[ID]{
 		ChatID:    chatID,
@@ -485,7 +445,22 @@ func (sa *SendAnimation[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *
 	return sa
 }
 
-// конструктор SendVoice
+// https://core.telegram.org/bots/api#sendvoice
+type SendVoice[ID string | int64] struct {
+	ChatID                   ID                          `json:"chat_id"`
+	Voice                    string                      `json:"voice"`
+	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
+	Caption                  string                      `json:"caption,omitempty"`
+	ParseMode                string                      `json:"parse_mode,omitempty"`
+	CaptionEntities          []message_dto.MessageEntity `json:"caption_entities,omitempty"`
+	Duration                 int                         `json:"duration,omitempty"`
+	DisableNotification      bool                        `json:"disable_notification,omitempty"`
+	ProtectContent           bool                        `json:"protect_content,omitempty"`
+	ReplyToMessageId         uint64                      `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
+	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
+}
+
 func NewSendVoice[ID string | int64](chatID ID, voice string) *SendVoice[ID] {
 	return &SendVoice[ID]{
 		ChatID: chatID,
@@ -541,4 +516,81 @@ func (sv *SendVoice[ID]) SetAllowSendingWithoutReply(allowSendingWithoutReply bo
 func (sv *SendVoice[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *SendVoice[ID] {
 	sv.ReplyMarkup = replyMarkup
 	return sv
+}
+
+// https://core.telegram.org/bots/api#senddice
+type SendDice[ID string | int64] struct {
+	ChatID                   ID                    `json:"chat_id"`
+	Emoji                    string                `json:"voice,omitempty"`
+	MessageThreadId          int                   `json:"message_thread_id,omitempty"`
+	DisableNotification      bool                  `json:"disable_notification,omitempty"`
+	ProtectContent           bool                  `json:"protect_content,omitempty"`
+	ReplyToMessageId         uint64                `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool                  `json:"allow_sending_without_reply,omitempty"`
+	ReplyMarkup              message_dto.IKeyboard `json:"reply_markup,omitempty"`
+}
+
+func NewSendDice[ID string | int64](chatID ID) *SendDice[ID] {
+	return &SendDice[ID]{
+		ChatID: chatID,
+	}
+}
+
+func (s *SendDice[ID]) SetEmoji(emoji string) *SendDice[ID] {
+	s.Emoji = emoji
+	return s
+}
+
+func (s *SendDice[ID]) SetMessageThreadId(messageThreadId int) *SendDice[ID] {
+	s.MessageThreadId = messageThreadId
+	return s
+}
+
+func (s *SendDice[ID]) SetDisableNotification(disableNotification bool) *SendDice[ID] {
+	s.DisableNotification = disableNotification
+	return s
+}
+
+func (s *SendDice[ID]) SetProtectContent(protectContent bool) *SendDice[ID] {
+	s.ProtectContent = protectContent
+	return s
+}
+
+func (s *SendDice[ID]) SetReplyToMessageId(replyToMessageId uint64) *SendDice[ID] {
+	s.ReplyToMessageId = replyToMessageId
+	return s
+}
+
+func (s *SendDice[ID]) SetAllowSendingWithoutReply(allowSendingWithoutReply bool) *SendDice[ID] {
+	s.AllowSendingWithoutReply = allowSendingWithoutReply
+	return s
+}
+
+func (s *SendDice[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *SendDice[ID] {
+	s.ReplyMarkup = replyMarkup
+	return s
+}
+
+// https://core.telegram.org/bots/api#sendchataction
+type SendChatAction[ID string | int64] struct {
+	ChatID          ID     `json:"chat_id"`
+	MessageThreadId int    `json:"message_thread_id,omitempty"`
+	Action          string `json:"caption"`
+}
+
+func NewSendChatAction[ID string | int64](chatID ID, action string) *SendChatAction[ID] {
+	return &SendChatAction[ID]{
+		ChatID: chatID,
+		Action: action,
+	}
+}
+
+func (s *SendChatAction[ID]) SetMessageThreadId(messageThreadId int) *SendChatAction[ID] {
+	s.MessageThreadId = messageThreadId
+	return s
+}
+
+func (s *SendChatAction[ID]) SetAction(action string) *SendChatAction[ID] {
+	s.Action = action
+	return s
 }
