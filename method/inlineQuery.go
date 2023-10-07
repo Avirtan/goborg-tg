@@ -10,37 +10,45 @@ import (
 )
 
 // https://core.telegram.org/bots/api#answerinlinequery
-func AnswerInlineQuery(ctx context.Context, msg method_dto.AnswerInlineQuery) error {
-	data, err := json.Marshal(msg)
+func AnswerInlineQuery(ctx context.Context, data method_dto.AnswerInlineQuery) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/answerInlineQuery", data)
+
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/answerInlineQuery", marshalBytes)
 	if err != nil {
 		return err
 	}
-	responseJson, err := request.ResponseHandler(response)
+
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
 // https://core.telegram.org/bots/api#answercallbackquery
-func AnswerCallbackQuery(ctx context.Context, msg method_dto.AnswerCallbackQuery) error {
-	data, err := json.Marshal(msg)
+func AnswerCallbackQuery(ctx context.Context, data method_dto.AnswerCallbackQuery) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/answerCallbackQuery", data)
+
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/answerCallbackQuery", marshalBytes)
 	if err != nil {
 		return err
 	}
-	responseJson, err := request.ResponseHandler(response)
+
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
