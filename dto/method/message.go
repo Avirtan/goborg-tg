@@ -17,76 +17,6 @@ type SendMessage[ID int64 | string] struct {
 	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
 }
 
-// https://core.telegram.org/bots/api#forwardmessage
-type ForwardMessage struct {
-	ChatID              int64 `json:"chat_id"`
-	FromChatId          int64 `json:"from_chat_id"`
-	MessageId           int64 `json:"message_id"`
-	MessageThreadId     int   `json:"message_thread_id,omitempty"`
-	ProtectContent      bool  `json:"protect_content,omitempty"`
-	DisableNotification bool  `json:"disable_notification,omitempty"`
-}
-
-// https://core.telegram.org/bots/api#copymessage
-type CopyMessage struct {
-	ChatID                   int64                       `json:"chat_id"`
-	FromChatId               int64                       `json:"from_chat_id"`
-	MessageId                int64                       `json:"message_id"`
-	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
-	Caption                  int64                       `json:"caption,omitempty"`
-	ParseMode                string                      `json:"parse_mode,omitempty"`
-	Entities                 []message_dto.MessageEntity `json:"entities,omitempty"`
-	DisableNotification      bool                        `json:"disable_notification,omitempty"`
-	ProtectContent           bool                        `json:"protect_content,omitempty"`
-	ReplyToMessageId         uint64                      `json:"reply_to_message_id,omitempty"`
-	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
-	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
-}
-
-// https://core.telegram.org/bots/api#sendvideonote
-type SendVideoNote[ID string | int64] struct {
-	ChatID                   ID                    `json:"chat_id"`
-	VideoNote                string                `json:"video_note"`
-	MessageThreadId          int                   `json:"message_thread_id,omitempty"`
-	Duration                 int                   `json:"duration,omitempty"`
-	Length                   int                   `json:"length,omitempty"`
-	Thumbnail                string                `json:"thumbnail,omitempty"`
-	DisableNotification      bool                  `json:"disable_notification,omitempty"`
-	ProtectContent           bool                  `json:"protect_content,omitempty"`
-	ReplyToMessageId         uint64                `json:"reply_to_message_id,omitempty"`
-	AllowSendingWithoutReply bool                  `json:"allow_sending_without_reply,omitempty"`
-	ReplyMarkup              message_dto.IKeyboard `json:"reply_markup,omitempty"`
-}
-
-// https://core.telegram.org/bots/api#sendmediagroup
-type SendMediaGroup[ID string | int64] struct {
-	ChatID                   ID                       `json:"chat_id"`
-	Media                    []message_dto.InputMedia `json:"media"`
-	MessageThreadId          int                      `json:"message_thread_id,omitempty"`
-	DisableNotification      bool                     `json:"disable_notification,omitempty"`
-	ProtectContent           bool                     `json:"protect_content,omitempty"`
-	ReplyToMessageId         uint64                   `json:"reply_to_message_id,omitempty"`
-	AllowSendingWithoutReply bool                     `json:"allow_sending_without_reply,omitempty"`
-}
-
-// https://core.telegram.org/bots/api#sendlocation
-type SendLocation[ID string | int64] struct {
-	ChatID                   ID                    `json:"chat_id"`
-	Latitude                 float64               `json:"latitude"`
-	Longitude                float64               `json:"longitude"`
-	MessageThreadId          int                   `json:"message_thread_id,omitempty"`
-	HorizontalAccuracy       float32               `json:"horizontal_accuracy,omitempty"`
-	LivePeriod               int                   `json:"live_period,omitempty"`
-	Heading                  uint16                `json:"heading,omitempty"`
-	ProximityAlertRadius     uint                  `json:"proximity_alert_radius,omitempty"`
-	DisableNotification      bool                  `json:"disable_notification,omitempty"`
-	ProtectContent           bool                  `json:"protect_content,omitempty"`
-	ReplyToMessageId         uint64                `json:"reply_to_message_id,omitempty"`
-	AllowSendingWithoutReply bool                  `json:"allow_sending_without_reply,omitempty"`
-	ReplyMarkup              message_dto.IKeyboard `json:"reply_markup,omitempty"`
-}
-
-// конструктор для SendMessage
 func NewSendMessage[ID int64 | string](chatID ID, text string) *SendMessage[ID] {
 	return &SendMessage[ID]{
 		ChatID: chatID,
@@ -139,7 +69,16 @@ func (sm *SendMessage[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *Se
 	return sm
 }
 
-// конструктор для ForwardMessage
+// https://core.telegram.org/bots/api#forwardmessage
+type ForwardMessage struct {
+	ChatID              int64 `json:"chat_id"`
+	FromChatId          int64 `json:"from_chat_id"`
+	MessageId           int64 `json:"message_id"`
+	MessageThreadId     int   `json:"message_thread_id,omitempty"`
+	ProtectContent      bool  `json:"protect_content,omitempty"`
+	DisableNotification bool  `json:"disable_notification,omitempty"`
+}
+
 func NewForwardMessage(chatID, fromChatID, messageID int64) *ForwardMessage {
 	return &ForwardMessage{
 		ChatID:     chatID,
@@ -163,7 +102,22 @@ func (fm *ForwardMessage) SetDisableNotification(disableNotification bool) *Forw
 	return fm
 }
 
-// конструктор для CopyMessage
+// https://core.telegram.org/bots/api#copymessage
+type CopyMessage struct {
+	ChatID                   int64                       `json:"chat_id"`
+	FromChatId               int64                       `json:"from_chat_id"`
+	MessageId                int64                       `json:"message_id"`
+	MessageThreadId          int                         `json:"message_thread_id,omitempty"`
+	Caption                  int64                       `json:"caption,omitempty"`
+	ParseMode                string                      `json:"parse_mode,omitempty"`
+	Entities                 []message_dto.MessageEntity `json:"entities,omitempty"`
+	DisableNotification      bool                        `json:"disable_notification,omitempty"`
+	ProtectContent           bool                        `json:"protect_content,omitempty"`
+	ReplyToMessageId         uint64                      `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool                        `json:"allow_sending_without_reply,omitempty"`
+	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
+}
+
 func NewCopyMessage(chatID, fromChatID, messageID int64) *CopyMessage {
 	return &CopyMessage{
 		ChatID:     chatID,
@@ -215,4 +169,184 @@ func (cm *CopyMessage) SetAllowSendingWithoutReply(allowSendingWithoutReply bool
 func (cm *CopyMessage) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *CopyMessage {
 	cm.ReplyMarkup = replyMarkup
 	return cm
+}
+
+// https://core.telegram.org/bots/api#sendvideonote
+type SendVideoNote[ID string | int64] struct {
+	ChatID                   ID                    `json:"chat_id"`
+	VideoNote                string                `json:"video_note"`
+	MessageThreadId          int                   `json:"message_thread_id,omitempty"`
+	Duration                 int                   `json:"duration,omitempty"`
+	Length                   int                   `json:"length,omitempty"`
+	Thumbnail                string                `json:"thumbnail,omitempty"`
+	DisableNotification      bool                  `json:"disable_notification,omitempty"`
+	ProtectContent           bool                  `json:"protect_content,omitempty"`
+	ReplyToMessageId         uint64                `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool                  `json:"allow_sending_without_reply,omitempty"`
+	ReplyMarkup              message_dto.IKeyboard `json:"reply_markup,omitempty"`
+}
+
+func NewSendVideoNote[ID string | int64](chatID ID, videoNote string) *SendVideoNote[ID] {
+	return &SendVideoNote[ID]{
+		ChatID:    chatID,
+		VideoNote: videoNote,
+	}
+}
+
+func (s *SendVideoNote[ID]) SetMessageThreadId(messageThreadId int) *SendVideoNote[ID] {
+	s.MessageThreadId = messageThreadId
+	return s
+}
+
+func (s *SendVideoNote[ID]) SetDuration(duration int) *SendVideoNote[ID] {
+	s.Duration = duration
+	return s
+}
+
+func (s *SendVideoNote[ID]) SetLength(length int) *SendVideoNote[ID] {
+	s.Length = length
+	return s
+}
+
+func (s *SendVideoNote[ID]) SetThumbnail(thumbnail string) *SendVideoNote[ID] {
+	s.Thumbnail = thumbnail
+	return s
+}
+
+func (s *SendVideoNote[ID]) SetDisableNotification(disableNotification bool) *SendVideoNote[ID] {
+	s.DisableNotification = disableNotification
+	return s
+}
+
+func (s *SendVideoNote[ID]) SetProtectContent(protectContent bool) *SendVideoNote[ID] {
+	s.ProtectContent = protectContent
+	return s
+}
+
+func (s *SendVideoNote[ID]) SetReplyToMessageId(replyToMessageId uint64) *SendVideoNote[ID] {
+	s.ReplyToMessageId = replyToMessageId
+	return s
+}
+
+func (s *SendVideoNote[ID]) SetAllowSendingWithoutReply(allowSendingWithoutReply bool) *SendVideoNote[ID] {
+	s.AllowSendingWithoutReply = allowSendingWithoutReply
+	return s
+}
+
+func (s *SendVideoNote[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *SendVideoNote[ID] {
+	s.ReplyMarkup = replyMarkup
+	return s
+}
+
+// https://core.telegram.org/bots/api#sendmediagroup
+type SendMediaGroup[ID string | int64] struct {
+	ChatID                   ID                       `json:"chat_id"`
+	Media                    []message_dto.InputMedia `json:"media"`
+	MessageThreadId          int                      `json:"message_thread_id,omitempty"`
+	DisableNotification      bool                     `json:"disable_notification,omitempty"`
+	ProtectContent           bool                     `json:"protect_content,omitempty"`
+	ReplyToMessageId         uint64                   `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool                     `json:"allow_sending_without_reply,omitempty"`
+}
+
+func NewSendMediaGroup[ID string | int64](chatID ID, media []message_dto.InputMedia) *SendMediaGroup[ID] {
+	return &SendMediaGroup[ID]{
+		ChatID: chatID,
+		Media:  media,
+	}
+}
+
+func (s *SendMediaGroup[ID]) SetMessageThreadId(messageThreadId int) *SendMediaGroup[ID] {
+	s.MessageThreadId = messageThreadId
+	return s
+}
+
+func (s *SendMediaGroup[ID]) SetDisableNotification(disableNotification bool) *SendMediaGroup[ID] {
+	s.DisableNotification = disableNotification
+	return s
+}
+
+func (s *SendMediaGroup[ID]) SetProtectContent(protectContent bool) *SendMediaGroup[ID] {
+	s.ProtectContent = protectContent
+	return s
+}
+
+func (s *SendMediaGroup[ID]) SetReplyToMessageId(replyToMessageId uint64) *SendMediaGroup[ID] {
+	s.ReplyToMessageId = replyToMessageId
+	return s
+}
+
+func (s *SendMediaGroup[ID]) SetAllowSendingWithoutReply(allowSendingWithoutReply bool) *SendMediaGroup[ID] {
+	s.AllowSendingWithoutReply = allowSendingWithoutReply
+	return s
+}
+
+// https://core.telegram.org/bots/api#sendlocation
+type SendLocation[ID string | int64] struct {
+	ChatID                   ID                    `json:"chat_id"`
+	Latitude                 float64               `json:"latitude"`
+	Longitude                float64               `json:"longitude"`
+	MessageThreadId          int                   `json:"message_thread_id,omitempty"`
+	HorizontalAccuracy       float32               `json:"horizontal_accuracy,omitempty"`
+	LivePeriod               int                   `json:"live_period,omitempty"`
+	Heading                  uint16                `json:"heading,omitempty"`
+	ProximityAlertRadius     uint                  `json:"proximity_alert_radius,omitempty"`
+	DisableNotification      bool                  `json:"disable_notification,omitempty"`
+	ProtectContent           bool                  `json:"protect_content,omitempty"`
+	ReplyToMessageId         uint64                `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool                  `json:"allow_sending_without_reply,omitempty"`
+	ReplyMarkup              message_dto.IKeyboard `json:"reply_markup,omitempty"`
+}
+
+func NewSendLocation[ID string | int64](chatID ID, latitude float64, longitude float64) *SendLocation[ID] {
+	return &SendLocation[ID]{
+		ChatID:    chatID,
+		Latitude:  latitude,
+		Longitude: longitude,
+	}
+}
+
+func (s *SendLocation[ID]) SetMessageThreadId(messageThreadId int) *SendLocation[ID] {
+	s.MessageThreadId = messageThreadId
+	return s
+}
+
+func (s *SendLocation[ID]) SetHorizontalAccuracy(horizontalAccuracy float32) *SendLocation[ID] {
+	s.HorizontalAccuracy = horizontalAccuracy
+	return s
+}
+
+func (s *SendLocation[ID]) SetLivePeriod(livePeriod int) *SendLocation[ID] {
+	s.LivePeriod = livePeriod
+	return s
+}
+
+func (s *SendLocation[ID]) SetHeading(heading uint16) *SendLocation[ID] {
+	s.Heading = heading
+	return s
+}
+
+func (s *SendLocation[ID]) SetProximityAlertRadius(proximityAlertRadius uint) *SendLocation[ID] {
+	s.ProximityAlertRadius = proximityAlertRadius
+	return s
+}
+
+func (s *SendLocation[ID]) SetDisableNotification(disableNotification bool) *SendLocation[ID] {
+	s.DisableNotification = disableNotification
+	return s
+}
+
+func (s *SendLocation[ID]) SetProtectContent(protectContent bool) *SendLocation[ID] {
+	s.ProtectContent = protectContent
+	return s
+}
+
+func (s *SendLocation[ID]) SetReplyToMessageId(replyToMessageId uint64) *SendLocation[ID] {
+	s.ReplyToMessageId = replyToMessageId
+	return s
+}
+
+func (s *SendLocation[ID]) SetAllowSendingWithoutReply(allowSendingWithoutReply bool) *SendLocation[ID] {
+	s.AllowSendingWithoutReply = allowSendingWithoutReply
+	return s
 }
