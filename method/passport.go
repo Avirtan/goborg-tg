@@ -5,27 +5,28 @@ import (
 	"encoding/json"
 	"log/slog"
 
+	"github.com/Avirtan/TGoBot/dto"
 	method_dto "github.com/Avirtan/TGoBot/dto/method"
 	"github.com/Avirtan/TGoBot/request"
 )
 
-func SetPassportDataErrors(ctx context.Context, spde method_dto.SetPassportDataErrors) (*bool, error) {
-	data, err := json.Marshal(spde)
+func SetPassportDataErrors(ctx context.Context, data method_dto.SetPassportDataErrors) (*dto.Response, error) {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setPassportDataErrors", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setPassportDataErrors", marshalBytes)
 	if err != nil {
 		return nil, err
 	}
 
-	responseJson, err := request.ResponseHandlerToType[bool](response)
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return nil, err
 	}
 
-	slog.Debug("info", "response", responseJson)
+	slog.Debug("info", "response", responseData)
 
-	return responseJson, nil
+	return responseData, nil
 }
