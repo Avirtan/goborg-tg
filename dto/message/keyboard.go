@@ -120,7 +120,7 @@ type UserShared struct {
 // https://core.telegram.org/bots/api#chatshared
 type ChatShared struct {
 	RequestId int64 `json:"request_id"`
-	СhatId    int64 `json:"chat_id"`
+	ChatId    int64 `json:"chat_id"`
 }
 
 // https://core.telegram.org/bots/api#callbackquery
