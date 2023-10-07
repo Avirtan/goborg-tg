@@ -10,49 +10,63 @@ import (
 	"github.com/Avirtan/TGoBot/request"
 )
 
-func SetMyCommands(ctx context.Context, commands []*command_dto.BotCommand) error {
+// https://core.telegram.org/bots/api#setmycommands
+func SetMyCommands(ctx context.Context, data []*command_dto.BotCommand) error {
 	dataRequest := method_dto.SetCommandRequest{
-		Commands: commands,
+		Commands: data,
 		// LanguageCode: "ru",
 	}
-	data, err := json.Marshal(dataRequest)
+
+	marshalBytes, err := json.Marshal(dataRequest)
 	if err != nil {
 		return err
 	}
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setMyCommands", data)
+
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setMyCommands", marshalBytes)
 	if err != nil {
 		return err
 	}
-	responseJson, err := request.ResponseHandler(response)
+
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
+// https://core.telegram.org/bots/api#deletemycommands
 func DeleteMyCommands(ctx context.Context) error {
 	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/deleteMyCommands", []byte{})
 	if err != nil {
 		return err
 	}
-	responseJson, err := request.ResponseHandler(response)
+
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
+// https://core.telegram.org/bots/api#getmycommands
 func GetMyCommands(ctx context.Context) error {
 	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getMyCommands", []byte{})
 	if err != nil {
 		return err
 	}
-	responseJson, err := request.ResponseHandler(response)
+
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
