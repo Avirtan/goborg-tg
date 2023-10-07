@@ -10,6 +10,7 @@ import (
 	"github.com/Avirtan/TGoBot/request"
 )
 
+// https://core.telegram.org/bots/api#setpassportdataerrors
 func SetPassportDataErrors(ctx context.Context, data method_dto.SetPassportDataErrors) (*dto.Response, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {

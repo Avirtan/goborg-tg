@@ -31,7 +31,7 @@ type InlineKeyboardButton struct {
 	SwitchInlineQuery            string                      `json:"switch_inline_query,omitempty"`
 	SwitchInlineQueryCurrentChat string                      `json:"switch_inline_query_current_chat,omitempty"`
 	SwitchInlineQueryChosenChat  SwitchInlineQueryChosenChat `json:"switch_inline_query_chosen_chat,omitempty"`
-	CallbackGame                 any                         `json:"callback_game,omitempty"` // TODO 	CallbackGame
+	CallbackGame                 any                         `json:"callback_game,omitempty"`
 	Pay                          bool                        `json:"pay,omitempty"`
 }
 

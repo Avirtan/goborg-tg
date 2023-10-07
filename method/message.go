@@ -10,55 +10,67 @@ import (
 )
 
 // https://core.telegram.org/bots/api#sendmessage
-func SendMessage[ID int64 | string](ctx context.Context, msg method_dto.SendMessage[ID]) error {
-	data, err := json.Marshal(msg)
+func SendMessage[ID int64 | string](ctx context.Context, data method_dto.SendMessage[ID]) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendMessage", data)
+
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendMessage", marshalBytes)
 	if err != nil {
 		return err
 	}
-	responseJson, err := request.ResponseHandler(response)
+
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
 // https://core.telegram.org/bots/api#forwardmessage
-func ForwardMessage(ctx context.Context, msg method_dto.ForwardMessage) error {
-	data, err := json.Marshal(msg)
+func ForwardMessage(ctx context.Context, data method_dto.ForwardMessage) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/forwardMessage", data)
+
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/forwardMessage", marshalBytes)
 	if err != nil {
 		return err
 	}
-	responseJson, err := request.ResponseHandler(response)
+
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
 // https://core.telegram.org/bots/api#copymessage
-func CopyMessage(ctx context.Context, msg method_dto.CopyMessage) error {
-	data, err := json.Marshal(msg)
+func CopyMessage(ctx context.Context, data method_dto.CopyMessage) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/copyMessage", data)
+
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/copyMessage", marshalBytes)
 	if err != nil {
 		return err
 	}
-	responseJson, err := request.ResponseHandler(response)
+
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }

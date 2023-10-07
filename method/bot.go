@@ -19,230 +19,255 @@ func GetMe(ctx context.Context) (*user_dto.User, error) {
 	if err != nil {
 		return nil, err
 	}
-	responseJson, err := request.ResponseHandlerToType[user_dto.User](response)
+
+	responseData, err := request.ResponseHandlerToType[user_dto.User](response)
 	if err != nil {
 		return nil, err
 	}
-	slog.Debug("info", "response", responseJson)
-	return responseJson, nil
+
+	slog.Debug("info", "response", responseData)
+
+	return responseData, nil
 }
 
 // https://core.telegram.org/bots/api#getmydefaultadministratorrights
-func GetMyDefaultAdministratorRights(ctx context.Context, r method_dto.GetMyDefaultAdministratorRights) (*message_dto.ChatAdministratorRights, error) {
-	data, err := json.Marshal(r)
+func GetMyDefaultAdministratorRights(ctx context.Context, data method_dto.GetMyDefaultAdministratorRights) (*message_dto.ChatAdministratorRights, error) {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getMyDefaultAdministratorRights", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getMyDefaultAdministratorRights", marshalBytes)
 	if err != nil {
 		return nil, err
 	}
 
-	responseJson, err := request.ResponseHandlerToType[message_dto.ChatAdministratorRights](response)
+	responseData, err := request.ResponseHandlerToType[message_dto.ChatAdministratorRights](response)
 	if err != nil {
 		return nil, err
 	}
-	slog.Debug("info", "response", responseJson)
-	return responseJson, nil
+
+	slog.Debug("info", "response", responseData)
+
+	return responseData, nil
 }
 
 // https://core.telegram.org/bots/api#setmydefaultadministratorrights
-func SetMyDefaultAdministratorRights(ctx context.Context, r method_dto.SetMyDefaultAdministratorRights) error {
-	data, err := json.Marshal(r)
+func SetMyDefaultAdministratorRights(ctx context.Context, data method_dto.SetMyDefaultAdministratorRights) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setMyDefaultAdministratorRights", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setMyDefaultAdministratorRights", marshalBytes)
 	if err != nil {
 		return err
 	}
 
-	responseJson, err := request.ResponseHandler(response)
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
 // https://core.telegram.org/bots/api#getchatmenubutton
-func GetChatMenuButton(ctx context.Context, chat method_dto.GetChatMenuButton) error {
-	data, err := json.Marshal(chat)
+func GetChatMenuButton(ctx context.Context, data method_dto.GetChatMenuButton) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getChatMenuButton", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getChatMenuButton", marshalBytes)
 	if err != nil {
 		return err
 	}
 
-	responseJson, err := request.ResponseHandler(response)
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
 // https://core.telegram.org/bots/api#setchatmenubutton
-func SetChatMenuButton(ctx context.Context, chat method_dto.SetChatMenuButton) error {
-	data, err := json.Marshal(chat)
+func SetChatMenuButton(ctx context.Context, data method_dto.SetChatMenuButton) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setChatMenuButton", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setChatMenuButton", marshalBytes)
 	if err != nil {
 		return err
 	}
 
-	responseJson, err := request.ResponseHandler(response)
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
 // https://core.telegram.org/bots/api#getmyshortdescription
-func GetMyShortDescription(ctx context.Context, desc method_dto.GetMyShortDescription) (*bot_dto.BotShortDescription, error) {
-	data, err := json.Marshal(desc)
+func GetMyShortDescription(ctx context.Context, data method_dto.GetMyShortDescription) (*bot_dto.BotShortDescription, error) {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getMyShortDescription", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getMyShortDescription", marshalBytes)
 	if err != nil {
 		return nil, err
 	}
 
-	responseJson, err := request.ResponseHandlerToType[bot_dto.BotShortDescription](response)
+	responseData, err := request.ResponseHandlerToType[bot_dto.BotShortDescription](response)
 	if err != nil {
 		return nil, err
 	}
-	slog.Debug("info", "response", responseJson)
-	return responseJson, nil
+
+	slog.Debug("info", "response", responseData)
+
+	return responseData, nil
 }
 
 // https://core.telegram.org/bots/api#setmyshortdescription
-func SetMyShortDescription(ctx context.Context, desc method_dto.SetMyShortDescription) error {
-	data, err := json.Marshal(desc)
+func SetMyShortDescription(ctx context.Context, data method_dto.SetMyShortDescription) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setMyShortDescription", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setMyShortDescription", marshalBytes)
 	if err != nil {
 		return err
 	}
 
-	responseJson, err := request.ResponseHandler(response)
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
 // https://core.telegram.org/bots/api#getmydescription
-func GetMyDescription(ctx context.Context, desc method_dto.GetMyDescription) (*bot_dto.BotDescription, error) {
-	data, err := json.Marshal(desc)
+func GetMyDescription(ctx context.Context, data method_dto.GetMyDescription) (*bot_dto.BotDescription, error) {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getMyDescription", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getMyDescription", marshalBytes)
 	if err != nil {
 		return nil, err
 	}
 
-	responseJson, err := request.ResponseHandlerToType[bot_dto.BotDescription](response)
+	responseData, err := request.ResponseHandlerToType[bot_dto.BotDescription](response)
 	if err != nil {
 		return nil, err
 	}
-	slog.Debug("info", "response", responseJson)
-	return responseJson, nil
+
+	slog.Debug("info", "response", responseData)
+
+	return responseData, nil
 }
 
 // https://core.telegram.org/bots/api#setmydescription
-func SetMyDescription(ctx context.Context, desc method_dto.SetMyDescription) error {
-	data, err := json.Marshal(desc)
+func SetMyDescription(ctx context.Context, data method_dto.SetMyDescription) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setMyDescription", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setMyDescription", marshalBytes)
 	if err != nil {
 		return err
 	}
 
-	responseJson, err := request.ResponseHandler(response)
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
 // https://core.telegram.org/bots/api#getmyname
-func GetMyName(ctx context.Context, desc method_dto.GetMyName) (*bot_dto.BotName, error) {
-	data, err := json.Marshal(desc)
+func GetMyName(ctx context.Context, data method_dto.GetMyName) (*bot_dto.BotName, error) {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getMyName", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getMyName", marshalBytes)
 	if err != nil {
 		return nil, err
 	}
 
-	responseJson, err := request.ResponseHandlerToType[bot_dto.BotName](response)
+	responseData, err := request.ResponseHandlerToType[bot_dto.BotName](response)
 	if err != nil {
 		return nil, err
 	}
-	slog.Debug("info", "response", responseJson)
-	return responseJson, nil
+
+	slog.Debug("info", "response", responseData)
+
+	return responseData, nil
 }
 
 // https://core.telegram.org/bots/api#setmyname
-func SetMyName(ctx context.Context, desc method_dto.SetMyName) error {
-	data, err := json.Marshal(desc)
+func SetMyName(ctx context.Context, data method_dto.SetMyName) error {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setMyName", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/setMyName", marshalBytes)
 	if err != nil {
 		return err
 	}
 
-	responseJson, err := request.ResponseHandler(response)
+	responseData, err := request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-	slog.Debug("info", "response", responseJson)
+
+	slog.Debug("info", "response", responseData)
+
 	return nil
 }
 
 // https://core.telegram.org/bots/api#getfile
-func GetFile(ctx context.Context, desc method_dto.GetFile) (*utils_dto.File, error) {
-	data, err := json.Marshal(desc)
+func GetFile(ctx context.Context, data method_dto.GetFile) (*utils_dto.File, error) {
+	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
 	}
 
-	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getFile", data)
+	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/getFile", marshalBytes)
 	if err != nil {
 		return nil, err
 	}
 
-	responseJson, err := request.ResponseHandlerToType[utils_dto.File](response)
+	responseData, err := request.ResponseHandlerToType[utils_dto.File](response)
 	if err != nil {
 		return nil, err
 	}
-	slog.Debug("info", "response", responseJson)
-	return responseJson, nil
+
+	slog.Debug("info", "response", responseData)
+
+	return responseData, nil
 }
