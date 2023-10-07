@@ -111,6 +111,25 @@ type SendVoice[ID string | int64] struct {
 	ReplyMarkup              message_dto.IKeyboard       `json:"reply_markup,omitempty"`
 }
 
+// https://core.telegram.org/bots/api#senddice
+type SendDice[ID string | int64] struct {
+	ChatID                   ID                    `json:"chat_id"`
+	Emoji                    string                `json:"voice,omitempty"`
+	MessageThreadId          int                   `json:"message_thread_id,omitempty"`
+	DisableNotification      bool                  `json:"disable_notification,omitempty"`
+	ProtectContent           bool                  `json:"protect_content,omitempty"`
+	ReplyToMessageId         uint64                `json:"reply_to_message_id,omitempty"`
+	AllowSendingWithoutReply bool                  `json:"allow_sending_without_reply,omitempty"`
+	ReplyMarkup              message_dto.IKeyboard `json:"reply_markup,omitempty"`
+}
+
+// https://core.telegram.org/bots/api#sendchataction
+type SendChatAction[ID string | int64] struct {
+	ChatID          ID     `json:"chat_id"`
+	MessageThreadId int    `json:"message_thread_id,omitempty"`
+	Action          string `json:"caption"`
+}
+
 // конструктор SendPhoto
 func NewSendPhoto[ID string | int64](chatID ID, photo string) *SendPhoto[ID] {
 	return &SendPhoto[ID]{

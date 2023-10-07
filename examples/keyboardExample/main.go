@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Avirtan/TGoBot/bot"
+	tgobot "github.com/Avirtan/TGoBot"
 	command_dto "github.com/Avirtan/TGoBot/dto/command"
 	message_dto "github.com/Avirtan/TGoBot/dto/message"
 	method_dto "github.com/Avirtan/TGoBot/dto/method"
@@ -24,7 +24,7 @@ const url = "https://info.kma29.ru/api.php/"
 func main() {
 	ctx := context.Background()
 	ctxWithCancel, cancelFunction := context.WithCancel(ctx)
-	tbot := bot.NewBot(bot.BotOptions{
+	tbot := tgobot.NewBot(tgobot.BotOptions{
 		Token:       "6584315900:AAHVPF9Xx_ydCfyVPZn1h_S3OPLRtWTpZ9c",
 		Ctx:         ctxWithCancel,
 		LoggerLevel: logger.LevelDebug,
