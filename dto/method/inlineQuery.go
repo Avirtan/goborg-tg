@@ -12,12 +12,6 @@ type AnswerInlineQuery struct {
 	Button        *inline_dto.InlineQueryResultsButton `json:"button,omitempty"`
 }
 
-// https://core.telegram.org/bots/api#answerwebappquery
-type AnswerWebAppQuery struct {
-	WebAppQueryId string                       `json:"web_app_query_id"`
-	Result        inline_dto.InlineQueryResult `json:"result"`
-}
-
 func NewAnswerInlineQuery(inlineQueryId string, results []inline_dto.InlineQueryResult) *AnswerInlineQuery {
 	return &AnswerInlineQuery{
 		InlineQueryId: inlineQueryId,
@@ -45,6 +39,12 @@ func (aiq *AnswerInlineQuery) SetButton(button *inline_dto.InlineQueryResultsBut
 	return aiq
 }
 
+// https://core.telegram.org/bots/api#answerwebappquery
+type AnswerWebAppQuery struct {
+	WebAppQueryId string                       `json:"web_app_query_id"`
+	Result        inline_dto.InlineQueryResult `json:"result"`
+}
+
 func NewAnswerWebAppQuery(webAppQueryId string, result inline_dto.InlineQueryResult) *AnswerWebAppQuery {
 	return &AnswerWebAppQuery{
 		WebAppQueryId: webAppQueryId,
@@ -59,4 +59,30 @@ type AnswerCallbackQuery struct {
 	ShowAlert       bool   `json:"show_alert,omitempty"`
 	Url             string `json:"url,omitempty"`
 	CacheTime       uint64 `json:"cache_time,omitempty"`
+}
+
+func NewAnswerCallbackQuery(callbackQueryId string) *AnswerCallbackQuery {
+	return &AnswerCallbackQuery{
+		CallbackQueryId: callbackQueryId,
+	}
+}
+
+func (a *AnswerCallbackQuery) SetText(text string) *AnswerCallbackQuery {
+	a.Text = text
+	return a
+}
+
+func (a *AnswerCallbackQuery) SetShowAlert(showAlert bool) *AnswerCallbackQuery {
+	a.ShowAlert = showAlert
+	return a
+}
+
+func (a *AnswerCallbackQuery) SetUrl(url string) *AnswerCallbackQuery {
+	a.Url = url
+	return a
+}
+
+func (a *AnswerCallbackQuery) SetCacheTime(cacheTime uint64) *AnswerCallbackQuery {
+	a.CacheTime = cacheTime
+	return a
 }
