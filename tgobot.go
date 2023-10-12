@@ -18,13 +18,18 @@ type BotOptions struct {
 	LoggerLevel logger.LevelLogger
 }
 
+type BotHandler struct {
+	Handler    handler.IHandler
+	Middleware []handler.Middleware
+}
+
 type TGoBot struct {
 	token    string
 	offset   uint64
 	notify   chan error
 	ctx      context.Context
-	handlers []handler.IHandler
-	commands map[*command_dto.BotCommand]handler.IHandler
+	handlers []BotHandler
+	commands map[*command_dto.BotCommand]BotHandler
 }
 
 func NewBot(option BotOptions) *TGoBot {
@@ -34,12 +39,21 @@ func NewBot(option BotOptions) *TGoBot {
 		token:    option.Token,
 		ctx:      option.Ctx,
 		notify:   make(chan error, 1),
-		commands: make(map[*command_dto.BotCommand]handler.IHandler),
+		commands: make(map[*command_dto.BotCommand]BotHandler),
 	}
 }
 
 func (t *TGoBot) AddHandler(handler handler.IHandler) {
-	t.handlers = append(t.handlers, handler)
+	t.handlers = append(t.handlers, BotHandler{
+		Handler: handler,
+	})
+}
+
+func (t *TGoBot) AddHandlerWithMiddleware(handler handler.IHandler, middleware ...handler.Middleware) {
+	t.handlers = append(t.handlers, BotHandler{
+		Handler:    handler,
+		Middleware: middleware,
+	})
 }
 
 func (t *TGoBot) AddCommand(botCommand *command_dto.BotCommand, handler handler.IHandler) {
@@ -47,7 +61,20 @@ func (t *TGoBot) AddCommand(botCommand *command_dto.BotCommand, handler handler.
 		t.notify <- errors.New("command must start with /")
 		return
 	}
-	t.commands[botCommand] = handler
+	t.commands[botCommand] = BotHandler{
+		Handler: handler,
+	}
+}
+
+func (t *TGoBot) AddCommandWithMiddleware(botCommand *command_dto.BotCommand, handler handler.IHandler, middleware ...handler.Middleware) {
+	if botCommand.Command[0] != '/' {
+		t.notify <- errors.New("command must start with /")
+		return
+	}
+	t.commands[botCommand] = BotHandler{
+		Handler:    handler,
+		Middleware: middleware,
+	}
 }
 
 func (t *TGoBot) GetCommand() {
@@ -85,12 +112,26 @@ func (t *TGoBot) RunUpdate() {
 					if value.Message != nil {
 						for key, handler := range t.commands {
 							if key.Command == value.Message.Text {
-								go handler.Action(t.ctx, &value)
+								go func(ctx context.Context, update update_dto.Update, handler BotHandler) {
+									for _, middleware := range handler.Middleware {
+										if !middleware.Check(ctx, &update) {
+											return
+										}
+									}
+									handler.Handler.Action(ctx, &update)
+								}(t.ctx, value, handler)
 							}
 						}
 					}
 					for _, handler := range t.handlers {
-						go handler.Action(t.ctx, &value)
+						go func(ctx context.Context, update update_dto.Update, handler BotHandler) {
+							for _, middleware := range handler.Middleware {
+								if !middleware.Check(ctx, &update) {
+									return
+								}
+							}
+							handler.Handler.Action(ctx, &update)
+						}(t.ctx, value, handler)
 					}
 				}
 			}(t.ctx, *response)
