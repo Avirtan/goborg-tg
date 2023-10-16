@@ -29,7 +29,7 @@ type TGoBot struct {
 	notify   chan error
 	ctx      context.Context
 	handlers []BotHandler
-	commands map[*command_dto.BotCommand]BotHandler
+	commands []*command_dto.BotCommand
 }
 
 func NewBot(option BotOptions) *TGoBot {
@@ -39,7 +39,7 @@ func NewBot(option BotOptions) *TGoBot {
 		token:    option.Token,
 		ctx:      option.Ctx,
 		notify:   make(chan error, 1),
-		commands: make(map[*command_dto.BotCommand]BotHandler),
+		commands: make([]*command_dto.BotCommand, 0, 5),
 	}
 }
 
@@ -61,9 +61,10 @@ func (t *TGoBot) AddCommand(botCommand *command_dto.BotCommand, handler handler.
 		t.notify <- errors.New("command must start with /")
 		return
 	}
-	t.commands[botCommand] = BotHandler{
+	t.handlers = append(t.handlers, BotHandler{
 		Handler: handler,
-	}
+	})
+	t.commands = append(t.commands, botCommand)
 }
 
 func (t *TGoBot) AddCommandWithMiddleware(botCommand *command_dto.BotCommand, handler handler.IHandler, middleware ...handler.Middleware) {
@@ -71,10 +72,11 @@ func (t *TGoBot) AddCommandWithMiddleware(botCommand *command_dto.BotCommand, ha
 		t.notify <- errors.New("command must start with /")
 		return
 	}
-	t.commands[botCommand] = BotHandler{
+	t.handlers = append(t.handlers, BotHandler{
 		Handler:    handler,
 		Middleware: middleware,
-	}
+	})
+	t.commands = append(t.commands, botCommand)
 }
 
 func (t *TGoBot) GetCommand() {
@@ -89,12 +91,8 @@ func (t *TGoBot) DeleteCommand() {
 }
 
 func (t *TGoBot) RunUpdate() {
-	commands := make([]*command_dto.BotCommand, 0, 10)
-	for command := range t.commands {
-		commands = append(commands, command)
-	}
-	if len(commands) > 0 {
-		method.SetMyCommands(t.ctx, commands)
+	if len(t.commands) > 0 {
+		method.SetMyCommands(t.ctx, t.commands)
 		t.GetCommand()
 	}
 	for {
@@ -109,20 +107,6 @@ func (t *TGoBot) RunUpdate() {
 			}
 			go func(context.Context, update_dto.UpdateResponse) {
 				for _, value := range response.Update {
-					if value.Message != nil {
-						for key, handler := range t.commands {
-							if key.Command == value.Message.Text {
-								go func(ctx context.Context, update update_dto.Update, handler BotHandler) {
-									for _, middleware := range handler.Middleware {
-										if !middleware.Check(ctx, &update) {
-											return
-										}
-									}
-									handler.Handler.Action(ctx, &update)
-								}(t.ctx, value, handler)
-							}
-						}
-					}
 					for _, handler := range t.handlers {
 						go func(ctx context.Context, update update_dto.Update, handler BotHandler) {
 							for _, middleware := range handler.Middleware {
