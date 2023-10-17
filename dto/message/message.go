@@ -1,15 +1,15 @@
 package message_dto
 
 import (
-	forum_dto "github.com/Avirtan/TGoBot/dto/forum"
-	game_dto "github.com/Avirtan/TGoBot/dto/game"
-	message_entity_dto "github.com/Avirtan/TGoBot/dto/message_entity"
-	passport_dto "github.com/Avirtan/TGoBot/dto/passport"
-	payment_dto "github.com/Avirtan/TGoBot/dto/payment"
-	stickers_dto "github.com/Avirtan/TGoBot/dto/stickers"
-	user_dto "github.com/Avirtan/TGoBot/dto/user"
-	utils_dto "github.com/Avirtan/TGoBot/dto/utils"
-	video_dto "github.com/Avirtan/TGoBot/dto/video"
+	forum_dto "github.com/Avirtan/goborg-tg/dto/forum"
+	game_dto "github.com/Avirtan/goborg-tg/dto/game"
+	message_entity_dto "github.com/Avirtan/goborg-tg/dto/message_entity"
+	passport_dto "github.com/Avirtan/goborg-tg/dto/passport"
+	payment_dto "github.com/Avirtan/goborg-tg/dto/payment"
+	stickers_dto "github.com/Avirtan/goborg-tg/dto/stickers"
+	user_dto "github.com/Avirtan/goborg-tg/dto/user"
+	utils_dto "github.com/Avirtan/goborg-tg/dto/utils"
+	video_dto "github.com/Avirtan/goborg-tg/dto/video"
 )
 
 // https://core.telegram.org/bots/api#message

@@ -1,15 +1,15 @@
-package TGoBot
+package goborg_tg
 
 import (
 	"context"
 	"errors"
 	"log/slog"
 
-	command_dto "github.com/Avirtan/TGoBot/dto/command"
-	update_dto "github.com/Avirtan/TGoBot/dto/update"
-	"github.com/Avirtan/TGoBot/handler"
-	"github.com/Avirtan/TGoBot/method"
-	"github.com/Avirtan/TGoBot/pkg/logger"
+	command_dto "github.com/Avirtan/goborg-tg/dto/command"
+	update_dto "github.com/Avirtan/goborg-tg/dto/update"
+	"github.com/Avirtan/goborg-tg/handler"
+	"github.com/Avirtan/goborg-tg/method"
+	"github.com/Avirtan/goborg-tg/pkg/logger"
 )
 
 type BotOptions struct {
@@ -23,7 +23,7 @@ type BotHandler struct {
 	Middleware []handler.Middleware
 }
 
-type TGoBot struct {
+type GoborgTG struct {
 	token    string
 	offset   uint64
 	notify   chan error
@@ -32,10 +32,10 @@ type TGoBot struct {
 	commands []*command_dto.BotCommand
 }
 
-func NewBot(option BotOptions) *TGoBot {
+func NewBot(option BotOptions) *GoborgTG {
 	logger.New(option.LoggerLevel.String())
 	method.New(option.Token)
-	return &TGoBot{
+	return &GoborgTG{
 		token:    option.Token,
 		ctx:      option.Ctx,
 		notify:   make(chan error, 1),
@@ -43,20 +43,20 @@ func NewBot(option BotOptions) *TGoBot {
 	}
 }
 
-func (t *TGoBot) AddHandler(handler handler.IHandler) {
+func (t *GoborgTG) AddHandler(handler handler.IHandler) {
 	t.handlers = append(t.handlers, BotHandler{
 		Handler: handler,
 	})
 }
 
-func (t *TGoBot) AddHandlerWithMiddleware(handler handler.IHandler, middleware ...handler.Middleware) {
+func (t *GoborgTG) AddHandlerWithMiddleware(handler handler.IHandler, middleware ...handler.Middleware) {
 	t.handlers = append(t.handlers, BotHandler{
 		Handler:    handler,
 		Middleware: middleware,
 	})
 }
 
-func (t *TGoBot) AddCommand(botCommand *command_dto.BotCommand, handler handler.IHandler) {
+func (t *GoborgTG) AddCommand(botCommand *command_dto.BotCommand, handler handler.IHandler) {
 	if botCommand.Command[0] != '/' {
 		t.notify <- errors.New("command must start with /")
 		return
@@ -67,7 +67,7 @@ func (t *TGoBot) AddCommand(botCommand *command_dto.BotCommand, handler handler.
 	t.commands = append(t.commands, botCommand)
 }
 
-func (t *TGoBot) AddCommandWithMiddleware(botCommand *command_dto.BotCommand, handler handler.IHandler, middleware ...handler.Middleware) {
+func (t *GoborgTG) AddCommandWithMiddleware(botCommand *command_dto.BotCommand, handler handler.IHandler, middleware ...handler.Middleware) {
 	if botCommand.Command[0] != '/' {
 		t.notify <- errors.New("command must start with /")
 		return
@@ -79,18 +79,18 @@ func (t *TGoBot) AddCommandWithMiddleware(botCommand *command_dto.BotCommand, ha
 	t.commands = append(t.commands, botCommand)
 }
 
-func (t *TGoBot) GetCommand() {
+func (t *GoborgTG) GetCommand() {
 	err := method.GetMyCommands(t.ctx)
 	if err != nil {
 		slog.Error("GetCommand", "error", err.Error())
 	}
 }
 
-func (t *TGoBot) DeleteCommand() {
+func (t *GoborgTG) DeleteCommand() {
 	method.DeleteMyCommands(t.ctx)
 }
 
-func (t *TGoBot) RunUpdate() {
+func (t *GoborgTG) RunUpdate() {
 	if len(t.commands) > 0 {
 		method.SetMyCommands(t.ctx, t.commands)
 		t.GetCommand()
@@ -127,9 +127,9 @@ func (t *TGoBot) RunUpdate() {
 	}
 }
 
-func (t *TGoBot) Notify() <-chan error {
+func (t *GoborgTG) Notify() <-chan error {
 	return t.notify
 }
 
-func (t *TGoBot) GetTypeMessage() {
+func (t *GoborgTG) GetTypeMessage() {
 }

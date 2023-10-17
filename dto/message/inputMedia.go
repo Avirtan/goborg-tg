@@ -1,6 +1,6 @@
 package message_dto
 
-import message_entity_dto "github.com/Avirtan/TGoBot/dto/message_entity"
+import message_entity_dto "github.com/Avirtan/goborg-tg/dto/message_entity"
 
 // https://core.telegram.org/bots/api#inputmedia
 type InputMedia interface {

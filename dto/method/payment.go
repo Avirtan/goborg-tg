@@ -1,8 +1,8 @@
 package method_dto
 
 import (
-	message_dto "github.com/Avirtan/TGoBot/dto/message"
-	payment_dto "github.com/Avirtan/TGoBot/dto/payment"
+	message_dto "github.com/Avirtan/goborg-tg/dto/message"
+	payment_dto "github.com/Avirtan/goborg-tg/dto/payment"
 )
 
 // https://core.telegram.org/bots/api#sendinvoice

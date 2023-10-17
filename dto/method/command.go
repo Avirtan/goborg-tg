@@ -1,6 +1,6 @@
 package method_dto
 
-import command_dto "github.com/Avirtan/TGoBot/dto/command"
+import command_dto "github.com/Avirtan/goborg-tg/dto/command"
 
 // https://core.telegram.org/bots/api#setmycommands
 type SetCommandRequest struct {

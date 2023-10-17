@@ -1,8 +1,8 @@
 package method_dto
 
 import (
-	message_dto "github.com/Avirtan/TGoBot/dto/message"
-	message_entity_dto "github.com/Avirtan/TGoBot/dto/message_entity"
+	message_dto "github.com/Avirtan/goborg-tg/dto/message"
+	message_entity_dto "github.com/Avirtan/goborg-tg/dto/message_entity"
 )
 
 // https://core.telegram.org/bots/api#sendmessage

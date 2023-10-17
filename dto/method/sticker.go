@@ -1,8 +1,8 @@
 package method_dto
 
 import (
-	message_dto "github.com/Avirtan/TGoBot/dto/message"
-	stickers_dto "github.com/Avirtan/TGoBot/dto/stickers"
+	message_dto "github.com/Avirtan/goborg-tg/dto/message"
+	stickers_dto "github.com/Avirtan/goborg-tg/dto/stickers"
 )
 
 // https://core.telegram.org/bots/api#sendsticker

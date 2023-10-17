@@ -1,8 +1,8 @@
 package inline_dto
 
 import (
-	user_dto "github.com/Avirtan/TGoBot/dto/user"
-	utils_dto "github.com/Avirtan/TGoBot/dto/utils"
+	user_dto "github.com/Avirtan/goborg-tg/dto/user"
+	utils_dto "github.com/Avirtan/goborg-tg/dto/utils"
 )
 
 // https://core.telegram.org/bots/api#inlinequery

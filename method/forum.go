@@ -5,10 +5,10 @@ import (
 	"encoding/json"
 	"log/slog"
 
-	forum_dto "github.com/Avirtan/TGoBot/dto/forum"
-	method_dto "github.com/Avirtan/TGoBot/dto/method"
-	stickers_dto "github.com/Avirtan/TGoBot/dto/stickers"
-	"github.com/Avirtan/TGoBot/request"
+	forum_dto "github.com/Avirtan/goborg-tg/dto/forum"
+	method_dto "github.com/Avirtan/goborg-tg/dto/method"
+	stickers_dto "github.com/Avirtan/goborg-tg/dto/stickers"
+	"github.com/Avirtan/goborg-tg/request"
 )
 
 // https://core.telegram.org/bots/api#getforumtopiciconstickers

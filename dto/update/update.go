@@ -1,9 +1,9 @@
 package update_dto
 
 import (
-	inline_dto "github.com/Avirtan/TGoBot/dto/inlineQuery"
-	message_dto "github.com/Avirtan/TGoBot/dto/message"
-	payment_dto "github.com/Avirtan/TGoBot/dto/payment"
+	inline_dto "github.com/Avirtan/goborg-tg/dto/inlineQuery"
+	message_dto "github.com/Avirtan/goborg-tg/dto/message"
+	payment_dto "github.com/Avirtan/goborg-tg/dto/payment"
 )
 
 type UpdateResponse struct {

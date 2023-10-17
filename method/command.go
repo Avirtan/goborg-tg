@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"log/slog"
 
-	command_dto "github.com/Avirtan/TGoBot/dto/command"
-	method_dto "github.com/Avirtan/TGoBot/dto/method"
-	"github.com/Avirtan/TGoBot/request"
+	command_dto "github.com/Avirtan/goborg-tg/dto/command"
+	method_dto "github.com/Avirtan/goborg-tg/dto/method"
+	"github.com/Avirtan/goborg-tg/request"
 )
 
 // https://core.telegram.org/bots/api#setmycommands

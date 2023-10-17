@@ -1,8 +1,8 @@
 package inline_dto
 
 import (
-	message_dto "github.com/Avirtan/TGoBot/dto/message"
-	message_entity_dto "github.com/Avirtan/TGoBot/dto/message_entity"
+	message_dto "github.com/Avirtan/goborg-tg/dto/message"
+	message_entity_dto "github.com/Avirtan/goborg-tg/dto/message_entity"
 )
 
 // TODO Сделать билдер для каждого класса, и сделать создание резеультатов черезе New, NewТИП_РЕЗУЛЬТАТА параметры в New будут все, кроме omitempty

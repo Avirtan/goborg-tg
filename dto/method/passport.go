@@ -1,6 +1,6 @@
 package method_dto
 
-import passport_dto "github.com/Avirtan/TGoBot/dto/passport"
+import passport_dto "github.com/Avirtan/goborg-tg/dto/passport"
 
 // https://core.telegram.org/bots/api#setpassportdataerrors
 type SetPassportDataErrors struct {

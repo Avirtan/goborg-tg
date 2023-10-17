@@ -7,9 +7,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	tgobot "github.com/Avirtan/TGoBot"
-	command_dto "github.com/Avirtan/TGoBot/dto/command"
-	"github.com/Avirtan/TGoBot/examples/collegeBot/handlers"
+	goborg "github.com/Avirtan/goborg-tg"
+	command_dto "github.com/Avirtan/goborg-tg/dto/command"
+	"github.com/Avirtan/goborg-tg/examples/collegeBot/handlers"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 
 	ctx := context.Background()
 	ctxWithCancel, cancelFunction := context.WithCancel(ctx)
-	tbot := tgobot.NewBot(tgobot.BotOptions{
+	tbot := goborg.NewBot(goborg.BotOptions{
 		Token: "your_token",
 		Ctx:   ctxWithCancel,
 	})

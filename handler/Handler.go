@@ -3,7 +3,7 @@ package handler
 import (
 	"context"
 
-	update_dto "github.com/Avirtan/TGoBot/dto/update"
+	update_dto "github.com/Avirtan/goborg-tg/dto/update"
 )
 
 type TypeHandler uint64

@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"io"
 
-	update_dto "github.com/Avirtan/TGoBot/dto/update"
-	"github.com/Avirtan/TGoBot/request"
+	update_dto "github.com/Avirtan/goborg-tg/dto/update"
+	"github.com/Avirtan/goborg-tg/request"
 )
 
 const baseUrl = "https://api.telegram.org/bot%s"

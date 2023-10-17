@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"log/slog"
 
-	method_dto "github.com/Avirtan/TGoBot/dto/method"
-	"github.com/Avirtan/TGoBot/request"
+	method_dto "github.com/Avirtan/goborg-tg/dto/method"
+	"github.com/Avirtan/goborg-tg/request"
 )
 
 // https://core.telegram.org/bots/api#answerinlinequery

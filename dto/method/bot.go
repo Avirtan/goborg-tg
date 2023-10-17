@@ -1,6 +1,6 @@
 package method_dto
 
-import message_dto "github.com/Avirtan/TGoBot/dto/message"
+import message_dto "github.com/Avirtan/goborg-tg/dto/message"
 
 // https://core.telegram.org/bots/api#setmycommands
 type GetMyDefaultAdministratorRights struct {

@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"log/slog"
 
-	message_dto "github.com/Avirtan/TGoBot/dto/message"
-	method_dto "github.com/Avirtan/TGoBot/dto/method"
-	stickers_dto "github.com/Avirtan/TGoBot/dto/stickers"
-	utils_dto "github.com/Avirtan/TGoBot/dto/utils"
-	"github.com/Avirtan/TGoBot/request"
+	message_dto "github.com/Avirtan/goborg-tg/dto/message"
+	method_dto "github.com/Avirtan/goborg-tg/dto/method"
+	stickers_dto "github.com/Avirtan/goborg-tg/dto/stickers"
+	utils_dto "github.com/Avirtan/goborg-tg/dto/utils"
+	"github.com/Avirtan/goborg-tg/request"
 )
 
 // https://core.telegram.org/bots/api#sendsticker

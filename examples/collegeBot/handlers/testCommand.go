@@ -3,10 +3,10 @@ package handlers
 import (
 	"context"
 
-	message_dto "github.com/Avirtan/TGoBot/dto/message"
-	method_dto "github.com/Avirtan/TGoBot/dto/method"
-	update_dto "github.com/Avirtan/TGoBot/dto/update"
-	"github.com/Avirtan/TGoBot/method"
+	message_dto "github.com/Avirtan/goborg-tg/dto/message"
+	method_dto "github.com/Avirtan/goborg-tg/dto/method"
+	update_dto "github.com/Avirtan/goborg-tg/dto/update"
+	"github.com/Avirtan/goborg-tg/method"
 )
 
 type TestCommandHandler struct {

@@ -5,7 +5,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/Avirtan/TGoBot/dto"
+	"github.com/Avirtan/goborg-tg/dto"
 )
 
 func ResponseHandler(response *http.Response) (*dto.Response, error) {

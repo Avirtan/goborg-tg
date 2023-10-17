@@ -1,6 +1,6 @@
 package method_dto
 
-import inline_dto "github.com/Avirtan/TGoBot/dto/inlineQuery"
+import inline_dto "github.com/Avirtan/goborg-tg/dto/inlineQuery"
 
 // https://core.telegram.org/bots/api#answerinlinequery
 type AnswerInlineQuery struct {

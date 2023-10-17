@@ -7,12 +7,12 @@ import (
 	"io"
 	"strings"
 
-	"github.com/Avirtan/TGoBot/method"
+	"github.com/Avirtan/goborg-tg/method"
 
-	method_dto "github.com/Avirtan/TGoBot/dto/method"
-	update_dto "github.com/Avirtan/TGoBot/dto/update"
-	"github.com/Avirtan/TGoBot/examples/collegeBot/model"
-	"github.com/Avirtan/TGoBot/request"
+	method_dto "github.com/Avirtan/goborg-tg/dto/method"
+	update_dto "github.com/Avirtan/goborg-tg/dto/update"
+	"github.com/Avirtan/goborg-tg/examples/collegeBot/model"
+	"github.com/Avirtan/goborg-tg/request"
 )
 
 const url = "https://info.kma29.ru/api.php/"

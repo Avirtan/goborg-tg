@@ -1,14 +1,14 @@
 package main
 
 import (
-	tgobot "github.com/Avirtan/TGoBot"
-	command_dto "github.com/Avirtan/TGoBot/dto/command"
-	message_dto "github.com/Avirtan/TGoBot/dto/message"
-	method_dto "github.com/Avirtan/TGoBot/dto/method"
-	update_dto "github.com/Avirtan/TGoBot/dto/update"
-	"github.com/Avirtan/TGoBot/examples/collegeBot/model"
-	"github.com/Avirtan/TGoBot/method"
-	"github.com/Avirtan/TGoBot/pkg/logger"
+	goborg_tg "github.com/Avirtan/goborg-tg"
+	command_dto "github.com/Avirtan/goborg-tg/dto/command"
+	message_dto "github.com/Avirtan/goborg-tg/dto/message"
+	method_dto "github.com/Avirtan/goborg-tg/dto/method"
+	update_dto "github.com/Avirtan/goborg-tg/dto/update"
+	"github.com/Avirtan/goborg-tg/examples/collegeBot/model"
+	"github.com/Avirtan/goborg-tg/method"
+	"github.com/Avirtan/goborg-tg/pkg/logger"
 
 	"context"
 	"encoding/json"
@@ -22,8 +22,8 @@ import (
 func main() {
 	ctx := context.Background()
 	ctxWithCancel, cancelFunction := context.WithCancel(ctx)
-	tbot := tgobot.NewBot(tgobot.BotOptions{
-		Token:       "your_token",
+	tbot := goborg_tg.NewBot(goborg_tg.BotOptions{
+		Token:       "6584315900:AAHsf2CpLAsnuyl5H1CyB-gOy4wv8S9TIMI",
 		Ctx:         ctxWithCancel,
 		LoggerLevel: logger.LevelDebug,
 	})
@@ -36,7 +36,7 @@ func main() {
 	cmd := &TestCommandHandler{
 		College: college,
 	}
-	tbot.AddHandler(cmd)
+	// tbot.AddHandler(cmd)
 	tbot.AddCommand(
 		&command_dto.BotCommand{
 			Command:     "/test",

@@ -3,9 +3,9 @@ package handlers
 import (
 	"context"
 
-	method_dto "github.com/Avirtan/TGoBot/dto/method"
-	update_dto "github.com/Avirtan/TGoBot/dto/update"
-	"github.com/Avirtan/TGoBot/method"
+	method_dto "github.com/Avirtan/goborg-tg/dto/method"
+	update_dto "github.com/Avirtan/goborg-tg/dto/update"
+	"github.com/Avirtan/goborg-tg/method"
 )
 
 type StartHandler struct {

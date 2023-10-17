@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"log/slog"
 
-	"github.com/Avirtan/TGoBot/dto"
-	method_dto "github.com/Avirtan/TGoBot/dto/method"
-	"github.com/Avirtan/TGoBot/request"
+	"github.com/Avirtan/goborg-tg/dto"
+	method_dto "github.com/Avirtan/goborg-tg/dto/method"
+	"github.com/Avirtan/goborg-tg/request"
 )
 
 // https://core.telegram.org/bots/api#setpassportdataerrors

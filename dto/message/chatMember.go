@@ -1,6 +1,6 @@
 package message_dto
 
-import user_dto "github.com/Avirtan/TGoBot/dto/user"
+import user_dto "github.com/Avirtan/goborg-tg/dto/user"
 
 // пришлось пока всё в одну структуру запихать, так как проблема из-за одинаковых полей в структурах
 

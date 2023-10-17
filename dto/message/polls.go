@@ -1,8 +1,8 @@
 package message_dto
 
 import (
-	message_entity_dto "github.com/Avirtan/TGoBot/dto/message_entity"
-	user_dto "github.com/Avirtan/TGoBot/dto/user"
+	message_entity_dto "github.com/Avirtan/goborg-tg/dto/message_entity"
+	user_dto "github.com/Avirtan/goborg-tg/dto/user"
 )
 
 // https://core.telegram.org/bots/api#polloption
