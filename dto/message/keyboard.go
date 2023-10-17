@@ -60,13 +60,13 @@ func (k *ReplyKeyboardMarkup) GetType() {
 
 // https://core.telegram.org/bots/api#keyboardbutton
 type KeyboardButton struct {
-	Text            string                    `json:"text"`
-	RequestUser     KeyboardButtonRequestUser `json:"is_persistent,omitempty"`
-	RequestChat     KeyboardButtonRequestChat `json:"request_chat,omitempty"`
-	RequestContact  bool                      `json:"request_contact,omitempty"`
-	RequestLocation bool                      `json:"request_location,omitempty"`
-	RequestPoll     KeyboardButtonPollType    `json:"request_poll,omitempty"`
-	WebApp          *utils_dto.WebAppInfo     `json:"web_app,omitempty"`
+	Text            string                     `json:"text"`
+	RequestUser     *KeyboardButtonRequestUser `json:"is_persistent,omitempty"`
+	RequestChat     *KeyboardButtonRequestChat `json:"request_chat,omitempty"`
+	RequestContact  *bool                      `json:"request_contact,omitempty"`
+	RequestLocation *bool                      `json:"request_location,omitempty"`
+	RequestPoll     *KeyboardButtonPollType    `json:"request_poll,omitempty"`
+	WebApp          *utils_dto.WebAppInfo      `json:"web_app,omitempty"`
 }
 
 // https://core.telegram.org/bots/api#keyboardbuttonrequestuser
