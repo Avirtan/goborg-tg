@@ -353,3 +353,285 @@ func (s *SendLocation[ID]) SetAllowSendingWithoutReply(allowSendingWithoutReply 
 	s.AllowSendingWithoutReply = allowSendingWithoutReply
 	return s
 }
+
+// https://core.telegram.org/bots/api#editmessagetext
+type EditMessageText[ID int64 | string] struct {
+	ChatID                ID                                 `json:"chat_id"`
+	MessageID             int                                `json:"message_id,omitempty"`
+	InlineMessageID       string                             `json:"inline_message_id,omitempty"`
+	Text                  string                             `json:"text"`
+	ParseMode             string                             `json:"parse_mode,omitempty"`
+	Entities              []message_entity_dto.MessageEntity `json:"entities,omitempty"`
+	DisableWebPagePreview bool                               `json:"disable_web_page_preview,omitempty"`
+	ReplyMarkup           message_dto.IKeyboard              `json:"reply_markup,omitempty"`
+}
+
+func NewEditMessageText[ID int64 | string](chatID ID, text string) *EditMessageText[ID] {
+	return &EditMessageText[ID]{
+		ChatID: chatID,
+		Text:   text,
+	}
+}
+
+func (s *EditMessageText[ID]) SetMessageID(messageID int) *EditMessageText[ID] {
+	s.MessageID = messageID
+	return s
+}
+
+func (s *EditMessageText[ID]) SetInlineMessageID(inlineMessageID string) *EditMessageText[ID] {
+	s.InlineMessageID = inlineMessageID
+	return s
+}
+
+func (s *EditMessageText[ID]) SetParseMode(parseMode string) *EditMessageText[ID] {
+	s.ParseMode = parseMode
+	return s
+}
+
+func (s *EditMessageText[ID]) SetEntities(entities []message_entity_dto.MessageEntity) *EditMessageText[ID] {
+	s.Entities = entities
+	return s
+}
+
+func (s *EditMessageText[ID]) SetDisableWebPagePreview(disableWebPagePreview bool) *EditMessageText[ID] {
+	s.DisableWebPagePreview = disableWebPagePreview
+	return s
+}
+
+func (s *EditMessageText[ID]) SetReplyMarkup(replyMarkup message_dto.IKeyboard) *EditMessageText[ID] {
+	s.ReplyMarkup = replyMarkup
+	return s
+}
+
+// https://core.telegram.org/bots/api#editmessagecaption
+type EditMessageCaption[ID int64 | string] struct {
+	ChatID          ID                                 `json:"chat_id,omitempty"`
+	MessageID       int                                `json:"message_id,omitempty"`
+	InlineMessageID string                             `json:"inline_message_id,omitempty"`
+	Caption         string                             `json:"caption,omitempty"`
+	ParseMode       string                             `json:"parse_mode,omitempty"`
+	CaptionEntities []message_entity_dto.MessageEntity `json:"caption_entities,omitempty"`
+	ReplyMarkup     message_dto.InlineKeyboardMarkup   `json:"reply_markup,omitempty"`
+}
+
+func NewEditMessageCaption[ID int64 | string](text string) *EditMessageCaption[ID] {
+	return &EditMessageCaption[ID]{
+		Caption: text,
+	}
+}
+
+func (e *EditMessageCaption[ID]) SetChatID(chatID ID) *EditMessageCaption[ID] {
+	e.ChatID = chatID
+	return e
+}
+
+func (e *EditMessageCaption[ID]) SetMessageID(messageID int) *EditMessageCaption[ID] {
+	e.MessageID = messageID
+	return e
+}
+
+func (e *EditMessageCaption[ID]) SetInlineMessageID(inlineMessageID string) *EditMessageCaption[ID] {
+	e.InlineMessageID = inlineMessageID
+	return e
+}
+
+func (e *EditMessageCaption[ID]) SetParseMode(parseMode string) *EditMessageCaption[ID] {
+	e.ParseMode = parseMode
+	return e
+}
+
+func (e *EditMessageCaption[ID]) SetCaptionEntities(entities []message_entity_dto.MessageEntity) *EditMessageCaption[ID] {
+	e.CaptionEntities = entities
+	return e
+}
+
+func (e *EditMessageCaption[ID]) SetReplyMarkup(replyMarkup message_dto.InlineKeyboardMarkup) *EditMessageCaption[ID] {
+	e.ReplyMarkup = replyMarkup
+	return e
+}
+
+// https://core.telegram.org/bots/api#editmessagemedia
+type EditMessageMedia[ID int64 | string] struct {
+	ChatID          ID                               `json:"chat_id,omitempty"`
+	MessageID       int                              `json:"message_id,omitempty"`
+	InlineMessageID string                           `json:"inline_message_id,omitempty"`
+	Media           message_dto.InputMedia           `json:"media"`
+	ReplyMarkup     message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+}
+
+func NewEditMessageMedia[ID int64 | string](media message_dto.InputMedia) *EditMessageMedia[ID] {
+	return &EditMessageMedia[ID]{
+		Media: media,
+	}
+}
+
+func (e *EditMessageMedia[ID]) SetChatID(chatID ID) *EditMessageMedia[ID] {
+	e.ChatID = chatID
+	return e
+}
+
+func (e *EditMessageMedia[ID]) SetMessageID(messageID int) *EditMessageMedia[ID] {
+	e.MessageID = messageID
+	return e
+}
+
+func (e *EditMessageMedia[ID]) SetInlineMessageID(inlineMessageID string) *EditMessageMedia[ID] {
+	e.InlineMessageID = inlineMessageID
+	return e
+}
+
+func (e *EditMessageMedia[ID]) SetReplyMarkup(replyMarkup message_dto.InlineKeyboardMarkup) *EditMessageMedia[ID] {
+	e.ReplyMarkup = replyMarkup
+	return e
+}
+
+// https://core.telegram.org/bots/api#editmessagelivelocation
+type EditMessageLiveLocation[ID int64 | string] struct {
+	ChatID               ID                               `json:"chat_id,omitempty"`
+	MessageID            int                              `json:"message_id,omitempty"`
+	InlineMessageID      string                           `json:"inline_message_id,omitempty"`
+	Latitude             float64                          `json:"latitude"`
+	Longitude            float64                          `json:"longitude"`
+	HorizontalAccuracy   float64                          `json:"horizontal_accuracy,omitempty"`
+	Heading              int                              `json:"heading,omitempty"`
+	ProximityAlertRadius int                              `json:"proximity_alert_radius,omitempty"`
+	ReplyMarkup          message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+}
+
+func NewEditMessageLiveLocation[ID int64 | string](latitude, longitude float64) *EditMessageLiveLocation[ID] {
+	return &EditMessageLiveLocation[ID]{
+		Latitude:  latitude,
+		Longitude: longitude,
+	}
+}
+
+func (e *EditMessageLiveLocation[ID]) SetChatID(chatID ID) *EditMessageLiveLocation[ID] {
+	e.ChatID = chatID
+	return e
+}
+
+func (e *EditMessageLiveLocation[ID]) SetMessageID(messageID int) *EditMessageLiveLocation[ID] {
+	e.MessageID = messageID
+	return e
+}
+
+func (e *EditMessageLiveLocation[ID]) SetInlineMessageID(inlineMessageID string) *EditMessageLiveLocation[ID] {
+	e.InlineMessageID = inlineMessageID
+	return e
+}
+
+func (e *EditMessageLiveLocation[ID]) SetHorizontalAccuracy(horizontalAccuracy float64) *EditMessageLiveLocation[ID] {
+	e.HorizontalAccuracy = horizontalAccuracy
+	return e
+}
+
+func (e *EditMessageLiveLocation[ID]) SetHeading(heading int) *EditMessageLiveLocation[ID] {
+	e.Heading = heading
+	return e
+}
+
+func (e *EditMessageLiveLocation[ID]) SetProximityAlertRadius(proximityAlertRadius int) *EditMessageLiveLocation[ID] {
+	e.ProximityAlertRadius = proximityAlertRadius
+	return e
+}
+
+func (e *EditMessageLiveLocation[ID]) SetReplyMarkup(replyMarkup message_dto.InlineKeyboardMarkup) *EditMessageLiveLocation[ID] {
+	e.ReplyMarkup = replyMarkup
+	return e
+}
+
+// https://core.telegram.org/bots/api#stopmessagelivelocation
+type StopMessageLiveLocation[ID int64 | string] struct {
+	ChatID          ID                               `json:"chat_id,omitempty"`
+	MessageID       int                              `json:"message_id,omitempty"`
+	InlineMessageID string                           `json:"inline_message_id,omitempty"`
+	ReplyMarkup     message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+}
+
+func NewStopMessageLiveLocation[ID int64 | string]() *StopMessageLiveLocation[ID] {
+	return &StopMessageLiveLocation[ID]{}
+}
+
+func (s *StopMessageLiveLocation[ID]) SetChatID(chatID ID) *StopMessageLiveLocation[ID] {
+	s.ChatID = chatID
+	return s
+}
+
+func (s *StopMessageLiveLocation[ID]) SetMessageID(messageID int) *StopMessageLiveLocation[ID] {
+	s.MessageID = messageID
+	return s
+}
+
+func (s *StopMessageLiveLocation[ID]) SetInlineMessageID(inlineMessageID string) *StopMessageLiveLocation[ID] {
+	s.InlineMessageID = inlineMessageID
+	return s
+}
+
+func (s *StopMessageLiveLocation[ID]) SetReplyMarkup(replyMarkup message_dto.InlineKeyboardMarkup) *StopMessageLiveLocation[ID] {
+	s.ReplyMarkup = replyMarkup
+	return s
+}
+
+// https://core.telegram.org/bots/api#editmessagereplymarkup
+type EditMessageReplyMarkup[ID int64 | string] struct {
+	ChatID          ID                               `json:"chat_id,omitempty"`
+	MessageID       int                              `json:"message_id,omitempty"`
+	InlineMessageID string                           `json:"inline_message_id,omitempty"`
+	ReplyMarkup     message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+}
+
+func NewEditMessageReplyMarkup[ID int64 | string]() *EditMessageReplyMarkup[ID] {
+	return &EditMessageReplyMarkup[ID]{}
+}
+
+func (e *EditMessageReplyMarkup[ID]) SetChatID(chatID ID) *EditMessageReplyMarkup[ID] {
+	e.ChatID = chatID
+	return e
+}
+
+func (e *EditMessageReplyMarkup[ID]) SetMessageID(messageID int) *EditMessageReplyMarkup[ID] {
+	e.MessageID = messageID
+	return e
+}
+
+func (e *EditMessageReplyMarkup[ID]) SetInlineMessageID(inlineMessageID string) *EditMessageReplyMarkup[ID] {
+	e.InlineMessageID = inlineMessageID
+	return e
+}
+
+func (e *EditMessageReplyMarkup[ID]) SetReplyMarkup(replyMarkup message_dto.InlineKeyboardMarkup) *EditMessageReplyMarkup[ID] {
+	e.ReplyMarkup = replyMarkup
+	return e
+}
+
+// https://core.telegram.org/bots/api#stoppoll
+type StopPoll[ID int64 | string] struct {
+	ChatID      ID                               `json:"chat_id"`
+	MessageID   int                              `json:"message_id"`
+	ReplyMarkup message_dto.InlineKeyboardMarkup `json:"reply_markup,omitempty"`
+}
+
+func NewStopPoll[ID int64 | string](chatID ID, messageID int) *StopPoll[ID] {
+	return &StopPoll[ID]{
+		ChatID:    chatID,
+		MessageID: messageID,
+	}
+}
+
+func (s *StopPoll[ID]) SetReplyMarkup(replyMarkup message_dto.InlineKeyboardMarkup) *StopPoll[ID] {
+	s.ReplyMarkup = replyMarkup
+	return s
+}
+
+// https://core.telegram.org/bots/api#deletemessage
+type DeleteMessage[ID int64 | string] struct {
+	ChatID    ID  `json:"chat_id"`
+	MessageID int `json:"message_id"`
+}
+
+func NewDeleteMessage[ID int64 | string](chatID ID, messageID int) *DeleteMessage[ID] {
+	return &DeleteMessage[ID]{
+		ChatID:    chatID,
+		MessageID: messageID,
+	}
+}
