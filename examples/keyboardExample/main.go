@@ -6,12 +6,10 @@ import (
 	message_dto "github.com/Avirtan/goborg-tg/dto/message"
 	method_dto "github.com/Avirtan/goborg-tg/dto/method"
 	update_dto "github.com/Avirtan/goborg-tg/dto/update"
-	"github.com/Avirtan/goborg-tg/examples/collegeBot/model"
 	"github.com/Avirtan/goborg-tg/method"
 	"github.com/Avirtan/goborg-tg/pkg/logger"
 
 	"context"
-	"encoding/json"
 	"fmt"
 	"log/slog"
 	"os"
@@ -27,15 +25,8 @@ func main() {
 		Ctx:         ctxWithCancel,
 		LoggerLevel: logger.LevelDebug,
 	})
-	bytes, err := os.ReadFile("test.json")
-	if err != nil {
-		fmt.Println(err)
-	}
-	college := model.ApiCollege{}
-	_ = json.Unmarshal(bytes, &college)
-	cmd := &TestCommandHandler{
-		College: college,
-	}
+
+	cmd := &TestCommandHandler{}
 	// tbot.AddHandler(cmd)
 	tbot.AddCommand(
 		&command_dto.BotCommand{
@@ -59,7 +50,6 @@ func main() {
 }
 
 type TestCommandHandler struct {
-	College model.ApiCollege
 }
 
 func (c *TestCommandHandler) Action(ctx context.Context, update *update_dto.Update) {
