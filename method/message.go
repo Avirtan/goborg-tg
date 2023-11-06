@@ -78,7 +78,7 @@ func CopyMessage(ctx context.Context, data method_dto.CopyMessage) error {
 }
 
 // https://core.telegram.org/bots/api#editmessagetext
-func EditMessageText(ctx context.Context, data method_dto.CopyMessage) error {
+func EditMessageText[ID int64 | string](ctx context.Context, data method_dto.EditMessageText[ID]) error {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
@@ -100,7 +100,7 @@ func EditMessageText(ctx context.Context, data method_dto.CopyMessage) error {
 }
 
 // https://core.telegram.org/bots/api#editmessagecaption
-func EditMessageCaption(ctx context.Context, data method_dto.CopyMessage) (*dto.Response, error) {
+func EditMessageCaption[ID int64 | string](ctx context.Context, data method_dto.EditMessageCaption[ID]) (*dto.Response, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
@@ -122,7 +122,7 @@ func EditMessageCaption(ctx context.Context, data method_dto.CopyMessage) (*dto.
 }
 
 // https://core.telegram.org/bots/api#editmessagemedia
-func EditMessageMedia(ctx context.Context, data method_dto.CopyMessage) (*dto.Response, error) {
+func EditMessageMedia[ID int64 | string](ctx context.Context, data method_dto.EditMessageMedia[ID]) (*dto.Response, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
@@ -145,7 +145,7 @@ func EditMessageMedia(ctx context.Context, data method_dto.CopyMessage) (*dto.Re
 }
 
 // https://core.telegram.org/bots/api#editmessagelivelocation
-func EditMessageLiveLocation(ctx context.Context, data method_dto.CopyMessage) (*dto.Response, error) {
+func EditMessageLiveLocation[ID int64 | string](ctx context.Context, data method_dto.EditMessageLiveLocation[ID]) (*dto.Response, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
@@ -167,7 +167,7 @@ func EditMessageLiveLocation(ctx context.Context, data method_dto.CopyMessage) (
 }
 
 // https://core.telegram.org/bots/api#stopmessagelivelocation
-func StopMessageLiveLocation(ctx context.Context, data method_dto.CopyMessage) (*dto.Response, error) {
+func StopMessageLiveLocation[ID int64 | string](ctx context.Context, data method_dto.StopMessageLiveLocation[ID]) (*dto.Response, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
@@ -189,7 +189,7 @@ func StopMessageLiveLocation(ctx context.Context, data method_dto.CopyMessage) (
 }
 
 // https://core.telegram.org/bots/api#editmessagereplymarkup
-func EditMessageReplyMarkup(ctx context.Context, data method_dto.CopyMessage) (*dto.Response, error) {
+func EditMessageReplyMarkup[ID int64 | string](ctx context.Context, data method_dto.EditMessageReplyMarkup[ID]) (*dto.Response, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
@@ -211,7 +211,7 @@ func EditMessageReplyMarkup(ctx context.Context, data method_dto.CopyMessage) (*
 }
 
 // https://core.telegram.org/bots/api#stoppoll
-func StopPoll(ctx context.Context, data method_dto.CopyMessage) (*message_dto.Poll, error) {
+func StopPoll[ID int64 | string](ctx context.Context, data method_dto.StopPoll[ID]) (*message_dto.Poll, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
@@ -233,7 +233,7 @@ func StopPoll(ctx context.Context, data method_dto.CopyMessage) (*message_dto.Po
 }
 
 // https://core.telegram.org/bots/api#deletemessage
-func DeleteMessage(ctx context.Context, data method_dto.CopyMessage) (*bool, error) {
+func DeleteMessage[ID int64 | string](ctx context.Context, data method_dto.DeleteMessage[ID]) (*bool, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
