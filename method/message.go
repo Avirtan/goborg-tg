@@ -12,69 +12,69 @@ import (
 )
 
 // https://core.telegram.org/bots/api#sendmessage
-func SendMessage[ID int64 | string](ctx context.Context, data method_dto.SendMessage[ID]) error {
+func SendMessage[ID int64 | string](ctx context.Context, data method_dto.SendMessage[ID]) (*dto.Response, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/sendMessage", marshalBytes)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	responseData, err := request.ResponseHandler(response)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	slog.Debug("info", "response", responseData)
 
-	return nil
+	return responseData, nil
 }
 
 // https://core.telegram.org/bots/api#forwardmessage
-func ForwardMessage(ctx context.Context, data method_dto.ForwardMessage) error {
+func ForwardMessage(ctx context.Context, data method_dto.ForwardMessage) (*dto.Response, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/forwardMessage", marshalBytes)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	responseData, err := request.ResponseHandler(response)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	slog.Debug("info", "response", responseData)
 
-	return nil
+	return responseData, nil
 }
 
 // https://core.telegram.org/bots/api#copymessage
-func CopyMessage(ctx context.Context, data method_dto.CopyMessage) error {
+func CopyMessage(ctx context.Context, data method_dto.CopyMessage) (*dto.Response, error) {
 	marshalBytes, err := json.Marshal(data)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	response, err := request.RequestWithContextAndData(ctx, request.Get, GetUrl()+"/copyMessage", marshalBytes)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	responseData, err := request.ResponseHandler(response)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	slog.Debug("info", "response", responseData)
 
-	return nil
+	return responseData, nil
 }
 
 // https://core.telegram.org/bots/api#editmessagetext
