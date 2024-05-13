@@ -67,6 +67,14 @@ func (t *GoborgTG) AddCommand(botCommand *command_dto.BotCommand, handler handle
 	t.commands = append(t.commands, botCommand)
 }
 
+func (t *GoborgTG) AddCommandDescription(botCommand *command_dto.BotCommand) {
+	if botCommand.Command[0] != '/' {
+		t.notify <- errors.New("command must start with /")
+		return
+	}
+	t.commands = append(t.commands, botCommand)
+}
+
 func (t *GoborgTG) AddCommandWithMiddleware(botCommand *command_dto.BotCommand, handler handler.IHandler, middleware ...handler.Middleware) {
 	if botCommand.Command[0] != '/' {
 		t.notify <- errors.New("command must start with /")

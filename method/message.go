@@ -3,7 +3,6 @@ package method
 import (
 	"context"
 	"encoding/json"
-	"log/slog"
 
 	"github.com/Avirtan/goborg-tg/dto"
 	message_dto "github.com/Avirtan/goborg-tg/dto/message"
@@ -28,8 +27,6 @@ func SendMessage[ID int64 | string](ctx context.Context, data method_dto.SendMes
 		return nil, err
 	}
 
-	slog.Debug("info", "response", responseData)
-
 	return responseData, nil
 }
 
@@ -49,8 +46,6 @@ func ForwardMessage(ctx context.Context, data method_dto.ForwardMessage) (*dto.R
 	if err != nil {
 		return nil, err
 	}
-
-	slog.Debug("info", "response", responseData)
 
 	return responseData, nil
 }
@@ -72,8 +67,6 @@ func CopyMessage(ctx context.Context, data method_dto.CopyMessage) (*dto.Respons
 		return nil, err
 	}
 
-	slog.Debug("info", "response", responseData)
-
 	return responseData, nil
 }
 
@@ -89,12 +82,10 @@ func EditMessageText[ID int64 | string](ctx context.Context, data method_dto.Edi
 		return err
 	}
 
-	responseData, err := request.ResponseHandler(response)
+	_, err = request.ResponseHandler(response)
 	if err != nil {
 		return err
 	}
-
-	slog.Debug("info", "response", responseData)
 
 	return nil
 }
@@ -116,8 +107,6 @@ func EditMessageCaption[ID int64 | string](ctx context.Context, data method_dto.
 		return nil, err
 	}
 
-	slog.Debug("info", "response", responseData)
-
 	return responseData, nil
 }
 
@@ -137,8 +126,6 @@ func EditMessageMedia[ID int64 | string](ctx context.Context, data method_dto.Ed
 	if err != nil {
 		return nil, err
 	}
-
-	slog.Debug("info", "response", responseData)
 
 	return responseData, nil
 
@@ -161,8 +148,6 @@ func EditMessageLiveLocation[ID int64 | string](ctx context.Context, data method
 		return nil, err
 	}
 
-	slog.Debug("info", "response", responseData)
-
 	return responseData, nil
 }
 
@@ -182,8 +167,6 @@ func StopMessageLiveLocation[ID int64 | string](ctx context.Context, data method
 	if err != nil {
 		return nil, err
 	}
-
-	slog.Debug("info", "response", responseData)
 
 	return responseData, nil
 }
@@ -205,8 +188,6 @@ func EditMessageReplyMarkup[ID int64 | string](ctx context.Context, data method_
 		return nil, err
 	}
 
-	slog.Debug("info", "response", responseData)
-
 	return responseData, nil
 }
 
@@ -227,8 +208,6 @@ func StopPoll[ID int64 | string](ctx context.Context, data method_dto.StopPoll[I
 		return nil, err
 	}
 
-	slog.Debug("info", "response", responseData)
-
 	return responseData, nil
 }
 
@@ -248,8 +227,6 @@ func DeleteMessage[ID int64 | string](ctx context.Context, data method_dto.Delet
 	if err != nil {
 		return nil, err
 	}
-
-	slog.Debug("info", "response", responseData)
 
 	return responseData, nil
 }
